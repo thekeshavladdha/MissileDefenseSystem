@@ -34,9 +34,17 @@ TBMD engagement coordination (DED bidded scheme); implement 3 of its 8 sieving t
     Batch-verified: Priority 1-3 → shipHint 1, 4-5 → shipHint 2; ship split 17/15 across the 3-run sweep.
   - `magazine.csv` — per-ship magazine table (`Ship,Remaining`, 10/10). WIRED via `Magazine_DB` Database block;
     `KillAssessment`/`Ship2_Kill` decrement their ship's row with `putRow` and record `Inventory_Left` +
-    `Magazine_Empty` per threat. Batch-verified depleting (ship1 8→1, ship2 8→-1). KNOWN GAP: magazine can go
-    negative (no block-at-zero yet) and `CommonRule` routing still reads static `Ship1_Inv`/`Ship2_Inv`,
-    not the magazine — wiring magazine into routing is the next step.
+    `Magazine_Empty` per threat. Batch-verified depleting. Block-at-zero enforced by clamping fired shots to
+    remaining (`FiredShots = min(WantShots, Remaining)`, never negative). `CommonRule` now reads the live
+    magazine for `hasInv1/hasInv2` (ANDed with the static `Ship1_Inv`/`Ship2_Inv` params, so batch overrides
+    like `-Ship1_Inv 0` keep working); routing therefore reacts to depletion.
+  - SLS loop live: `DetectionAssignment` stamps `Attempts = 0`; kill blocks increment it, re-roll the kill dice
+    on pass 2+, and emit a `ReEngage` token only for missed threats with `Attempts < 2` and room for another
+    full `Flight_Time` before the deadline. Feedback re-enters `PolicyRouter` (re-routing allowed) and the loop
+    provably terminates (Attempts gate + stopTime). Verified: loose-deadline demo shows Attempts=2 second
+    passes with fresh dice and continued magazine depletion; tight-deadline raids correctly never re-engage
+    (no time left — itself a finding). Scorer dedupes by threat ID (last record wins) and reports re-engaged
+    counts plus per-ship shot totals.
   - `.visualsim-mcp/` — MCP cache (handoffs, traceability.db, workspaces/a50ecb73, transactions/*).
     Regenerable; deleted once for cleanup, recreated by later opens.
 - `planner.md` (this folder) — 10-step DED-lite build plan (Steps 0–9 with gates). Follow it.
