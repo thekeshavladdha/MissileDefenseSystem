@@ -32,7 +32,8 @@
 
 ## If GUI crashes
 - Check empty relations.
-- Check `ShipCoordinator` unwired observer. It may need deletion or blanking of `Smart_Resource_Name`.
+- ShipCoordinator was removed; PolicyRouter uses default `output` for ship1 and custom `ship2Out` for ship2.
+- CommonRule favorite-ship comparison now uses boolean literal `false`, not `== 0`.
 - Check `PolicyRouter` output ports are `ship1Out,ship2Out`.
 - Check `Merge` has `_type general` on `output/Latency/KilledOnly/MissedOnly`.
 

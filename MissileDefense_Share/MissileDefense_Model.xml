@@ -444,25 +444,16 @@
 </entity>
 <entity name="CommonRule" class="VisualSim.actor.lib.Expression_Decision">
     <property name="_location" class="VisualSim.kernel.util.Location" value="[320.0, 300.0]"/>
-    <property name="Expression_List" value="input.shipHint = input.Priority &lt;= 3 ? 1 : 2&#10;input.hasInv1 = (Ship1_Inv &gt; 0)&#10;input.hasInv2 = (Ship2_Inv &gt; 0)&#10;input.preferredShip = input.hasInv1 == 0 ? 2 : (input.hasInv2 == 0 ? 1 : input.shipHint)"/>
-</entity>
-<entity name="ShipCoordinator" class="VisualSim.actor.lib.Smart_Controller">
-    <property name="_location" class="VisualSim.kernel.util.Location" value="[120.0, 300.0]"/>
-    <property name="Block_Name" value="&quot;ShipCoordinator&quot;"/>
-    <property name="Smart_Resource_Name" value="&quot;InterceptorQueue&quot;"/>
+    <property name="Expression_List" value="input.shipHint = input.Priority &lt;= 3 ? 1 : 2&#10;input.hasInv1 = (Ship1_Inv &gt; 0)&#10;input.hasInv2 = (Ship2_Inv &gt; 0)&#10;input.preferredShip = input.hasInv1 == false ? 2 : (input.hasInv2 == false ? 1 : input.shipHint)"/>
 </entity>
 <entity name="PolicyRouter" class="VisualSim.actor.lib.Expression_Decision">
     <property name="_location" class="VisualSim.kernel.util.Location" value="[120.0, 220.0]"/>
     <property name="Expression_List" value="input.sectoredShip = input.Priority &lt;= 3 ? 1 : 2&#10;input.ship = Policy_Mode == 0 ? input.sectoredShip : (Policy_Mode == 1 ? 1 : input.preferredShip)"/>
-        <port name="ship1Out" class="VisualSim.actor.TypedIOPort">
-        <property name="output"/>
-        <property name="_type" class="VisualSim.actor.TypeAttribute" value="general"/>
-    </port>
         <port name="ship2Out" class="VisualSim.actor.TypedIOPort">
         <property name="output"/>
         <property name="_type" class="VisualSim.actor.TypeAttribute" value="general"/>
     </port>
-    <property name="Output_Ports" value="ship1Out,ship2Out"/>
+    <property name="Output_Ports" value="output,ship2Out"/>
     <property name="Output_Values" value="input,input"/>
     <property name="Output_Conditions" value="input.ship == 1,input.ship == 2"/>
 </entity>
@@ -574,7 +565,7 @@
     <link port="DetectionAssignment.output" relation="relationDR"/>
     <link port="CommonRule.input" relation="relationDR"/>
     <relation name="relationShip1" class="VisualSim.actor.TypedIORelation"/>
-    <link port="PolicyRouter.ship1Out" relation="relationShip1"/>
+    <link port="PolicyRouter.output" relation="relationShip1"/>
     <link port="InterceptorQueue.input" relation="relationShip1"/>
     <link port="PolicyRouter.ship2Out" relation="relationShip2"/>
     <link port="Ship2_Queue.input" relation="relationShip2"/>

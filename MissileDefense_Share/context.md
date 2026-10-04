@@ -1,5 +1,5 @@
 # CONTEXT — MissileDefense DED-lite build (handoff for next AI agent)
-Date: 2026-10-04 | Author: Muse Spark (opencode) + user | Status: DED-lite structure present; no clean GO yet; batch runs blocked by invalid/mismatched VS_LM license until a matching file is installed
+Date: 2026-10-04 | Author: Muse Spark (opencode) + user | Status: DED-lite structure present; simulator now runs in batch mode after removing broken ShipCoordinator, fixing CommonRule boolean compare, and splitting PolicyRouter output ports
 
 ## 1. Objective
 Modify `MissileDefense_Share/MissileDefense_Model.xml` (single-ship baseline) into a 2-ship DED-lite
@@ -54,9 +54,9 @@ cond `true,true,Effective,!Effective`. Scores: leakers=threats-effective,
 raw_Pk=killed/threats, effective_Pk=effective/threats.
 
 ## 4. Current DED-lite model (23 containers, all MCP-applied, validation ok:true)
-ADDED (9): Ship2_Queue/Smart_Resource, Ship2_C2/DLY, Ship2_Flyout/DLY, Ship2_Kill/Expression,
-CommonRule/Expression, ShipCoordinator/Smart_Controller (UNWIRED observer, documented),
-PolicyRouter/Expression, Merge/Expression, Const2/Const. REMOVED (1): FES_DB/Database (see §6).
+ADDED (8): Ship2_Queue/Smart_Resource, Ship2_C2/DLY, Ship2_Flyout/DLY, Ship2_Kill/Expression,
+CommonRule/Expression, PolicyRouter/Expression, Merge/Expression, Const2/Const. REMOVED (2): FES_DB/Database
+(see §6) and ShipCoordinator/Smart_Controller (deleted after it crashed DEDirector.initialize with a subscriber string parse error).
 Top params ADDED (4): Policy_Mode=2, Ship2_Range=6000.0, Ship1_Inv=10, Ship2_Inv=10.
 WIRING (every relation exactly 2 endpoints — deliberately, see §6 broadcast lesson):
 - relationDR: DetectionAssignment.output → CommonRule.input
@@ -148,9 +148,8 @@ Backups: .visualsim-mcp/transactions/*/backup.xml + rollback_tokens per apply. B
 1. **NO clean GO yet end-to-end** — every fix so far is validator-clean (`ok:true`) but GUI run is the real
    gate. Next: fresh reopen (discard any unsaved canvas!) → GO Policy_Mode 0/1/2 → confirm ~7 threats each,
    Kill+Miss==threats, ship split by Priority in Mode 0.
-2. **ShipCoordinator UNWIRED observer** (no links after broadcast removal). Configured+documented; needs Fork
-   actor (Connect_EIO per validator) for closed-loop pop driving — Phase 2. If it throws at init despite no
-   links, delete or blank its Smart_Resource_Name.
+2. **ShipCoordinator deleted** (Smart_Controller init crashed DEDirector). DED lite routing now uses
+   PolicyRouter default output for ship1 and custom `ship2Out` for ship2.
 3. **Empty relations** (relation, relationShipBoth, relationFES) — harmless if manager passes; no remove op.
    If manager substring crash recurs, suspects in order: (a) relationPost 3-link merge → split Merge into two
    input ports; (b) empty relations (recreate model without them — no tool path, would need GUI or raw edit,
