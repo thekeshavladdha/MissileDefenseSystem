@@ -32,6 +32,11 @@ TBMD engagement coordination (DED bidded scheme); implement 3 of its 8 sieving t
     `Lookup_Fields="Priority"`, `Mode="Read"`, `Output_Expression="output = match"`); `CommonRule` reads
     `input.shipHint` through `getRow("FES", cast(string, input.Priority), "Priority")` instead of the ternary.
     Batch-verified: Priority 1-3 → shipHint 1, 4-5 → shipHint 2; ship split 17/15 across the 3-run sweep.
+  - `magazine.csv` — per-ship magazine table (`Ship,Remaining`, 10/10). WIRED via `Magazine_DB` Database block;
+    `KillAssessment`/`Ship2_Kill` decrement their ship's row with `putRow` and record `Inventory_Left` +
+    `Magazine_Empty` per threat. Batch-verified depleting (ship1 8→1, ship2 8→-1). KNOWN GAP: magazine can go
+    negative (no block-at-zero yet) and `CommonRule` routing still reads static `Ship1_Inv`/`Ship2_Inv`,
+    not the magazine — wiring magazine into routing is the next step.
   - `.visualsim-mcp/` — MCP cache (handoffs, traceability.db, workspaces/a50ecb73, transactions/*).
     Regenerable; deleted once for cleanup, recreated by later opens.
 - `planner.md` (this folder) — 10-step DED-lite build plan (Steps 0–9 with gates). Follow it.
