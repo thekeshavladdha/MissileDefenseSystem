@@ -45,6 +45,12 @@ TBMD engagement coordination (DED bidded scheme); implement 3 of its 8 sieving t
     passes with fresh dice and continued magazine depletion; tight-deadline raids correctly never re-engage
     (no time left — itself a finding). Scorer dedupes by threat ID (last record wins) and reports re-engaged
     counts plus per-ship shot totals.
+  - Reload gating live: `magazine.csv` carries `ReloadUntil` (double-typed via `0.0` — integer column rejects
+    time values with `Integer LHS`). Kill blocks schedule `ReloadUntil = TNow + Reload_Wait` when a magazine
+    hits zero; `CommonRule` replenishes to 10 once `TNow >= ReloadUntil`. Verified: inventory bottoms at
+    exactly 0, never negative; 3/3 sweep runs clean, zero exceptions.
+  - Frozen: `MissileDefense_DEDlite.xml` = validated copy of the working model (needs `fes_table.csv` +
+    `magazine.csv` alongside it).
   - `.visualsim-mcp/` — MCP cache (handoffs, traceability.db, workspaces/a50ecb73, transactions/*).
     Regenerable; deleted once for cleanup, recreated by later opens.
 - `planner.md` (this folder) — 10-step DED-lite build plan (Steps 0–9 with gates). Follow it.

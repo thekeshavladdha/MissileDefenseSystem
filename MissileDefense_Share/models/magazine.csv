@@ -1,3 +1,3 @@
-Ship,Remaining
-1,10
-2,10
+Ship,Remaining,ReloadUntil
+1,10,0.0
+2,10,0.0
