@@ -1,5 +1,5 @@
 # CONTEXT — MissileDefense DED-lite build (handoff for next AI agent)
-Date: 2026-10-04 | Author: Muse Spark (opencode) + user | Status: structure complete, awaiting first clean GO
+Date: 2026-10-04 | Author: Muse Spark (opencode) + user | Status: DED-lite structure present; no clean GO yet; batch runs blocked by invalid/mismatched VS_LM license until a matching file is installed
 
 ## 1. Objective
 Modify `MissileDefense_Share/MissileDefense_Model.xml` (single-ship baseline) into a 2-ship DED-lite
@@ -9,30 +9,33 @@ TBMD engagement coordination (DED bidded scheme); implement 3 of its 8 sieving t
 (capability, inventory, load/TOF tie-break). Everything else (Link-16 slots, Swerling, multi-track,
 4-ship FES) is explicitly out of scope.
 
-## 2. Directory layout (C:\Games\Mirabilis_hackathon)
+## 2. Directory layout (current clone)
+- Working copy: `C:\Users\satvi\Desktop\MissileDefenseSystem`
+- Share bundle: `C:\Users\satvi\Desktop\MissileDefenseSystem\MissileDefense_Share`
 - `MissileDefense_Share/` — ALL WORK HAPPENS HERE
   - `MissileDefense_Model.xml` — working model (currently 23 containers, ~41KB). MCP workspace copy:
     `MissileDefense_Share/models/MissileDefense_Model.xml` (authoritative for MCP transactions).
   - `MissileDefense_Model_baseline.xml` — frozen 14-container original (34190B, sha dd50dbce…).
     NEVER EDIT. Ground truth for maths/docs.
   - `missile_defense_parameters.csv` — 21-row param price-list, all Assumption/Estimate.
-  - `MissileDefense_Model_Sweep.bat` — 3-run batch (Pk 0.5/0.8/0.95, seeds 1001/1002/1003). Needs
-    `-Policy_Mode` extension for DED-lite sweep (not done).
+  - `MissileDefense_Model_Sweep.bat` — 3-run batch (Pk 0.5/0.8/0.95, seeds 1001/1002/1003).
+    DED-lite addon present: `MissileDefense_Policy_Pk_Sweep.bat` now has `-Policy_Mode` legs.
   - `summarize_missile_outcome.py` — portable scorer (root=dirname(__file__), fixed from satvi path).
     Baseline outputs: run1 7/4/2/5 0.571/0.286, run2 7/6/2/5 0.857/0.286, run3 7/7/5/2 1.000/0.714.
-  - `MissileDefense_Outcome*.txt`, `MissileDefense_Kill/Miss_Count.txt` — baseline logs. DO NOT overwrite
-    until DED-lite GO passes (they are the before/after evidence).
+  -   `MissileDefense_Outcome*.txt`, `MissileDefense_Kill/Miss_Count.txt` — baseline logs. DO NOT overwrite
+    until DED-lite GO passes (they are the before/after evidence). If you re-run the batch, use timestamped
+    output filenames or copy the old logs elsewhere first.
   - `MissileDefense_Model_Report.md` — 1-page share guide. `MissileDefense_Qwen_Research.md` — theory pack.
   - `documentation.md` — full model doc (50KB). STALE re DED-lite deltas (§§3/6/14 need Merge/Router update).
   - `fes_table.csv` — NEW parked FES lookup table (CSV `Priority,shipHint` + `int,int` typerow, 1→1…5→2).
     Created for Phase-2 file-backed FES_DB. NOT WIRED to anything.
   - `.visualsim-mcp/` — MCP cache (handoffs, traceability.db, workspaces/a50ecb73, transactions/*).
     Regenerable; deleted once for cleanup, recreated by later opens.
-- `planner.md` (repo root) — rewritten as 10-step DED-lite build plan (Steps 0–9 with gates). Follow it.
+- `planner.md` (this folder) — 10-step DED-lite build plan (Steps 0–9 with gates). Follow it.
 - `VisualSim_Hackathon_2026_project/` — READ-ONLY research: `research.txt` (4 paper URLs), `research/`
   (P1–P4 PDFs/TXTs, notes/P1-P4.md incl. full P3 DED breakdown, report.md, synthesis.md, open-questions.md),
   `SKILL.md` (paper-research workflow). Never modify.
-- Install: `C:\VisualSim_2641\VS_AR` (verified Test-Path True). JDK17
+- Install: your own VS_AR path (this working copy expects `C:\Users\satvi\Desktop\VisualSim\VS_AR`). JDK17
   `C:\Program Files\Java\jdk-17`. Model `_createdBy 2020.Q2`.
 
 ## 3. Baseline model (frozen, 14 containers)
@@ -160,10 +163,10 @@ Backups: .visualsim-mcp/transactions/*/backup.xml + rollback_tokens per apply. B
    source_sha256). Current disk length after last sync — re-check with Get-Item. If user touched GUI, realign
    FIRST (direction depends on which side is authoritative; default: MCP workspace wins → copy models→source;
    user's fresh GUI fixes win → copy source→models, then inspect).
-7. STALE docs: documentation.md §§3/6/14 predate DED-lite; planner.md Steps 0–4 done, 5–9 pending (smoke×3,
-   sweep Policy×Rate×Pk via extended .bat + scorer ship-field parse, 1 bottleneck fix + re-run, freeze
-   MissileDefense_DEDlite.xml + slides/write-up/video). params.csv lacks Policy_Mode/Ship2_Range/Ship1/2_Inv
-   rows. Sweep .bat lacks -Policy_Mode legs. Scorer lacks ship split.
+7. STALE docs fixed in-share: documentation.md header note added, §8 updated, context paths corrected.
+   Sweep .bat extended with -Policy_Mode legs (`MissileDefense_Policy_Pk_Sweep.bat`);
+   ship/policy scorer added (`summarize_missile_policy_pk.py`). Still need GUI GO validation.
+   params.csv remains baseline-ish; add Policy_Mode/Ship2_Range/Ship1/2_Inv rows if sharing for judges.
 8. Plotter shows Merge.Latency only — fine. KillCount/MissCount step logs unchanged semantics (effective only).
 9. Rollback available for every apply (rollback_token in outputs + backup.xml). Baseline file is ultimate reset:
    Copy-Item baseline→Model (+ delete models copy + reopen workspace) if DED-lite work ever needs restart.

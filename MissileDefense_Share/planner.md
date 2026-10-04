@@ -1,5 +1,5 @@
 # Missile Defense — DED-lite Build Planner (Modify Current Model)
-**Source model:** `MissileDefense_Share/MissileDefense_Model.xml` (14 containers, `dd50dbce…`)
+**Source model:** `MissileDefense_Share/MissileDefense_Model.xml` (DED-lite extension present; baseline frozen as `MissileDefense_Model_baseline.xml`, `dd50dbce…`)
 **Goal:** Modify single-ship baseline → 2-ship DED-lite (sectored vs first-launch vs bidded-lite) for Challenge 1+3
 **Date:** 2026-10-04 | **Scope:** Only this file + `MissileDefense_Share/` are touched. Research in `VisualSim_Hackathon_2026_project/research/` is read-only.
 

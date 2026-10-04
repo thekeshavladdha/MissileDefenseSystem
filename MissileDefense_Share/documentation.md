@@ -1,5 +1,9 @@
 # MissileDefense_Share — Complete Model Documentation
 
+> Current note: this clone lives under `C:\Users\satvi\Desktop\MissileDefenseSystem`. The model is a DED-lite
+> 2-ship extension, but it has not passed an end-to-end GUI GO yet. If you reuse this documentation, verify
+> block names against `MissileDefense_Model.xml`; this file may lag the current workspace.
+
 > VisualSim Architect Discrete-Event Model | Single-layer ground-based air & missile defense
 > Working model: `MissileDefense_Model.xml` | Starter: `MissileDefense_Start.xml` | Reference-only: `MissileDefense_Architecture_Model.xml`
 > Scope: system-level latency / resource / Pk trade study. NOT 6-DOF flight dynamics, NOT RF physics, NOT multi-ship coordination.
@@ -82,7 +86,7 @@ Three `VisualSimBatchModeSimulator` invocations differing only in `-Pk` and `-Mo
 
 ### 2.6 `summarize_missile_outcome.py` — scorer (SHARE)
 
-~25-line regex scorer. `glob Outcome_run*.txt` under hard-coded `root=C:\Users\satvi\Desktop\VisualSim\VS_AR\workflow` (EDIT THIS PATH), `re.split DISPLAY AT TIME`, per-block `re.search ID / Killed / Effective_Kill / Firm_Track`, counts threats/killed/effective/firm, `leakers = threats - effective`, prints `threats raw_kills effective_kills leakers firm_tracks raw_Pk effective_Pk` with `:.3f` and zero-division guard.
+~25-line regex scorer. `glob Outcome_run*.txt` under the script's own folder (already portable: `root = dirname(__file__)`), `re.split DISPLAY AT TIME`, per-block `re.search ID / Killed / Effective_Kill / Firm_Track`, counts threats/killed/effective/firm, `leakers = threats - effective`, prints `threats raw_kills effective_kills leakers firm_tracks raw_Pk effective_Pk` with `:.3f` and zero-division guard.
 
 ### 2.7 `MissileDefense_Outcome.txt` + `Outcome_run1/2/3.txt` — per-threat logs (EXAMPLE OUTPUTS)
 
@@ -343,7 +347,21 @@ Every field meaning in logs:
 2. Probes: `DefenseOutcome` table, `KillCount/MissCount` totals, `xTime_yData_Plotter` latency.
 3. Outputs land in `resultpath/workflow` as `MissileDefense_Outcome.txt`, `Kill/Miss_Count.txt`. Default stopTime 15 s yields ~7 completions at rate 1/s.
 
-### 8.3 Batch three-point Pk sweep
+### 8.3 Batch Pk/Policy sweep
+
+For local machine path, set:
+
+```bat
+set "INSTALL_PATH=C:\Users\satvi\Desktop\VisualSim\VS_AR"
+```
+
+For another user:
+
+```bat
+set "INSTALL_PATH=C:\Path\To\VS_AR"
+```
+
+Then run `MissileDefense_Model_Sweep.bat` or `MissileDefense_Policy_Pk_Sweep.bat`.
 
 ```bat
 @echo off

@@ -19,3 +19,8 @@ InterceptorInventory,10,interceptors,Model default,Assumption
 C2BMC comms bandwidth,10-100,Mbps,Tactical data-link estimate,Estimate
 Input_Rate,1.0,s between arrivals,Model default sweep value,Assumption
 Execution_Time,2.5,s,Model default sweep value,Assumption
+Policy_Mode,0-2,mode selector,DED-lite policy mode (sectored/first-launch/bidded-lite),Assumption
+Ship2_Range,6000.0,m,Model default beyond baseline engagement range,Assumption
+Ship1_Inv,10,interceptors,Model default for Ship1_Kill,Assumption
+Ship2_Inv,10,interceptors,Model default for Ship2_Kill,Assumption
+
