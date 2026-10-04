@@ -232,6 +232,7 @@
         <property name="_location" class="VisualSim.kernel.util.Location" value="[216.0, 97.0]"/>
     </property>
     <entity name="Ship1_Queue" class="VisualSim.actor.lib.Smart_Resource">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Ship1_Queue is Ship 1's bounded FIFO waiting line.&#10;Threats wait here for engagement; waiting time is what&#10;makes late kills leak past the deadline. Max_Queue_Length&#10;caps it; excess arrivals are rejected, not queued."/>
         <property name="Block_Name" class="VisualSim.data.expr.Parameter" value="&quot;Queue&quot; /* No two resource can have the same name */"/>
         <property name="Queue_Number_Field" class="VisualSim.data.expr.StringParameter" value="1 /* Can reference a field of a Data Structure.  Here it is fixed for all transactions */"/>
         <property name="Priority_Field" class="VisualSim.data.expr.StringParameter" value="&quot;Priority&quot; /* References a field of a Data Structure as the value varies for each transaction"/>
@@ -262,6 +263,7 @@
         </port>
     </entity>
     <entity name="xTime_yData_Plotter" class="VisualSim.actor.lib.gui.TimedPlotter">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Latency plot: end-to-end seconds versus sim time.&#10;A rising slope means queue saturation; flat near two&#10;seconds means the defense is keeping up."/>
         <property name="legend" class="VisualSim.kernel.util.StringAttribute" value="Seconds"/>
         <property name="_windowProperties" class="VisualSim.actor.gui.WindowPropertiesAttribute" value="{bounds={797, 143, 582, 430}, maximized=false}"/>
         <property name="_plotSize" class="VisualSim.actor.gui.SizeAttribute" value="[568, 371]"/>
@@ -285,6 +287,7 @@
         </configure>
     </entity>
     <entity name="Const" class="VisualSim.actor.lib.Const">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Const drives Ship 1 queue release: each completed flyout&#10;triggers it to pop the next waiting threat."/>
         <doc>
             Create a constant sequence
         </doc>
@@ -296,6 +299,7 @@
         <property name="_flipPortsHorizontal" class="VisualSim.data.expr.Parameter" value="true"/>
     </entity>
     <entity name="ThreatGenerator" class="VisualSim.actor.lib.DS_Source">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="ThreatGenerator (DS_Source):creates one incoming ballistic-missile&#10;threat about every Input_Rate seconds carrying an empty Header&#10;data structure. Threat severity is assigned downstream as&#10;Priority 1-5.&#10;This block is the raid source: raising Input_Rate arrival frequency&#10;is how we saturate the defense in the experiments."/>
         <property name="Data_Structure_Name" class="VisualSim.data.expr.Parameter" value="&quot;Header&quot;"/>
         <property name="Value_1" class="VisualSim.data.expr.Parameter" value="Input_Rate"/>
         <property name="Time_Distribution" class="VisualSim.kernel.util.StringAttribute" value="Fixed (Value_1)">
@@ -310,6 +314,7 @@
         <property name="_location" class="VisualSim.kernel.util.Location" value="[-259.0, 91.0]"/>
     </entity>
     <entity name="DetectionAssignment" class="VisualSim.actor.lib.Expression_Decision">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="DetectionAssignment stamps each threat with its identity:&#10;Priority 1-5, Attempts 0, Track_Hits 3, Firm_Track true,&#10;C2_Latency drawn 0.05 to 0.2 s, Flyout_Time from&#10;range over interceptor speed, and the kill dice roll&#10;against Pk. Every downstream block only reads these&#10;fields; nothing upstream changes them afterwards."/>
         <property name="Expression_List" class="VisualSim.kernel.util.StringAttribute" value="/* MissileDefense */&#10;input.Priority = irand (1,5) &#10;input.Attempts = 0 &#10;input.Track_Hits = Track_Threshold &#10;input.Firm_Track = (input.Track_Hits &gt;= Track_Threshold) &#10;input.C2_Latency = rand(C2_Latency_Min, C2_Latency_Max) &#10;input.Flyout_Time = Engagement_Range / Interceptor_Speed &#10;input.Flight_Time = input.C2_Latency + input.Flyout_Time &#10;input.Killed = rand(0.0,1.0) &lt; Pk &#10;">
             <property name="style" class="VisualSim.actor.gui.style.TextStyle">
                 <property name="height" class="VisualSim.data.expr.Parameter" value="15"/>
@@ -319,6 +324,7 @@
         <property name="_location" class="VisualSim.kernel.util.Location" value="[-78.0, 93.0]"/>
     </entity>
     <entity name="Ship1_C2" class="VisualSim.actor.lib.DLY">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Ship1_C2 holds each threat for its own C2_Latency draw.&#10;It models command delay. It reads the field stamped&#10;upstream; it has no timing parameter of its own."/>
         <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="&quot;C2_Latency&quot; /* Command/control latency */"/>
         <property name="DLYIcon" class="VisualSim.ModelBuilder.icon.EditorIcon">
             <property name="image" class="VisualSim.ModelBuilder.kernel.attributes.ImageAttribute">
@@ -339,10 +345,12 @@
         <property name="_location" class="VisualSim.kernel.util.Location" value="[526.0, -102.0]"/>
     </entity>
     <entity name="Ship1_Flyout" class="VisualSim.actor.lib.DLY">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Ship1_Flyout holds each threat for Flyout_Time, computed&#10;as Engagement_Range over Interceptor_Speed. It models&#10;interceptor time of flight on a constant-velocity&#10;abstraction, not aerodynamics."/>
         <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="&quot;Flyout_Time&quot; /* Range/speed intercept flyout */"/>
         <property name="_location" class="VisualSim.kernel.util.Location" value="[667.0, -93.0]"/>
     </entity>
     <entity name="Ship1_Kill" class="VisualSim.actor.lib.Expression_Decision">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Ship1_Kill is kill assessment. It counts the attempt,&#10;re-rolls the dice on second passes, decides Leaker vs&#10;deadline, and grants Effective_Kill only when dice won,&#10;on time, and a missile was available. It decrements&#10;Ship 1's magazine row, clamps at zero, schedules reload,&#10;and emits ReEngage for qualified misses."/>
         <property name="Expression_List" class="VisualSim.kernel.util.StringAttribute" value="/* KillAssessment ship1 */&#10;input.Attempts = input.Attempts + 1 &#10;input.Killed = (input.Attempts &gt; 1) ? (rand(0.0,1.0) &lt; Pk) : input.Killed &#10;input.Leaker = (TNow - input.TIME) &gt; Intercept_Deadline &#10;RawKill = input.Killed ? (input.Leaker ? false : true) : false &#10;Mag_Row = getRow(&quot;Magazine&quot;, cast(string, 1), &quot;Ship&quot;) &#10;WantShots = RawKill ? 1 : 2 &#10;FiredShots = (Mag_Row.Remaining &gt;= WantShots) ? WantShots : Mag_Row.Remaining &#10;Mag_Row.Remaining = Mag_Row.Remaining - FiredShots &#10;putRow(&quot;Magazine&quot;, &quot;Ship&quot;, Mag_Row) &#10;input.Effective_Kill = RawKill ? (FiredShots &gt; 0 ? true : false) : false &#10;input.Shots_Fired = FiredShots &#10;input.Inventory_Left = Mag_Row.Remaining &#10;input.Magazine_Empty = Mag_Row.Remaining &lt;= 0 &#10;input.Reload_Wait = rand(Reload_Time_Min, Reload_Time_Max) &#10;Mag_Row.ReloadUntil = (Mag_Row.Remaining &lt;= 0) ? ((Mag_Row.ReloadUntil &lt;= TNow) ? (TNow + input.Reload_Wait) : Mag_Row.ReloadUntil) : Mag_Row.ReloadUntil &#10;putRow(&quot;Magazine&quot;, &quot;Ship&quot;, Mag_Row) &#10;SecondLook = input.Killed ? false : ((input.Attempts &lt; 2) ? (((TNow - input.TIME) + input.Flight_Time &lt;= Intercept_Deadline) ? true : false) : false) &#10;">
             <property name="style" class="VisualSim.actor.gui.style.TextStyle">
                 <property name="height" class="VisualSim.data.expr.Parameter" value="15"/>
@@ -371,6 +379,7 @@
         <property name="_location" class="VisualSim.kernel.util.Location" value="[790.0, 21.0]"/>
     </entity>
     <entity name="KillCounter" class="VisualSim.actor.lib.Counter_Basic">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="KillCounter counts effective kills through its incr input,&#10;one increment per threat arriving on the KilledOnly path."/>
         <property name="Initial_Count" class="VisualSim.data.expr.Parameter" value="0"/>
         <property name="Final_Count" class="VisualSim.data.expr.Parameter" value="100000"/>
         <property name="Equals_Count" class="VisualSim.data.expr.Parameter" value="100000"/>
@@ -379,6 +388,7 @@
         <property name="_location" class="VisualSim.kernel.util.Location" value="[987.0, 65.0]"/>
     </entity>
     <entity name="MissCounter" class="VisualSim.actor.lib.Counter_Basic">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="MissCounter counts misses and late kills through its incr&#10;input. Kills plus misses must equal total threats;&#10;a mismatch means a token was lost upstream."/>
         <property name="Initial_Count" class="VisualSim.data.expr.Parameter" value="0"/>
         <property name="Final_Count" class="VisualSim.data.expr.Parameter" value="100000"/>
         <property name="Equals_Count" class="VisualSim.data.expr.Parameter" value="100000"/>
@@ -387,6 +397,7 @@
         <property name="_location" class="VisualSim.kernel.util.Location" value="[1013.0, 263.0]"/>
     </entity>
     <entity name="KillCount" class="VisualSim.actor.lib.gui.Display">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="KillCount displays and saves the running effective-kill&#10;total, one line per kill with its timestamp."/>
         <property name="ViewText" class="VisualSim.data.expr.Parameter" value="View_Stats">
             <property name="Line" class="VisualSim.actor.gui.style.LineStyle"/>
         </property>
@@ -396,6 +407,7 @@
         <property name="_location" class="VisualSim.kernel.util.Location" value="[1183.0, 75.0]"/>
     </entity>
     <entity name="MissCount" class="VisualSim.actor.lib.gui.Display">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="MissCount displays and saves the running miss total,&#10;one line per miss or late kill with its timestamp."/>
         <property name="ViewText" class="VisualSim.data.expr.Parameter" value="View_Stats">
             <property name="Line" class="VisualSim.actor.gui.style.LineStyle"/>
         </property>
@@ -405,6 +417,7 @@
         <property name="_location" class="VisualSim.kernel.util.Location" value="[1206.0, 262.0]"/>
     </entity>
     <entity name="DefenseOutcome" class="VisualSim.actor.lib.gui.Display">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="DefenseOutcome logs one full record per finished threat&#10;and saves it to file. This table is the evidence base:&#10;every kill count, leaker count, and latency number in the&#10;report traces back to rows here."/>
         <property name="ViewText" class="VisualSim.data.expr.Parameter" value="View_Stats">
             <property name="Line" class="VisualSim.actor.gui.style.LineStyle"/>
         </property>
@@ -424,6 +437,7 @@
         <property name="_location" class="VisualSim.kernel.util.Location" value="[1196.0, 130.0]"/>
     </entity>
         <entity name="Ship2_Queue" class="VisualSim.actor.lib.Smart_Resource">
+            <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Ship2_Queue mirrors Ship1_Queue for Ship 2: bounded FIFO&#10;waiting line. Needed so the two lanes can saturate&#10;independently; compare its depth against Ship 1's to see&#10;load imbalance between doctrines."/>
         <property name="_location" class="VisualSim.kernel.util.Location" value="[246.0, 319.0]"/>
         <property name="Initial_Queue_State" class="VisualSim.kernel.util.StringAttribute" value="First_Token_Flow_Through"/>
         <property name="Queue_Reject_Mechanism" class="VisualSim.kernel.util.StringAttribute" value="Incoming_Token_Rejected"/>
@@ -435,14 +449,17 @@
             <property name="Queue_Number_Field" value="1"/>
 </entity>
 <entity name="Ship2_C2" class="VisualSim.actor.lib.DLY">
+    <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Ship2_C2 holds each threat for its C2_Latency draw,&#10;same role as Ship1_C2 on the second lane."/>
     <property name="_location" class="VisualSim.kernel.util.Location" value="[425.0, 333.0]"/>
     <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="&quot;C2_Latency&quot;"/>
 </entity>
 <entity name="Ship2_Flyout" class="VisualSim.actor.lib.DLY">
+    <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Ship2_Flyout holds each threat for Ship2_Range over&#10;Interceptor_Speed, slightly longer than Ship 1. This&#10;time-of-flight split is what lets the router prefer the&#10;faster shooter."/>
     <property name="_location" class="VisualSim.kernel.util.Location" value="[545.0, 328.0]"/>
     <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="Ship2_Range/Interceptor_Speed"/>
 </entity>
     <entity name="Ship2_Kill" class="VisualSim.actor.lib.Expression_Decision">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Ship2_Kill mirrors Ship1_Kill against magazine row 2:&#10;attempt counting, pass-2 dice re-roll, deadline check,&#10;clamped magazine decrement, reload scheduling, and&#10;ReEngage emission for qualified misses."/>
         <property name="_location" class="VisualSim.kernel.util.Location" value="[624.0, 225.0]"/>
         <property name="Expression_List" value="/* Ship2_Kill */&#10;input.Attempts = input.Attempts + 1 &#10;input.Killed = (input.Attempts &gt; 1) ? (rand(0.0,1.0) &lt; Pk) : input.Killed &#10;input.Leaker = (TNow - input.TIME) &gt; Intercept_Deadline&#10;RawKill = input.Killed ? (input.Leaker ? false : true) : false&#10;input.Shots_Fired = 0&#10;Mag_Row = getRow(&quot;Magazine&quot;, cast(string, 2), &quot;Ship&quot;) &#10;WantShots = RawKill ? 1 : 2 &#10;FiredShots = (Mag_Row.Remaining &gt;= WantShots) ? WantShots : Mag_Row.Remaining &#10;Mag_Row.Remaining = Mag_Row.Remaining - FiredShots &#10;putRow(&quot;Magazine&quot;, &quot;Ship&quot;, Mag_Row) &#10;input.Effective_Kill = RawKill ? (FiredShots &gt; 0 ? true : false) : false &#10;input.Shots_Fired = FiredShots &#10;input.Inventory_Left = Mag_Row.Remaining &#10;input.Magazine_Empty = Mag_Row.Remaining &lt;= 0 &#10;input.Reload_Wait = rand(Reload_Time_Min, Reload_Time_Max)&#10;Mag_Row.ReloadUntil = (Mag_Row.Remaining &lt;= 0) ? ((Mag_Row.ReloadUntil &lt;= TNow) ? (TNow + input.Reload_Wait) : Mag_Row.ReloadUntil) : Mag_Row.ReloadUntil &#10;putRow(&quot;Magazine&quot;, &quot;Ship&quot;, Mag_Row) &#10;SecondLook = input.Killed ? false : ((input.Attempts &lt; 2) ? (((TNow - input.TIME) + input.Flight_Time &lt;= Intercept_Deadline) ? true : false) : false)"/>
         <property name="Output_Values" value="input,input"/>
@@ -454,6 +471,7 @@
         </port>
     </entity>
     <entity name="Magazine_DB" class="VisualSim.actor.lib.Database">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Magazine_DB is the file-backed per-ship magazine&#10;(magazine.csv: 10 rounds each). Unwired by design; kill&#10;blocks read and decrement rows with getRow and putRow.&#10;This table is the persistent inventory state."/>
         <property name="_location" class="VisualSim.kernel.util.Location" value="[-115.0, 285.0]"/>
         <property name="Linking_Name" class="VisualSim.data.expr.Parameter" value="&quot;Magazine&quot;"/>
         <property name="fileOrURL" class="VisualSim.data.expr.FileParameter" value="./magazine.csv"/>
@@ -464,6 +482,7 @@
         <property name="Mode" class="VisualSim.kernel.util.StringAttribute" value="Read"/>
     </entity>
     <entity name="FES_DB" class="VisualSim.actor.lib.Database">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="FES_DB is the file-backed engagement table&#10;(fes_table.csv: Priority to shipHint). Unwired by design;&#10;CommonRule queries it by name with getRow. Edit the CSV&#10;to change doctrine mapping without touching the canvas."/>
         <property name="_location" class="VisualSim.kernel.util.Location" value="[-222.0, 282.0]"/>
         <property name="Linking_Name" class="VisualSim.data.expr.Parameter" value="&quot;FES&quot;"/>
         <property name="fileOrURL" class="VisualSim.data.expr.FileParameter" value="./fes_table.csv"/>
@@ -474,10 +493,12 @@
         <property name="Mode" class="VisualSim.kernel.util.StringAttribute" value="Read"/>
     </entity>
     <entity name="CommonRule" class="VisualSim.actor.lib.Expression_Decision">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="CommonRule recommends a preferred ship. It reads the FES&#10;table for the priority hint and both magazine rows for&#10;live inventory, replenishing ships whose reload time&#10;has elapsed. Ships with empty magazines are skipped.&#10;Edit here to change what the router may prefer."/>
     <property name="_location" class="VisualSim.kernel.util.Location" value="[80.0, 93.0]"/>
     <property name="Expression_List" value="FES_Row = getRow(&quot;FES&quot;, cast(string, input.Priority), &quot;Priority&quot;)&#10;input.shipHint = FES_Row.shipHint&#10;Mag1 = getRow(&quot;Magazine&quot;, cast(string, 1), &quot;Ship&quot;)&#10;Mag2 = getRow(&quot;Magazine&quot;, cast(string, 2), &quot;Ship&quot;)&#10;ReloadDone1 = (Mag1.Remaining &lt;= 0) ? ((Mag1.ReloadUntil &gt; 0) ? ((TNow &gt;= Mag1.ReloadUntil) ? true : false) : false) : false &#10;Mag1.Remaining = ReloadDone1 ? 10 : Mag1.Remaining &#10;Mag1.ReloadUntil = ReloadDone1 ? 0 : Mag1.ReloadUntil &#10;putRow(&quot;Magazine&quot;, &quot;Ship&quot;, Mag1) &#10;ReloadDone2 = (Mag2.Remaining &lt;= 0) ? ((Mag2.ReloadUntil &gt; 0) ? ((TNow &gt;= Mag2.ReloadUntil) ? true : false) : false) : false &#10;Mag2.Remaining = ReloadDone2 ? 10 : Mag2.Remaining &#10;Mag2.ReloadUntil = ReloadDone2 ? 0 : Mag2.ReloadUntil &#10;putRow(&quot;Magazine&quot;, &quot;Ship&quot;, Mag2) &#10;input.hasInv1 = (Ship1_Inv &gt; 0) ? (Mag1.Remaining &gt; 0) : false&#10;input.hasInv2 = (Ship2_Inv &gt; 0) ? (Mag2.Remaining &gt; 0) : false&#10;input.preferredShip = input.hasInv1 == false ? 2 : (input.hasInv2 == false ? 1 : input.shipHint)"/>
 </entity>
 <entity name="PolicyRouter" class="VisualSim.actor.lib.Expression_Decision">
+    <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="PolicyRouter makes the final assignment by Policy_Mode:&#10;0 sectored by priority, 1 always Ship 1, 2 the table&#10;recommendation. Default output feeds Ship 1, ship2Out&#10;feeds Ship 2. Doctrine lives here; the visible split&#10;on canvas starts at this block."/>
     <property name="_location" class="VisualSim.kernel.util.Location" value="[187.0, 154.0]"/>
     <property name="Expression_List" value="input.sectoredShip = input.Priority &lt;= 2 ? 1 : 2&#10;input.ship = Policy_Mode == 0 ? input.sectoredShip : (Policy_Mode == 1 ? 1 : input.preferredShip)"/>
         <port name="ship2Out" class="VisualSim.actor.TypedIOPort">
@@ -489,6 +510,7 @@
     <property name="Output_Conditions" value="input.ship == 1,input.ship == 2"/>
 </entity>
 <entity name="Merge" class="VisualSim.actor.lib.Expression_Decision">
+    <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Merge collects both lanes back into one stream. It forwards&#10;the full record to the outcome table, the latency number&#10;to the plotter, and splits effective kills from the rest&#10;into the two counters."/>
     <property name="_location" class="VisualSim.kernel.util.Location" value="[853.0, 336.0]"/>
         <port name="KilledOnly" class="VisualSim.actor.TypedIOPort">
         <property name="output"/>
@@ -508,6 +530,7 @@
     <property name="Output_Conditions" value="true,true,input.Effective_Kill,!input.Effective_Kill"/>
 </entity>
 <entity name="Const2" class="VisualSim.actor.lib.Const">
+    <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Const2 drives Ship 2 queue release, mirroring Const.&#10;Without it the Ship 2 lane deadlocks after its first&#10;threat, so do not delete it."/>
     <property name="_location" class="VisualSim.kernel.util.Location" value="[75.0, 360.0]"/>
 </entity>
 <relation name="relation5" class="VisualSim.actor.TypedIORelation">
