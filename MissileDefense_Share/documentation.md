@@ -88,6 +88,10 @@ Three `VisualSimBatchModeSimulator` invocations differing only in `-Pk` and `-Mo
 
 ~25-line regex scorer. `glob Outcome_run*.txt` under the script's own folder (already portable: `root = dirname(__file__)`), `re.split DISPLAY AT TIME`, per-block `re.search ID / Killed / Effective_Kill / Firm_Track`, counts threats/killed/effective/firm, `leakers = threats - effective`, prints `threats raw_kills effective_kills leakers firm_tracks raw_Pk effective_Pk` with `:.3f` and zero-division guard.
 
+### 2.6b `run_full_policy_experiment.py` / `summarize_full_policy_experiment.py`
+
+`run_full_policy_experiment.py` executes 90 runs over `Policy_Mode=0/1/2` × `Pk=0.5/0.8/0.95` × seeds `2001-2010`. `summarize_full_policy_experiment.py` aggregates those `MissileDefense_Outcome_p*_pk*_s*.txt` files into a `policy/pk/runs/threats/raw_Pk/effective_Pk/ship1/ship2` table. Use it after the license server is valid; the MCP/`run_to_verdict` path still reports heap/capacity errors for this model.
+
 ### 2.7 `MissileDefense_Outcome.txt` + `Outcome_run1/2/3.txt` — per-threat logs (EXAMPLE OUTPUTS)
 
 `Display` dumps: `DISPLAY AT TIME ------ Xs ------ {BLOCK=ThreatGenerator, C2_Latency=…, DELTA, DS_NAME=Header_Only, Effective_Kill, Firm_Track, Flight_Time, Flyout_Time, ID, INDEX, Inventory_Left, Killed, Leaker, Priority, Reload_Wait, Shots_Fired, TIME, Task_Latency, Time_Array={in,out}, Trace_Array={"Queue_in","Queue_out"}, Track_Hits=3}`. Default file has 7 threats; run1 (Pk0.5), run2 (Pk0.8), run3 (Pk0.95) each have 7 threats with different dice.

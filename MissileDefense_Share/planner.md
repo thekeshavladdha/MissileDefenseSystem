@@ -125,3 +125,12 @@ Skip both if video/write-up at risk — baseline+Steps 0-7 already submit.
 Challenges: enter **1 (new system) + 3 (AI workflow)**; 2 (re-engineer ComJam/Avionics/AFDX) is fallback narrative. Submission needs model + slides + write-up + video. VisualSim is compute/network/sensor-decision modeller, NOT 6-DoF/CFD — abstract flyout as DLY+Pk (Lukacs). Discovery: `search_models(missile defense…)=0 hits` (novelty); `Full_System_ComJam_Model (283 blocks RF/jam)` + `Animation_Target_Processing (48 blocks space/power/scheduler)` are bases only if pivoting; idioms `workload_graph/traffic_front_end/accelerator_node` + patterns `ptn_c90932cdfe29` justify router→queues. Research: DSB Phase III, NPS product-line, Krill timing budgets, SHIELD 2025, DOT&E FY24/25, Maurer/Frenkel/Humali fusion, Moskowitz coordination (most simulatable), Lukacs guidance, IMM-KF 2024, SR-UKF hypersonic, SWORD EADSIM, MDA THAAD/C2BMC, CRS Golden Dome, C3.ai MDA — group as [M&S][Fusion][Guidance][Ref], 4-6 well-used > 16 dumped. Risks: aero-modelling, sim explosion (cap via TG batching + caps_json + LHS), credibility (cite DSB/DOT&E federation need), hallucination (describe before propose + diagnose + log corrections), power gap (PowerTable/Battery reuse), time crunch (MVP = baseline + raid sweep + 1 Pareto).
 
 *End — execute Steps 0→9 in order; do not skip gates; baseline file stays frozen.*
+
+---
+
+## 10. Run status update (2026-10-04)
+- Baseline Pk batch and Policy_Mode x Pk smoke runs pass.
+- `run_full_policy_experiment.py` completed 90 runs (`Policy_Mode=0/1/2` x `Pk=0.5/0.8/0.95` x seeds `2001-2010`).
+- Aggregate `summarize_full_policy_experiment.py` output showed Mode 0 and Mode 2 identical; Mode 1 lower because it force-selects Ship1 and does not use Ship2.
+- All outcomes in that sweep currently report `ship1` only; Ship2 was not exercised. For a true Ship2 benefit claim, force priorities >3 or inventory `Ship1_Inv=0` and re-run.
+- Docs updated for the current run scripts and policy/model split.

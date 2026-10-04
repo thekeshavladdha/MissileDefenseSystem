@@ -1,5 +1,5 @@
 # CONTEXT — MissileDefense DED-lite build (handoff for next AI agent)
-Date: 2026-10-04 | Author: Muse Spark (opencode) + user | Status: DED-lite structure present; simulator now runs in batch mode after removing broken ShipCoordinator, fixing CommonRule boolean compare, and splitting PolicyRouter output ports
+Date: 2026-10-04 | Author: Muse Spark (opencode) + user | Status: DED-lite batch sweeps run. Baseline Pk sweep and 3x3 policy/Pk smoke completed. A 90-run Policy x Pk x seeds full sweep completed: `run_full_policy_experiment.py` + `summarize_full_policy_experiment.py`. Manual model errors that blocked init/policy were fixed.
 
 ## 1. Objective
 Modify `MissileDefense_Share/MissileDefense_Model.xml` (single-ship baseline) into a 2-ship DED-lite
@@ -18,8 +18,8 @@ TBMD engagement coordination (DED bidded scheme); implement 3 of its 8 sieving t
   - `MissileDefense_Model_baseline.xml` — frozen 14-container original (34190B, sha dd50dbce…).
     NEVER EDIT. Ground truth for maths/docs.
   - `missile_defense_parameters.csv` — 21-row param price-list, all Assumption/Estimate.
-  - `MissileDefense_Model_Sweep.bat` — 3-run batch (Pk 0.5/0.8/0.95, seeds 1001/1002/1003).
-    DED-lite addon present: `MissileDefense_Policy_Pk_Sweep.bat` now has `-Policy_Mode` legs.
+  - `MissileDefense_Model_Sweep.bat` — 3-run base Pk batch.
+    DED-lite addon present: `MissileDefense_Policy_Pk_Sweep.bat` and `run_full_policy_experiment.py` full 90-run Policy x Pk x seeds sweep.
   - `summarize_missile_outcome.py` — portable scorer (root=dirname(__file__), fixed from satvi path).
     Baseline outputs: run1 7/4/2/5 0.571/0.286, run2 7/6/2/5 0.857/0.286, run3 7/7/5/2 1.000/0.714.
   -   `MissileDefense_Outcome*.txt`, `MissileDefense_Kill/Miss_Count.txt` — baseline logs. DO NOT overwrite
