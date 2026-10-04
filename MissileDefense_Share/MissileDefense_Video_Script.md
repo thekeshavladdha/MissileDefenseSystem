@@ -64,6 +64,23 @@ Slowly sweep the pointer from left to right across the entire canvas once.
 ## 3. The Model Blocks
 **Time:** 1:30–3:30
 
+## 3.0 Every block documents itself
+
+### MOUSE
+Double-click **ThreatGenerator**. Point at the top field, `Block_Documentation`. Close without changing anything.
+
+### SPEAK
+> “One thing before the tour: every block in this model carries its own documentation.
+>
+> Double-click any block and the top field tells you what it does, which parameters matter, and what breaks if it is misconfigured.
+>
+> All twenty-three blocks are documented this way, inside the model file itself — so the explanation travels with the model, not in a separate document.”
+
+### MOUSE
+Close the dialog. Return to the canvas.
+
+---
+
 ## 3.1 Threat Generation
 
 ### MOUSE
@@ -245,6 +262,23 @@ Immediately switch to the backup clip.
 
 ---
 
+## 5b. Running All Modes Together (batch)
+
+### MOUSE
+Show the folder containing `MissileDefense_Policy_Pk_Sweep.bat` — do not run it live, just display it.
+
+### SPEAK
+> “One live run proves the model works. But comparing doctrines needs statistics, not anecdotes — so every number I quote comes from batch runs, not from hand-clicking.
+>
+> This single batch file runs all three policies against three kill probabilities, nine runs back to back, each with its own random seed and its own output file. Nobody touched the model between runs.
+>
+> A scorer script then collapses all nine output files into one comparison table: threats, raw kills, effective kills, leakers, both kill probabilities, and the ship split per policy. That table is what lets me say mode one loses decisively while modes zero and two both use both ships.”
+
+### MOUSE
+If time permits, flash the scorer output table on screen for three seconds. Otherwise skip — the table goes in the report appendix either way.
+
+---
+
 ## 6. Reading the Four Result Windows
 **Time:** 5:00–7:00
 
@@ -385,17 +419,19 @@ Problem
    ↓
 Model
    ↓
-ThreatGenerator
+Blocks document themselves (demo on ThreatGenerator)
    ↓
-DetectionAssignment
+Threat Generator
    ↓
-FES_DB + Magazine_DB
+Detection / Assignment
    ↓
-CommonRule
+FES + Magazine
    ↓
-PolicyRouter (the split!)
+Common Rule
    ↓
-Ship1 lane / Ship2 lane
+Policy Router (the split!)
+   ↓
+Ship 1 / Ship 2
    ↓
 Merge
    ↓
@@ -403,13 +439,15 @@ Results (table, counters, plot)
    ↓
 Three policies
    ↓
-Live run
+Live run (mode 2)
+   ↓
+Batch runs all modes (the comparison table)
    ↓
 Read the four windows
    ↓
 Money record (magazine hits zero)
    ↓
-Three lessons, close
+Lessons
 ```
 
 ### 2. The anchor story
