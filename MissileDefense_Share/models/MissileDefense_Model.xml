@@ -421,7 +421,7 @@
     </entity>
         <entity name="Ship2_Queue" class="VisualSim.actor.lib.Smart_Resource">
         <property name="_location" class="VisualSim.kernel.util.Location" value="[193.0, 220.0]"/>
-        <property name="Initial_Queue_State" class="VisualSim.kernel.util.StringAttribute" value="First_Token_Enqueue"/>
+        <property name="Initial_Queue_State" class="VisualSim.kernel.util.StringAttribute" value="First_Token_Flow_Through"/>
         <property name="Queue_Reject_Mechanism" class="VisualSim.kernel.util.StringAttribute" value="Incoming_Token_Rejected"/>
         <property name="Queue_Type" class="VisualSim.kernel.util.StringAttribute" value="FIFO"/>
                 <property name="Block_Name" value="&quot;Ship2_Queue&quot;"/>
@@ -432,23 +432,36 @@
 </entity>
 <entity name="Ship2_C2" class="VisualSim.actor.lib.DLY">
     <property name="_location" class="VisualSim.kernel.util.Location" value="[330.0, 220.0]"/>
-    <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="C2_Latency"/>
+    <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="&quot;C2_Latency&quot;"/>
 </entity>
 <entity name="Ship2_Flyout" class="VisualSim.actor.lib.DLY">
     <property name="_location" class="VisualSim.kernel.util.Location" value="[383.0, 220.0]"/>
     <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="Ship2_Range/Interceptor_Speed"/>
 </entity>
-<entity name="Ship2_Kill" class="VisualSim.actor.lib.Expression_Decision">
-    <property name="_location" class="VisualSim.kernel.util.Location" value="[436.0, 220.0]"/>
-    <property name="Expression_List" value="input.Leaker = (TNow - input.TIME) &gt; Intercept_Deadline&#10;input.Effective_Kill = input.Killed ? (input.Leaker ? false : true) : false&#10;input.Shots_Fired = input.Effective_Kill ? 1 : 2&#10;input.Inventory_Left = Ship2_Inv - input.Shots_Fired&#10;input.Reload_Wait = rand(Reload_Time_Min, Reload_Time_Max)"/>
-</entity>
-<entity name="CommonRule" class="VisualSim.actor.lib.Expression_Decision">
+    <entity name="Ship2_Kill" class="VisualSim.actor.lib.Expression_Decision">
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[436.0, 220.0]"/>
+        <property name="Expression_List" value="input.Leaker = (TNow - input.TIME) &gt; Intercept_Deadline&#10;input.Effective_Kill = input.Killed ? (input.Leaker ? false : true) : false&#10;input.Shots_Fired = input.Effective_Kill ? 1 : 2&#10;input.Inventory_Left = Ship2_Inv - input.Shots_Fired&#10;input.Reload_Wait = rand(Reload_Time_Min, Reload_Time_Max)"/>
+        <property name="Output_Values" value="input"/>
+        <property name="Output_Ports" value="output"/>
+        <property name="Output_Conditions" value="true"/>
+    </entity>
+    <entity name="FES_DB" class="VisualSim.actor.lib.Database">
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[320.0, 340.0]"/>
+        <property name="Linking_Name" class="VisualSim.data.expr.Parameter" value="&quot;FES&quot;"/>
+        <property name="fileOrURL" class="VisualSim.data.expr.FileParameter" value="./fes_table.csv"/>
+        <property name="Data_Structure_Text" class="VisualSim.kernel.util.StringAttribute" value="/* Text Template or File Path.       &#10;   First row contains Field Names. */"/>
+        <property name="Input_Fields" class="VisualSim.data.expr.Parameter" value="&quot;Priority&quot;"/>
+        <property name="Lookup_Fields" class="VisualSim.data.expr.Parameter" value="&quot;Priority&quot;"/>
+        <property name="Output_Expression" class="VisualSim.data.expr.Parameter" value="&quot;output = match&quot;"/>
+        <property name="Mode" class="VisualSim.kernel.util.StringAttribute" value="Read"/>
+    </entity>
+    <entity name="CommonRule" class="VisualSim.actor.lib.Expression_Decision">
     <property name="_location" class="VisualSim.kernel.util.Location" value="[320.0, 300.0]"/>
-    <property name="Expression_List" value="input.shipHint = input.Priority &lt;= 3 ? 1 : 2&#10;input.hasInv1 = (Ship1_Inv &gt; 0)&#10;input.hasInv2 = (Ship2_Inv &gt; 0)&#10;input.preferredShip = input.hasInv1 == false ? 2 : (input.hasInv2 == false ? 1 : input.shipHint)"/>
+    <property name="Expression_List" value="FES_Row = getRow(&quot;FES&quot;, cast(string, input.Priority), &quot;Priority&quot;)&#10;input.shipHint = FES_Row.shipHint&#10;input.hasInv1 = (Ship1_Inv &gt; 0)&#10;input.hasInv2 = (Ship2_Inv &gt; 0)&#10;input.preferredShip = input.hasInv1 == false ? 2 : (input.hasInv2 == false ? 1 : input.shipHint)"/>
 </entity>
 <entity name="PolicyRouter" class="VisualSim.actor.lib.Expression_Decision">
     <property name="_location" class="VisualSim.kernel.util.Location" value="[120.0, 220.0]"/>
-    <property name="Expression_List" value="input.sectoredShip = input.Priority &lt;= 3 ? 1 : 2&#10;input.ship = Policy_Mode == 0 ? input.sectoredShip : (Policy_Mode == 1 ? 1 : input.preferredShip)"/>
+    <property name="Expression_List" value="input.sectoredShip = input.Priority &lt;= 2 ? 1 : 2&#10;input.ship = Policy_Mode == 0 ? input.sectoredShip : (Policy_Mode == 1 ? 1 : input.preferredShip)"/>
         <port name="ship2Out" class="VisualSim.actor.TypedIOPort">
         <property name="output"/>
         <property name="_type" class="VisualSim.actor.TypeAttribute" value="general"/>
@@ -572,5 +585,6 @@
     <link port="Const.output" relation="relation6"/>
     <link port="InterceptorQueue.pop_input" relation="relation6"/>
     <link port="Const2.output" relation="relationPop2"/>
+    <link port="Const2.trigger" relation="relationShip2F"/>
     <link port="Ship2_Queue.pop_input" relation="relationPop2"/>
 </entity>

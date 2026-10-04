@@ -1,5 +1,5 @@
 # CONTEXT — MissileDefense DED-lite build (handoff for next AI agent)
-Date: 2026-10-04 | Author: Muse Spark (opencode) + user | Status: DED-lite batch sweeps run. Baseline Pk sweep and 3x3 policy/Pk smoke completed. A 90-run Policy x Pk x seeds full sweep completed: `run_full_policy_experiment.py` + `summarize_full_policy_experiment.py`. Manual model errors that blocked init/policy were fixed.
+Date: 2026-10-04 | Author: Muse Spark (opencode) + user | Status: FES_DB reconnected via file-backed CSV and batch-verified. Sweep runs pass; ship split confirmed (ship1/ship2 both fire).
 
 ## 1. Objective
 Modify `MissileDefense_Share/MissileDefense_Model.xml` (single-ship baseline) into a 2-ship DED-lite
@@ -27,8 +27,11 @@ TBMD engagement coordination (DED bidded scheme); implement 3 of its 8 sieving t
     output filenames or copy the old logs elsewhere first.
   - `MissileDefense_Model_Report.md` — 1-page share guide. `MissileDefense_Qwen_Research.md` — theory pack.
   - `documentation.md` — full model doc (50KB). STALE re DED-lite deltas (§§3/6/14 need Merge/Router update).
-  - `fes_table.csv` — NEW parked FES lookup table (CSV `Priority,shipHint` + `int,int` typerow, 1→1…5→2).
-    Created for Phase-2 file-backed FES_DB. NOT WIRED to anything.
+  - `fes_table.csv` — file-backed FES lookup table (`Priority,shipHint`, header + data rows only, NO type row).
+    WIRED via re-added `FES_DB` Database block (`fileOrURL=./fes_table.csv`, `Input_Fields="Priority"`,
+    `Lookup_Fields="Priority"`, `Mode="Read"`, `Output_Expression="output = match"`); `CommonRule` reads
+    `input.shipHint` through `getRow("FES", cast(string, input.Priority), "Priority")` instead of the ternary.
+    Batch-verified: Priority 1-3 → shipHint 1, 4-5 → shipHint 2; ship split 17/15 across the 3-run sweep.
   - `.visualsim-mcp/` — MCP cache (handoffs, traceability.db, workspaces/a50ecb73, transactions/*).
     Regenerable; deleted once for cleanup, recreated by later opens.
 - `planner.md` (this folder) — 10-step DED-lite build plan (Steps 0–9 with gates). Follow it.
