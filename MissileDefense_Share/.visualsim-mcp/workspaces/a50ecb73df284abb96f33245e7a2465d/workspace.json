@@ -1,0 +1,13 @@
+{
+  "dependency_closure": {
+    "copied": 1,
+    "skipped_external": [],
+    "skipped_missing": []
+  },
+  "model_path": "C:\\Games\\Mirabilis_hackathon\\MissileDefense_Share\\models\\MissileDefense_Model.xml",
+  "opened_sha256": "dd50dbce2749ac952569c1974a76c0a352b8023dc232cf05d124d40c182d4be4",
+  "original_path": "C:\\Games\\Mirabilis_hackathon\\MissileDefense_Share\\MissileDefense_Model.xml",
+  "project_root": "C:\\Games\\Mirabilis_hackathon\\MissileDefense_Share",
+  "schema_version": 1,
+  "workspace_uuid": "a50ecb73df284abb96f33245e7a2465d"
+}

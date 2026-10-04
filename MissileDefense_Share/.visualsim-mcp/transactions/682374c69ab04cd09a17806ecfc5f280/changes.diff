@@ -1,0 +1,29 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\682374c69ab04cd09a17806ecfc5f280\candidate.xml
+@@ -503,7 +503,6 @@
+     <relation name="relationFlyout" class="VisualSim.actor.TypedIORelation">
+         <property name="width" class="VisualSim.data.expr.Parameter" value="1"/>
+     </relation>
+-    <link port="InterceptorQueue.input" relation="relation"/>
+     <link port="InterceptorQueue.pop_input" relation="relation6"/>
+     <link port="InterceptorQueue.output" relation="relation2"/>
+     <link port="xTime_yData_Plotter.input" relation="relation3"/>
+@@ -511,7 +510,6 @@
+     <link port="Const.trigger" relation="relation5"/>
+     <link port="ThreatGenerator.output" relation="relation7"/>
+     <link port="DetectionAssignment.input" relation="relation7"/>
+-    <link port="DetectionAssignment.output" relation="relation"/>
+     <link port="C2_Latency.input" relation="relation2"/>
+     <link port="C2_Latency.output" relation="relationFlyout"/>
+     <link port="InterceptorFlyout.input" relation="relationFlyout"/>
+@@ -548,4 +546,10 @@
+     <link port="Merge.KilledOnly" relation="relationKilled"/>
+     <link port="Merge.MissedOnly" relation="relationMissed"/>
+     <link port="Merge.Latency" relation="relation3"/>
++    <relation name="relationDR" class="VisualSim.actor.TypedIORelation"/>
++    <link port="DetectionAssignment.output" relation="relationDR"/>
++    <link port="PolicyRouter.input" relation="relationDR"/>
++    <relation name="relationShip1" class="VisualSim.actor.TypedIORelation"/>
++    <link port="PolicyRouter.output" relation="relationShip1"/>
++    <link port="InterceptorQueue.input" relation="relationShip1"/>
+ </entity>

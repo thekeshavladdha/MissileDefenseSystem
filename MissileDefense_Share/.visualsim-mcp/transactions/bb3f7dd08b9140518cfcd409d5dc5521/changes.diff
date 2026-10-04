@@ -1,0 +1,11 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\bb3f7dd08b9140518cfcd409d5dc5521\candidate.xml
+@@ -449,7 +449,7 @@
+     <property name="Mode" class="VisualSim.kernel.util.StringAttribute" value="Read"/>
+     <property name="Input_Fields" value="&quot;Priority&quot;"/>
+     <property name="Lookup_Fields" value="&quot;priority&quot;"/>
+-    <property name="Output_Expression" value="match"/>
++    <property name="Output_Expression" value=""/>
+     <property name="Linking_Name" value="&quot;FES&quot;"/>
+ </entity>
+ <entity name="CommonRule" class="VisualSim.actor.lib.Expression_Decision">

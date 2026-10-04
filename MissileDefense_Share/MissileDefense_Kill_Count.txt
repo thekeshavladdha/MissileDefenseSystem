@@ -1,0 +1,18 @@
+
+DISPLAY AT TIME     ------ 2.14769883720 sec ------
+1
+
+DISPLAY AT TIME     ------ 4.28966458520 sec ------
+2
+
+DISPLAY AT TIME     ------ 6.36560008950 sec ------
+3
+
+DISPLAY AT TIME     ------ 8.52257157680 sec ------
+4
+
+DISPLAY AT TIME     ------ 12.70788846970 sec ------
+5
+
+DISPLAY AT TIME     ------ 14.89747731970 sec ------
+6

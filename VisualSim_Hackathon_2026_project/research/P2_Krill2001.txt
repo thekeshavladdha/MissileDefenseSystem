@@ -1,0 +1,1082 @@
+
+
+===== PAGE 1 =====
+220 
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001)
+J.  A.  KRILL 
+I
+Systems Engineering of Air and Missile Defenses
+Jerry A. Krill
+n the Air Defense Systems Department, systems engineering is a way of thinking. More 
+than a “process,” the systems perspective drives our approach to solving emerging air and 
+missile defense problems as the threat becomes more advanced and the tactical environ­
+ment more complex. This perspective and the requisite tools have evolved with the increas­
+ing complexity of those systems. In this article I describe the systems approach to the devel­
+opment of missile defenses and cite recent examples illustrating the associated activities.
+THE SYSTEMS ENGINEERING 
+PERSPECTIVE
+The scientific method, with its methodical and logi­
+cal order, has been widely used for centuries. As scien­
+tifically developed and engineered devices have evolved 
+into complex systems with interacting elements, a sys­
+tems engineering approach has arisen that is analogous 
+to, and a derivative of, the scientific method. A dia­
+gram of the scientific and systems engineering thought 
+sequences is shown in Fig. 1.1 The systems perspective 
+has been recognized and articulated primarily in the 
+latter half of the 20th century, with its greatest impetus 
+from World War II. Because the Air Defense Systems 
+Department (ADSD) carries forward the APL legacy 
+of the development of the proximity fuze from that era 
+through evolution to modern guided missile defense, 
+the Laboratory’s systems engineering perspective has 
+evolved with the emerging national recognition of this 
+discipline. In fact, the ADSD mission statement is 
+steeped in the context of systems-level thinking to solve 
+complex problems.
+Before describing how systems engineering is applied 
+to air and missile defense, I first briefly describe what 
+constitutes a good system and the corresponding sys­
+tems engineering perspective and development meth­
+odology. A system is considered to be “interrelated 
+components functioning together toward a common 
+objective.”1 The practice of systems engineering is “an 
+interdisciplinary approach toward methodical realiza­
+tion of a successful system.” Finally, a successful system 
+is one that meets the users’ needs; interfaces with, and 
+complements, the operation of related systems; func­
+tions over the range of exposed environmental and 
+operational conditions; and can be adapted to future 
+needs, environments, and interfacing systems.1
+Systems engineering is a discipline necessary to pro­
+duce a successful system. The logical sequence of generic 
+systems engineering steps is shown along with the scien­
+tific method in Fig. 1; this is a way of thinking through 
+any phase or level of detail during the development. 
+The system development cycle uses this methodology, 
+from system conception to answering a need through 
+system realization. Why is a methodical, interdisciplin­
+ary approach needed? A caricature of a missile design as 
+
+
+===== PAGE 2 =====
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001) 
+221
+SYSTEMS ENGINEERING OF AIR AND MISSILE DEFENSES
+viewed by various specialists1 illustrates the need for a 
+multidisciplinary approach (Fig. 2). Clearly, each expert 
+has a unique perspective about the system and the rela­
+tive importance of his or her special contribution and, 
+therefore, about decisions concerning the priority of 
+allocations. Systems engineering must bring this exper­
+tise together to develop a balanced system where the 
+components and technologies are appropriately allo­
+cated and cost and risk are contained. Within ADSD 
+reside specialists in such fields as control theory, aero­
+dynamics, communications, software engineering, and 
+microwave and optics theory. There are also combat 
+systems engineers who provide analysis and engineering 
+contributions to blend these disciplines. Many times, 
+specialists choose to evolve their careers toward a total 
+systems perspective. Also, many specialists have devel­
+oped a keen systems perspective, themselves, from long 
+experience. These specialties are included in a number 
+of articles in this issue, but they are viewed for their 
+contributions to their respective total systems.
+Why is an air/missile defense system considered 
+complex? Figure 3 depicts air defense elements in a 
+battle force. Each element can be considered as an 
+interfaced subsystem in a force-wide air defense “super-
+system.” Yet each element is, itself, a system. Figure 3 
+illustrates both perspectives. The components of the 
+combatants interact in a complex manner. For exam­
+ple, the Cooperative Engagement Capability (CEC) 
+sensor network allows the computers controlling the 
+radars of different ships and aircraft to interact to 
+maintain tracking of targets. The Aegis ship’s weap­
+ons control computer may use the radar return data of 
+the target from another Aegis ship to develop Stan­
+dard Missile (SM) midcourse guidance commands. The 
+commands are uplinked via the launching ship’s Aegis 
+SPY-1 radar to a receiver in the missile for use in its 
+guidance computer. Thus, the real-time interaction of 
+components among elements of a battle force to sup­
+port a missile intercept requires the entire force to be 
+treated as a system. The complexity in terms of compo­
+nents, functional intricacy, technology blend, and per­
+formance stringency to achieve defense against a vari­
+ety of threats makes networked air and missile defense 
+among the most complex systems in the world. Arti­
+cles in this issue further illustrate this point.
+How does systems engineering relate to program 
+management? Systems engineers and program manag­
+ers are partners in the leadership of system development 
+teams. Within the Navy’s program offices and program 
+mission offices, program managers and systems engineers 
+provide programmatic and technical expertise for the 
+Figure 1.  Scientific (a) and systems engineering (b) approaches. 
+The scientific method of hypothesis posing and testing is analo­
+gous to the systems engineering method of system element syn­
+thesis and validation.
+Figure 2.  Specialists’ whimsical perspectives of a missile system. 
+Each specialty might have a different viewpoint about a system 
+centered on unique expertise and technology. A systems engi­
+neer must perform from a balanced perspective, giving appropri­
+ate attention to each specialty, often in conflict with one another 
+for resources and requirements satisfaction.
+Define
+problem
+Functional
+analysis
+Physical analysis/
+allocation
+Evaluation and
+decision
+Conclude
+(confirm, deny, or
+modify hypothesis)
+Test
+hypothesis
+Select
+hypothesis
+Problem
+definition
+Problem
+Next
+problem
+Need
+Solution(s)
+Requirements
+Functions
+Potential
+solutions
+(a)
+(b)
+
+
+===== PAGE 3 =====
+222 
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001)
+J.  A.  KRILL 
+development teams. In ADSD we mirror this arrange­
+ment with a matrix organization that provides program 
+and project managers from the programs office and engi­
+neering teams from the technical groups. 
+Increasingly, chief, systems, and lead engineers are 
+being formally designated, primarily from the technical 
+groups, to complement the program and project man­
+agers in leadership of systems engineering tasks. The 
+chief/lead systems engineers and program/project man­
+agers work in partnership, in addition to leading the 
+engineering team, to ensure that development is orderly 
+and timely and that sufficient resources are provided. 
+As team co-leads, their functions must overlap some­
+what so that each recognizes and tends to the needs and 
+resources of the other while they perform their primary 
+roles. As team partners, for example, the systems engi­
+neer may develop the technical performance require­
+ments and specifications and lead system modeling and 
+critical experiments to validate the requirements. The 
+program manager provides the programmatic context 
+for these requirements in the key program documents 
+and articulates the underlying programmatic required 
+resources and schedule to achieve them, including the 
+funding, equipment, and facilities for modeling and 
+experiment validations. Some overlap in their roles can 
+occur. For instance, the program manager may have an 
+effect on the technical requirements because of a short 
+schedule or funding constraints. The systems engineer 
+can have an effect on funding and scheduling by articu­
+lating and providing evidence of key technical risks that 
+must first be resolved by prototyping or experiments.
+Figure 4 illustrates the system development cycle 
+using the Navy Theater Wide (NTW) Tactical Bal­
+listic Missile Defense System as an example. APL was 
+recently designated the Technical Direction Agent for 
+this system, i.e., APL has been given the responsibility 
+Figure 3.  A networked missile defense system is actually a system of systems, with several major systems interfaced as subsystems 
+of a larger force-level system. Shown are an SM, an Aegis ship combat system that guides the SM to its target, an E-2C airborne early 
+warning system that first detects the target and reports via tactical links and the Cooperative Engagement Capability, and amphibious 
+assault ships with the elements of the Ship Self-Defense System in Mark I and Mark II versions featuring integrated NATO Sea Sparrow 
+and Rolling Airframe Missile engagements.
+SM
+Aegis ship
+E-2C
+Amphibious
+assault
+ships
+
+
+===== PAGE 4 =====
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001) 
+223
+SYSTEMS ENGINEERING OF AIR AND MISSILE DEFENSES
+of technical oversight for the success of the system and 
+its upgrade evolution. NTW is developed as a system 
+even though it is part of the more encompassing ship 
+combat system and battle force defense network. Part 
+of the missile defense systems engineering challenge is 
+to develop such elements while ensuring the ship and 
+force-level system perspectives.
+I will briefly discuss the phases of systems engineer­
+ing from Fig. 4 as a means of introducing the remain­
+ing sections of this article. We begin with the need. 
+Often one or more concepts are explored to deter­
+mine how to articulate the need. Although the mis­
+sion need is not specific to the design approach, it may 
+be necessary to convey the need for such conceptual 
+elements as communication or sensing. Operational 
+requirements are introduced in the context of required 
+functions, critical parameters, and effectiveness mea­
+sures. This generally requires system-level modeling 
+and exploration of the concept in more detail, as well 
+as critical experiments, component developments, or 
+data collections to define and validate the require­
+ments. Conceptual alternatives are assessed to select 
+the preferred approach, and the system requirements, 
+traced to the operational requirements, are developed 
+as the primary basis for the system design.
+Figure 4.  A system development cycle for NTW Tactical Ballistic Missile Defense. The cycle shows systems engineering progression from 
+top-level requirements through concept formulation and assessments; risk reduction activities; development, including design trade-offs, 
+modeling, and fabrication; system element validation and integration; the series of testing leading to a full-scale missile intercept test; and, 
+finally, Fleet introduction, life-cycle support, and upgrade.
+The system concept and concept of operations form 
+the basis, along with modeling and simulation and risk 
+reduction activities, for partitioning and allocating the 
+system functions and performance to successively greater 
+levels of detail. Iteration and feedback are critical to 
+this methodology because at some level of detail a func­
+tion may prove infeasible as defined, thus requiring a 
+modification at higher levels to reallocate requirements 
+and functionality. Modeling and simulation can be per­
+formed at the various levels of detail required to verify 
+the viability of performance allocations (timing and 
+accuracy budgets and gain margins) for radars and mis­
+sile guidance in various physical environments; even an 
+entire battle force air defense network can be modeled. 
+Later in this article, I discuss other uses and forms of 
+simulations and models. 
+ADSD develops and applies models at all levels, 
+many of which have become the Navy standard for 
+their validated accuracy. Prototyping of portions of the 
+system is generally needed to validate that the required 
+performance can be achieved or to validate portions of 
+the more detailed requirements that have been derived 
+from the primary ones. When the partitioning has 
+reached the component level (and has passed a series 
+of design reviews), the components can be engineered, 
+
+
+===== PAGE 5 =====
+224 
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001)
+J.  A.  KRILL 
+fabricated, and tested. Then the bottom-up process of 
+successively integrating and testing components com­
+mences in reverse order from the top-down requirements 
+partitioning process. The fabricated components are 
+integrated and tested against predicted performance at 
+the corresponding requirements allocation level, build­
+ing into subsystems and, finally, the total system. Like­
+wise, testing begins at component integration and builds 
+toward full system-level testing by the intended users, 
+i.e., the Fleet operators, to evaluate achievement of the 
+operational requirements in the representative envi­
+ronments. Systems engineering includes system main­
+tenance and support, as well as planned capability 
+upgrades and modernization throughout the life of the 
+system; these aspects are receiving greater attention as 
+total system life cost is given increasing emphasis.
+ADSD has been involved in all phases of systems 
+development. The phases are next described in greater 
+detail, and various examples are provided.
+ARTICULATING THE NEED AND 
+DEFINING REQUIREMENTS
+A mission need is defined through a continuous 
+assessment of current and proposed capabilities against 
+an evolving threat. It is the basis for establishing a new 
+operational capability, improving an existing capabil­
+ity, or exploiting an opportunity. A mission need state­
+ment is very broad and not system specific.1 For DoD 
+systems, this mission need is documented in a Mission 
+Needs Statement.2 As part of that document, a con­
+vincing case must be made that the need can feasibly be 
+met by existing or demonstrable technology.
+After the need is identified, critical operational 
+requirements must be developed. These generally are 
+in some context of the expected technical approaches’ 
+fundamental properties so that meaningful critical func­
+tions and performance parameters can be defined. For 
+example, it would likely be understood (based on model­
+ing, experimentation, or leveraging of existing systems) 
+whether a new system may require a new sensor or com­
+munications element. As a result, a radar or commu­
+nication range may become a key performance param­
+eter in an Operational Requirements Document.2 This 
+may be nearly coincident with an analysis of alterna­
+tives (AoA)3 from which an initial larger set of concept 
+candidates is reduced to a small set of preferred cases. 
+Critical experiments and prototype tests may also be 
+required to validate the requirements and the feasibil­
+ity of the concepts. Operational requirements, there­
+fore, are based on alternatives assessments, feasibility 
+experiments, and other means of concept exploration. 
+They include threshold (minimum required) and objec­
+tive (desired upper bound) key performance parameter 
+values and performance and effectiveness measures. 
+Both technical and operational (user) requirements are 
+provided. It is important that these threshold and objec­
+tive values be measurable by analysis or tests. ADSD 
+has played a key role in providing technical support 
+for a number of major system Operational Require­
+ments Documents, including those for CEC, SM, Area 
+Air Defense Command, NTW Tactical Ballistic Missile 
+Defense, and the Ship Self-Defense System (SSDS).
+DEVELOPING SYSTEM CONCEPTS 
+AND ASSESSING ALTERNATIVES
+The previous section indicated the importance of 
+system concepts and alternatives assessments as a basis 
+for defining needs and requirements. In this section I 
+further define what a concept consists of and how it is 
+assessed. A concept is generally known as a set of the 
+following descriptive items:
+• A concept of operations description (its use)
+• A description of the system functional architecture 
+in terms of top-level block diagrams of functions 
+and elements with corresponding interfaces between 
+them
+• High-level models, e.g., equations or algorithms
+• Text descriptions of the block diagram items
+• Discussions of critical data, technologies, risk areas, 
+and cost factors
+With this level of completeness, alternative concepts 
+can be evaluated against each other in the context of 
+a Design Reference Mission (DRM), which describes 
+the threat, geopolitical, and natural operational envi­
+ronments in which the system is expected to perform.4 
+The concepts are defined in sufficient detail for top-
+level performance modeling to reflect expected tech-
+nical capabilities and cost factors. These are then 
+compared according to weighted criteria to identify 
+potential “best” candidates.
+Figure 5 is an example of model development and 
+AoA concepts for the NTW defense missile, the SM-3. 
+The initial assessment concluded that a missile derived 
+from prior SM‑2 components with prototype kinetic 
+kill technology and with substantial intercept range for 
+inland protection was the best approach, having scored 
+the highest for the rating criteria. It was assumed, on the 
+basis of critical studies and experiments, that an evolved 
+version of the Aegis Combat System would guide the 
+SM-3. Further definition of the NTW System from the 
+AoA results used more detailed models and the DRM 
+scenarios to evaluate such critical features as missile 
+boost velocity, the ability of the Aegis SPY-1B phased 
+array radar to discriminate warheads from debris, and 
+countermeasures versus modification options. Figure 6 
+illustrates the features of the NTW DRM. This DRM, 
+developed by APL’s Joint Warfare Analysis Department 
+(JWAD) in partnership with ADSD, is necessarily of 
+sufficient detail to allow comprehensive modeling and 
+
+
+===== PAGE 6 =====
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001) 
+225
+SYSTEMS ENGINEERING OF AIR AND MISSILE DEFENSES
+activities as well as from results 
+of maturing technology and system 
+studies. Figure 7 is an early illustra­
+tion of the SM concept of standard­
+ization featuring common compo­
+nents in missiles used in the Aegis 
+and the Terrier/Tartar weapon sys­
+tems of the 1970s. Such standardiza­
+tion provided a major life-cycle cost 
+saving and performance similarity 
+across the Fleet. It formed a basis 
+for system functional requirements 
+and performance requirement allo­
+cations to subsystems, risk assess­
+ments, and trade-off studies, as dis­
+cussed later. With the retirement 
+of Terrier and Tartar ships, leaving 
+Aegis as the only area defense 
+system, standardization evolved to 
+the use of modularity in block 
+upgrades to meet advancing threat 
+capabilities.
+In the past decade, with Aegis as 
+the only U.S. weapon system using 
+SM-2, standardization has been a 
+primary means of containing cost 
+and risk in block upgrades to more 
+advanced versions or even as the 
+basis for introducing a new mission 
+capability. In the former case, a high degree of common­
+ality exists among the latest block upgrades—III, IIIA, 
+IIIB, and IV—allowing relatively rapid and cost-effec­
+tive means to address advancing threats. More recently, 
+commonality of the SM series has expedited the devel­
+opment of new Navy missions with the SM-2 Block 
+IVA for Area Tactical Ballistic Missile Defense and 
+the SM-3 for Theater Tactical Ballistic Missile Defense. 
+Standard components even allow timely development 
+of a land attack version known as SM-4. 
+PERFORMING CRITICAL RISK 
+REDUCTION ACTIVITIES
+Because new systems, or major system upgrades, rep­
+resent a new capability, there are always unknowns in 
+the implementation of the concepts. A set of activities 
+is required for risk reduction to resolve the unknowns 
+by determining feasibility, identifying new phenomena, 
+developing or maturing new types of components and 
+technologies, and learning about new operating param­
+eter regimes. The purpose of risk reduction, then, is to 
+resolve such issues in advance. Such activities include 
+the following:
+• Collecting data on critical phenomena not fully 
+understood
+Figure 6.  The NTW System will be capable of intercepting longer-range, theater-class, 
+tactical ballistic missiles. To ensure that the analyses and trade-off studies from the devel­
+opment team (from multiple laboratory and industrial organizations) would be consistent, 
+a DRM was developed. Shown is an example operational situation with Joint missile 
+defenses arrayed against tactical ballistic missiles fired from multiple directions and at dif­
+ferent times. A variety of conditions are defined that serve as a basis for modeling system 
+element performance versus design allocation alternatives. (BMC4I = battle management 
+command, control, communications, computers, and intelligence.)
+Threat
+characterization
+Threat
+tactics
+Physical
+environment
+BMC4I
+Threat Ballistic
+Missile trajectories
+Blue
+Force
+locations
+Joint campaign
+context
+Figure 5.  APL played a key role in an assessment of alternative 
+NTW missile conceptual configurations. Of the alternatives shown, 
+the SM LEAP derivative with a kinetic kill capability was deter­
+mined to be the best approach in terms of cost, risk, capability, 
+and schedule. This alternative was the basis for SM-3.
+analysis of NTW System elements. Recent work spon­
+sored by the Navy has resulted in a family of DRMs for 
+various programs that are mutually consistent and part 
+of a “Master DRM.”
+A system concept is developed from the described 
+SM-2 Block IVA
+SM LEAP
+Marinized THAAD
+Boosted THAAD
+New missile
+
+
+===== PAGE 7 =====
+226 
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001)
+J.  A.  KRILL 
+• Building prototypes of critical components, elements, 
+and/or technologies
+• Determining alternative work-around technologies 
+or elements should the risk items fail or become 
+delayed
+• Performing appropriate development tests/critical 
+experiments to verify feasibility and performance in 
+expected environments
+A critical risk item for SM-2 Block IVA was an infra­
+red window for the seeker terminal homing detector/
+imager. The window had to maintain sufficient transpar­
+ency, low distortion, and detector protection in severe 
+flight heating, vibration, and acceleration environments. 
+A set of materials was theoretically identified and exper­
+imentally tested, and sapphire was selected. Upon crit­
+ical prototype fabrication and wind tunnel testing, a 
+number of seemingly random failures occurred. A more 
+detailed theoretical model revealed that the orientation of 
+the sapphire crystal lattice was important; while one 
+orientation met requirements, others did not. This effort 
+was a collaboration with APL’s Research and Technol­
+ogy Development Center.
+Numerous examples can be cited for CEC as well, 
+including fade margin tests and prototype transmitter 
+and antenna components for the CEC data distribution 
+function and radar data collections for playback into pro­
+totype algorithms for the composite tracking function.
+In 1996 an advanced concept technology demon­
+stration (ACTD) was conducted in Hawaii in which 
+APL was the laboratory co-lead with the Massachusetts 
+Institute of Technology/Lincoln Laboratory. The dem­
+onstration featured the use of CEC to enable an Aegis 
+cruiser to fire a modified SM‑2 Block IIIA to engage a 
+target beyond the ship’s horizon for the first time using 
+an elevated terminal homing target illumination (on a 
+mountain to represent a potential future aircraft illu­
+mination capability). The missile engagement terminal 
+homing was in a range, approach angle, and altitude 
+regime not previously considered in missile design. 
+Theoretical modeling indicated the need for a more 
+frequency-selective illumination reference receiver 
+Figure 7.  An early SM concept illustration. In the late 1960s and early 1970s evaluations of technologies, costs, and performance require­
+ments led to a system concept definition of standardized area defense missiles.
+
+
+===== PAGE 8 =====
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001) 
+227
+SYSTEMS ENGINEERING OF AIR AND MISSILE DEFENSES
+Threat
+trajectory
+Interceptor
+TOF
+uncertainty
+Interceptor miss distance
+table
+•Threat type
+•Threat maneuver levels
+  and maneuver frequency
+•Closing velocity
+•Intercept altitude
+•KW velocity
+Peels workbench
+Interceptor lethality
+•Warhead type
+•Closing velocity
+•Strike angle
+•Miss distance
+•KW aspect angles
+Threat description
+•Major object parameters
+•6-DOF threat trajectory
+•Pointing vector
+•Acceleration
+•Radar cross section
+TBM heating analysis
+    •OSC-18
+IR acquisition table
+ •Threat
+ •Time and aspect
+Interceptor seeker
+sensitivity
+Interceptor configuration
+KKV descriptive parameters
+Interceptor EOB conditions
+Engagement constraints
+Aegis WCS description
+•Detection range
+•Angular accuracy
+•Update periods
+•Related track accuracy
+  parameters
+Post-processing
+software suite
+APL Defended
+Area Model (ADAM)
+Launch window
+requirements
+Interceptor divert table
+•Tgo
+•Threat maneuver level
+•KKV velocity
+•Intercept altitude
+Interceptor
+terminal simulation
+Interceptor
+lethality
+computation
+Warhead
+description
+KW
+description
+Intercept
+conditions
+Threat
+description
+KW
+description
+Intercept space
+Operating area
+Defended region
+An example is the APL Defended Area Model 
+(ADAM) widely used in the NTW Tactical Ballistic 
+Missile Defense Program to explore combinations of 
+radar range and SM‑3 configurations against a variety 
+of targets. Figure 8 illustrates the model elements of 
+ADAM and examples of its output, indicating the area 
+within which a ship could operate and defend a loca­
+tion from a threat direction. The model’s ADAM com­
+ponents are a federation of APL and Navy models, 
+and ADAM’s development and use are a collabora-
+tion between the ADSD and  APL’s Strategic Systems 
+Department. A new, more detailed, and comprehensive 
+simulation called ARTEMIS is being developed as an 
+Figure 8.  The ADAM allows a wide variety of tactical ballistic missile defense concepts to be evaluated. It includes linked models of 
+sensors, the intercepting missile, command and control features, and kinetic kill vehicle (KKV) homing. Workbench post-processing tools 
+provide visual analysis products (yellow). The blue boxes identify ADAM and associated APL and DoD community models. The clear 
+boxes indicate input and intermediate data. (6-DOF = 6-degree-of-freedom, EOB = enemy order of battle, KW = kinetic warhead, TBM = 
+tactical ballistic missile, Tgo = time to go, TOF = time-of-flight, WCS = Weapons Control System.)
+modification to the missile. However, to reduce the risk 
+of failure in this new over-the-horizon regime, a “cap­
+tive carry” critical experiment was performed. This cap­
+tive carry experiment prior to the Mountain Top ACTD 
+(described later) consisted of a missile seeker attached to 
+the wing of a Lear jet to fly portions of the missile trajec­
+tory and verify midcourse guidance handoff to terminal 
+homing and seeker lock on to the target. This successful 
+risk reduction critical experiment is described in Ref. 5.
+USING MODELING AND SIMULATION
+Modeling and simulation are key to all phases of 
+the systems development cycle. In general, a model is 
+a simplified representation of a system or system ele­
+ment or feature. Examples of models are equations, scale 
+models and mockups, and logic flows; some of these can 
+be implemented into computer programs. Simulations 
+generally consist of linked collections of models in the 
+context of a time sequence.
+
+
+===== PAGE 9 =====
+228 
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001)
+J.  A.  KRILL 
+Figure 9.  Key elements of a virtual demonstration in the APL Warfare Analysis Laboratory. Shown are the conceptual elements of the 
+OCMD concept featuring (a) a CEC “forward pass” cooperative engagement with advanced E-2C detection and tracking of a target, an 
+Aegis ship-launched advanced SM guided from an airborne fire control suite via CEC and Aegis weapon control, terminally illuminated 
+from the fire control aircraft; (b) a depiction of the high-fidelity models from multiple organizations incorporated to simulate the conceptual 
+system; and (c) an illustration of simulated cruise missile attacks against South Korea for engagement analysis.
+integration of validated detailed models of the entire 
+SM kill chain from target detection through intercept. 
+Models validated by test results can also serve as virtual 
+test vehicles for regions of the performance envelope 
+where actual tests cannot be safely or cost-effectively 
+conducted.
+Models and simulations can be used to predict per­
+formance and conduct trade-off studies. Trade-off stud­
+ies investigate technical approaches to meeting require­
+ments at each level of design detail. Modeling cannot 
+be a substitute for real-world testing, as models reflect 
+only a simplified version of the system and its opera­
+tion and do not fully represent the actual system in 
+its operational environment. There must be a balance 
+between modeling and simulation (since one cannot 
+test for every condition) and testing (since realistic vali­
+dation is required and expected).
+Figure 9 is an illustration of a collection of models 
+linked into a simulation of Overland Cruise Missile 
+Defense (OCMD). One concept of CEC is a form of 
+cooperative engagement known as “forward pass” in 
+which a ship-launched missile flies beyond the ship’s 
+horizon to intercept a target tracked by an airborne 
+radar and guided by data from the airborne radar. A 
+(a)
+(c)
+(b)
+successful ACTD of forward pass occurred in 1996,5 using 
+prototype and ship elements on a mountain in Hawaii to 
+represent potential lightweight airborne sensors and fire 
+control elements. The success of the ACTD, known as 
+Mountain Top (referred to earlier), led to further inter­
+est in defining the advanced elements of such a system 
+for defense of Allied assets far inland. The system con­
+cept consisted of airborne detection, tracking sufficiently 
+accurate to support missile guidance, and modified ver­
+sions of SM, CEC, and Aegis to enable a forward-pass 
+handover of missile guidance from the ship to the air­
+craft. A virtual follow-on test was performed in JWAD’s 
+Warfare Analysis Laboratory6 using the simulation of the 
+system network, as shown in Fig. 9c, in the context of 
+a DRM-like scenario over South Korea. The results con­
+firmed and illuminated requirements and corresponding 
+performance for the OCMD capability that could be fur­
+ther developed. They also enabled identification of such 
+issues as determining the appropriate locations of the air­
+borne radar and ship as well as the timing of missile inter­
+cepts to minimize terrain blockage.
+PROTOTYPING WITH INDUSTRIAL 
+DESIGN AND MANUFACTURING 
+AGENTS
+ADSD’s role in system development generally goes 
+through a transition to one of support to an industrial 
+agent in the detailed design, fabrication, and integra­
+tion phases. This support is often in the form of pro­
+totyping to determine the feasibility or to reduce the 
+
+
+===== PAGE 10 =====
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001) 
+229
+SYSTEMS ENGINEERING OF AIR AND MISSILE DEFENSES
+risk of a critical component or unproven technology. 
+For such prototyping ADSD generally provides tech­
+nical guidance to suppliers of the new technology or 
+components. Prototyping has been a key service to the 
+Navy in risk management, feasibility demonstration, 
+and maturing new technology.
+ADSD also supports the system development phase 
+of design and fabrication by our involvement in detailed 
+design reviews and software walk-throughs. A design 
+requires definition of all aspects of a system or prototype 
+of system elements down to the component level. Suffi­
+cient documentation and engineering guidance must be 
+available to fabricate such components so that they can 
+be interconnected during integration in a fully consis­
+tent and matched manner. ADSD helps to ensure that 
+contractors’ designs meet these standards.
+An example of prototyping and component design 
+is the CEC Data Distribution System in the late 1980s 
+in which a new transmitter was required at a frequency 
+and waveform regime that did not exist in available 
+(late 1980s) components. In partnership with the prime 
+contractor, E-Systems, St. Petersburg (now Raytheon), 
+ADSD developed a prototype transmitter subsystem with 
+special control features and qualified a transmitter tube 
+vendor under a competitive effort. E-Systems’ participa­
+tion during the APL-led prototyping, in turn, led to their 
+successfully developing, in a short time, an improved 
+engineering and manufacturing model of the transmitter 
+that fully met requirements. Somewhat later, APL led 
+the development of solid-state transmit/receive modules 
+for an airborne transmitter/antenna configuration.
+USING STIMULATORS FOR SYSTEM 
+INTEGRATION
+Just as a design involves decomposition of require­
+ments into allocated elements in a top-down fashion, 
+assembly and integration generally involve a bottom-up 
+approach to successively more complex build-up and 
+test of components into subsystems and, finally, the total 
+system.1 When certain system elements are not ready 
+for integration, testing can proceed by using so-called 
+“stimulators” in their place, which replicate the inputs 
+and outputs of the missing elements. Two of the best 
+known such stimulators, or element-in-the-loop config­
+urations, are the ADSD-developed wraparound simula­
+tion programs (WASPs) for CEC and SSDS and the 
+SM Guidance System Evaluation Laboratory (GSEL).
+The WASP approach was originally developed for the 
+Terrier/Tartar air defense systems as a means to ensure 
+that subsystems being developed separately by different 
+organizations would be tested early via WASP interfaces 
+to reduce the risk that the subsystems would not cor­
+rectly interface. The approach was recognized as nec­
+essary for CEC integration testing because the CEC 
+subsystems are developed by different teams, and the 
+Cooperative Engagement Processor subsystem interfaces 
+to different combat systems developed by different com­
+panies. A controlled and consistent method was required 
+to pre-test the interfaces before the costly phase of subsys­
+tem and combat system integration testing commenced.
+The GSEL (Fig. 10) allows the most critical element 
+of the missile, the guidance system (including the seeker 
+subsystems), to be tested in a simulated environment 
+that includes the threat target and the guidance interface 
+to the combat system. This guidance system-in-the-loop 
+test has proven critical to successful missile integration 
+as well as to reconstruction of unexpected results of full-
+scale missile firing tests for analysis.
+For example, the GSEL was recently instrumental in 
+the success of a critical SM-3 test. Confirmation of the 
+test objectives and configuration was followed by the 
+discovery of a software flaw that could have resulted in 
+test failure. The GSEL allows an unprecedented level 
+of test preparation thoroughness when coupled with the 
+validated APL models and the expertise of the staff.
+PERFORMING TEST AND 
+EVALUATION ACTIVITIES
+ADSD has been intensely involved in all forms of 
+test and evaluation (T&E), including scientific exper­
+iments, critical subsystem experiments, prototype ele­
+ment tests, Fleet data collections and exercises, inte­
+gration tests, test facility operations, flight tests, and 
+full-scale battle force technical and operational evalua­
+tions. The legacy is a continuous thread extending from 
+the proximity fuze era and has been much of the basis 
+for valuable hands-on experience and understanding of 
+Fleet operations by the ADSD staff. The design of test 
+approaches and the embedding of data collection and 
+measurement points in a system start at the beginning 
+of the development cycle, and test execution can span 
+the entire cycle, including critical risk reduction exper­
+iments. T&E become predominant as an independent 
+activity (from the developers) toward the end of the 
+integration testing and throughout the formal system-
+level tests.
+System-level T&E serves the following purposes1:
+• Ensuring correct operation in the intended user envi­
+ronment
+• Protecting a major system investment by testing early 
+and providing test points for extraction of measure­
+ment data that can be examined from the earliest 
+stages of integration
+• Gaining confidence and reducing risk of failure by 
+critical prototype and data collection tests
+• Demonstrating the readiness to proceed to the next 
+phase of development or testing
+The design of a major test is a complex systems engi­
+neering undertaking and mirrors the system development 
+
+
+===== PAGE 11 =====
+230 
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001)
+J.  A.  KRILL 
+Figure 10.  The interior of the GSEL in Building 1. The seeker section of an SM round is mounted and integrated in an anechoic chamber 
+so that the seeker receives simulated guidance commands from computers and specialized interface instruments and its sensor observes 
+simulated microwave or infrared target signatures in the chamber. This hardware-in-the-loop approach has long been a key element in 
+successful SM block upgrade developments.
+cycle illustrated in Fig. 4. The test assets representing the 
+threat and operational environment must be specified 
+to simulate the threat and environment defined in the 
+operational requirements. The scenarios must be consis­
+tent with the DRM in representing the expected user 
+operation and must provide for relevant performance 
+and effectiveness measures. The spectrum of test sce­
+narios must cover the required operational parameters 
+and conditions. The design of scenarios, including test 
+range safety constraints, generally requires detailed mod­
+eling and simulation to ensure that the expected results 
+are valid and that the safety margins are sufficient. The 
+assumptions and inputs to these models can provide 
+insights into instrumentation and test controls as well as 
+their limitations.
+Major tests must be thoroughly organized and con­
+trolled. Early in system developments ADSD often par­
+ticipates in many of the main test roles, except those 
+of government oversight. Test success requires rigor and 
+thoroughness. In the Mountain Top ACTD described 
+earlier, since an over-the-horizon engagement had never 
+been attempted, an extensive data collection and pre-
+test experiment series was conducted on every element 
+of the system. As mentioned, even the modified missile 
+seeker was flown against the drone target, mounted on a 
+Lear jet, to ensure that sea-surface reflections had been 
+properly modeled and accommodated in the design of 
+the SM rear reference receiver. Virtually every means of 
+testing of every element had been exercised and mod­
+eled, other than running the test itself. The very first 
+RF/IR flight environment
+IR target generator
+RF guidance section
+RF/IR guidance section
+IR seeker
+
+
+===== PAGE 12 =====
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001) 
+231
+SYSTEMS ENGINEERING OF AIR AND MISSILE DEFENSES
+over-the-horizon engagement resulted in a direct hit as 
+a consequence of systems engineering and correspond­
+ing test rigor.5
+PLANNING FOR SYSTEM EVOLUTION 
+AND THE LIFE CYCLE
+The system development cycle and associated activi­
+ties described earlier are applicable at several stages in 
+the life of a system. A typical system development pro­
+gram goes through several phases. During the conceptual 
+phase, prototyping of some or most of a system may be 
+required to demonstrate feasibility and potential. That 
+was the case for CEC as a new type of system for which 
+there were no precedents. The system development cycle 
+was exercised for the CEC prototype, albeit with tailor­
+ing and abbreviation of some of the activities.
+The next phase is generally the development of a 
+version of the system that, as a goal, meets the pre­
+scribed environmental requirements and is designed to 
+facilitate manufacturing in a production line. This ver­
+sion often has some limit in functionality, for example, 
+to constrain costs on low-risk features at this stage or to 
+demonstrate partial capability before a more complete 
+and sophisticated version of the capability is attempted. 
+This engineering and manufacturing development pro­
+totype is more extensively tested against both techni­
+cal and operational requirements. In many programs 
+it is determined that certain capabilities and perfor­
+mance are not needed during initial operation and that 
+a number of preplanned improvements should be incor­
+porated as a baseline upgrade program. Other reasons for 
+a baseline upgrade would be to extend the service life of 
+a system by introducing new characteristics to keep pace 
+with an evolving threat. For example, Aegis has under­
+gone six baseline introductions since its Initial Opera­
+tional Capability in 1983, and SM-2 is introducing a 
+Block IV. Often the capabilities of later baselines are 
+far advanced over the initial version. In each baseline 
+upgrade, a portion of the basic development cycle is 
+exercised.
+ADSD has been involved in determining required 
+capabilities for baseline upgrades of most Navy air and 
+missile defense systems. SSDS is entering its second 
+block, and CEC is entering Baseline 2. For some pro­
+grams, such as SM, major changes in technology, perfor­
+mance, and system functions may be made, with lesser 
+changes for adaptation to specific combat systems. Such 
+changes are identified by letters after the block numbers, 
+e.g., IIIA and IIIB. For systems such as CEC, upgrades to 
+software algorithms or subsystem cost reductions, such 
+as array redesigns, are generally featured.
+Technology refresh is a significant activity for 
+system evolution. For example, commercial off-the-shelf 
+(COTS) processor cards are used in CEC. These are 
+replaced with newer versions as those versions replace 
+older forms on the commercial market. APL has played 
+a key role in designing the system to readily accommo­
+date new COTS products. A transparent software ser­
+vice layer between the applications modules and the 
+COTS processor network was developed to facilitate 
+COTS refresh.
+In APL’s earlier versions of CEC and SSDS we pio­
+neered the use of COTS. We found that, in return for 
+supporting the commercial vendors in their beta testing 
+and debugging of new products while we benchmarked 
+the capabilities of candidate products in parallel, the 
+commercial companies were willing to add features to 
+their products that would benefit the Navy systems (even 
+though the Navy is a small client compared to the com­
+mercial market). Thus, our involvement influenced the 
+commercial product. More recently, we have pioneered 
+the introduction of commercial, solid-state, microwave 
+module technology into the CEC phased array antennas 
+as a cost-reduction measure. We have also begun a collab­
+orative effort with Raytheon and the National Security 
+Agency to develop anti-tamper protection of the COTS 
+processor and COTS-based software for CEC. APL is 
+prototyping modified COTS processor components and 
+protective software and software load features. These will 
+serve as a design basis for the next Raytheon production 
+version. These activities have, over the years, relied on 
+the technology and manufacturing base of APL’s Techni­
+cal Services Department.
+ADSD, with JWAD, has performed life-cycle cost 
+and reliability analyses at the beginning of new system 
+efforts or baseline upgrades. These are used not only 
+as part of AoA concept selection but also to specify 
+reliability and life-cycle costs and, in some cases, to 
+determine design approaches for rapid repair or backup 
+channels to maintain operations during battle. These 
+analyses are also sometimes the basis for determining 
+the number of spares required.
+FUTURE SYSTEMS ENGINEERING 
+CHALLENGES 
+The Navy has established authoritative systems engi­
+neering activities to ensure proper system integration 
+of a battle force and all the missions of that force, of 
+which air and missile defense is only one. The principal 
+agencies at present include NAVSEA SEA‑053 and 
+the Office of the Assistant Secretary of the Navy for 
+Research, Development, and Acquisition Chief Engi­
+neer. We have determined that the fundamental sys­
+tems engineering perspective, approach, and activities 
+are effective and even more necessary as air and missile 
+defense systems become more sophisticated. We believe, 
+however, that new tools are required to make the systems 
+
+
+===== PAGE 13 =====
+232 
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001)
+J.  A.  KRILL 
+Figure 11.  Computer illustration of the new System Concept Development Laboratory 
+featuring (a) an electronic library, (b) a “war room,” (c) a visualization laboratory, (d) a force 
+modeling laboratory (with JWAD), and (e) a test participation facility. The laboratory com­
+plex is interconnected with other APL laboratories and, via satellite links, to Navy Fleet 
+elements. It is also designed to interface with the merging distributed engineering plant 
+networking being developed within the DoD.
+engineering practices more effective 
+for large-scale systems. The trend is 
+that greater force automation can 
+lead to greater interaction among 
+the computers and links of combat­
+ants, and interoperability becomes 
+at once more important and more 
+difficult to attain and maintain. 
+ADSD had anticipated this need in 
+the design of the new Building 26, 
+which houses the System Concept 
+Development Laboratory.
+The following new tools are being 
+developed for the described activ­
+ities and the features that enable 
+them in the System Concept Devel­
+opment Laboratory (Fig. 11):
+• Automated visualization of large-
+scale system diagrams for an 
+entire battle force with database 
+linkages to associated require­
+ments, specifications, models, 
+program offices, design agents, 
+and system equipment and com­
+puter programs
+• The ability of this visualization 
+to identify inconsistencies, gaps, 
+and shortfalls
+• Development of WASPs for 
+remote, networked testing at the 
+development sites and for linkage 
+to systems at different combat 
+system sites to test elements for 
+compatibility and interoperabil­
+ity at the earliest stages of devel­
+opment and integration
+• Collaborative specification, de-
+sign, test, and simulation and 
+experimentation via automated, 
+networked laboratories, facilities, 
+and test sites
+CONCLUSION
+We see that the systems engi­
+neering perspective and practices 
+are key to the past and future 
+success and accomplishments of 
+ADSD. Trends call for an increased 
+need for rigor, methodical steps, an environment in which critical ques­
+tions are welcomed, and a process that is open to inspection. New 
+tools are required to ensure that the growing numbers of parameters and 
+conditions can be considered and tracked. With the reduction in the 
+number of experienced engineering staff in military industries and services, 
+the growth of system complexity, and a diminishing tolerance for 
+failure, the long-standing systems engineering tradition and culture of 
+ADSD will be increasingly important in next-generation air and missile 
+defense systems.
+REFERENCES AND NOTES
+  1Kossiakoff, A., and Sweet, W. N., “System Engineering Principles and Practices: A Guide to the 
+Engineering of Complete Systems,” JHU course text.
+  2“The Cooperative Engagement Capability,” Johns Hopkins APL Tech. Dig. 16(4), 377–396 
+(1995).
+  3Defense Acquisition System, DoD 5000.1.
+  4Skolnick, F. R., and Wilkins, P. G., “Laying the Foundation for Successful Systems Engineer­
+ing,” Johns Hopkins APL Tech. Dig. 21(2), 208–216 (2000).
+  5Zinger, W. H., and Krill, J. A., “Mountain Top: Beyond-the-Horizon Cruise Missile Defense,” 
+Johns Hopkins APL Tech. Dig. 18(4), 501–520 (1997).
+  6Kauderer, H. T., “Air-Directed Surface-to-Air Missile Study Methodology,” Johns Hopkins APL 
+Tech. Dig. 21(2), 244–250 (2000).
+(a)
+(b)
+(c)
+(d)
+(e)
+
+
+===== PAGE 14 =====
+JOHNS HOPKINS APL TECHNICAL DIGEST, VOLUME 22, NUMBER 3 (2001) 
+233
+SYSTEMS ENGINEERING OF AIR AND MISSILE DEFENSES
+THE AUTHOR
+JERRY A. KRILL received a Ph.D. in electrical engineering from the University 
+of Maryland in 1978. He joined APL in 1973 and is a member of the Principal 
+Professional Staff. He was recently appointed Head of the Power Projection Sys­
+tems Department. Since 1983 he has been an instructor of physics and systems engi­
+neering for the JHU Part-Time Graduate Programs. Dr. Krill has published numer­
+ous articles in guided wave technology and electromagnetic scattering and holds a 
+number of U.S. patents. During the 1970s and 1980s he led several systems engi­
+neering efforts and critical experiments associated with the Aegis and Battle Group 
+AAW Coordination programs. He is one of the founders of the CEC concept, 
+having developed and analyzed many of its requirements since 1974. He served as 
+Lead System Engineer for CEC from 1987 through 1996, including the 1996 Moun­
+tain Top ACTD. He is presently serving as the APL point of contact for the ASN/
+RDA Chief Engineer Technical Advisory Group and was the technical lead for the 
+Concept Formulation Working Group for the BMDO/Navy Missile Defense Con­
+cept Development Study. His e-mail address is jerry.krill@jhuapl.edu. 

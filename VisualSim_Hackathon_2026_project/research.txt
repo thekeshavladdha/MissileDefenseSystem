@@ -1,0 +1,12 @@
+O'Haver et al. (2018) - Radar Development for Air and Missile Defense, JHU APL Digest 34(2)
+https://secwww.jhuapl.edu/techdigest/Content/techdigest/pdf/V34-N02/34-02-OHaver.pdf
+
+Krill (2001) - Systems Engineering of Air and Missile Defenses, JHU APL 22(3)
+https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V22-N03/22-03-Krill.pdf
+
+Moskowitz, Gassler, Paulhamus (2002) - Comparison of TBMD Engagement Coordination Schemes, JHU APL 23(2/3)
+https://secwww.jhuapl.edu/techdigest/content/techdigest/pdf/V23-N2-3/23-02-Moskowitz.pdf
+
+Brown et al. (2005) - A Two-Sided Optimization for Theater Ballistic Missile Defense, Operations Research 53(5)
+https://pubsonline.informs.org/doi/10.1287/opre.1050.0231
+https://ideas.repec.org/a/inm/oropre/v53y2005i5p745-763.html

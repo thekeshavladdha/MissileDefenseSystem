@@ -1,0 +1,10 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\8c39cc1fe8e74728afb4dea309891887\candidate.xml
+@@ -520,4 +520,7 @@
+     <property name="Ship2_Range" class="VisualSim.data.expr.Parameter" value="6000.0"/>
+     <property name="Ship1_Inv" class="VisualSim.data.expr.Parameter" value="10"/>
+     <property name="Ship2_Inv" class="VisualSim.data.expr.Parameter" value="10"/>
++    <relation name="relationShip2" class="VisualSim.actor.TypedIORelation"/>
++    <link port="PolicyRouter.output" relation="relationShip2"/>
++    <link port="Ship2_Queue.input" relation="relationShip2"/>
+ </entity>

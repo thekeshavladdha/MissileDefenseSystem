@@ -1,0 +1,11 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\55c9091602614bcd8f14101945437765\candidate.xml
+@@ -427,7 +427,7 @@
+     </entity>
+ <entity name="Ship2_C2" class="VisualSim.actor.lib.DLY">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[330.0, 220.0]"/>
+-    <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="0.0"/>
++    <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="C2_Latency"/>
+ </entity>
+ <entity name="Ship2_Flyout" class="VisualSim.actor.lib.DLY">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[383.0, 220.0]"/>

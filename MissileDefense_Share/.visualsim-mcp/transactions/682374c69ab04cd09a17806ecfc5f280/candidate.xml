@@ -1,0 +1,555 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE entity PUBLIC "-//Mirabilis Design//DTD MoML 1//EN"
+    "http://www.mirabilisdesign.com/xml/dtd/MoML_1.dtd">
+<entity name="MissileDefense_Model" class="VisualSim.actor.TypedCompositeActor">
+    <property name="_createdBy" class="VisualSim.kernel.attributes.VersionAttribute" value="2020.Q2"/>
+    <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Enter User Documentation Here"/>
+    <property name="_windowProperties" class="VisualSim.actor.gui.WindowPropertiesAttribute" value="{bounds={-7, -7, 1550, 830}, maximized=true}"/>
+    <property name="_ModelBuilderSize" class="VisualSim.actor.gui.SizeAttribute" value="[1324, 714]"/>
+    <property name="_ModelBuilderZoomFactor" class="VisualSim.data.expr.ExpertParameter" value="136845.55315672042"/>
+    <property name="_ModelBuilderCenter" class="VisualSim.data.expr.ExpertParameter" value="{340.0, 276.0}&#10;"/>
+    <property name="DigitalSimulator" class="VisualSim.simulators.de.kernel.DEDirector">
+        <property name="digitalDomainOnly" class="VisualSim.data.expr.Parameter" value="true"/>
+        <property name="digitalDebugger" class="VisualSim.kernel.util.StringAttribute" value="Off">
+            <property name="style" class="VisualSim.actor.gui.style.ChoiceStyle">
+                <property name="Off" class="VisualSim.kernel.util.StringAttribute" value="Off"/>
+                <property name="Pause" class="VisualSim.kernel.util.StringAttribute" value="Pause"/>
+                <property name="Run" class="VisualSim.kernel.util.StringAttribute" value="Run"/>
+                <property name="Summary_Only" class="VisualSim.kernel.util.StringAttribute" value="Summary_Only"/>
+            </property>
+        </property>
+        <property name="stopTime" class="VisualSim.data.expr.Parameter" value="15.0"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[83.0, 33.0]"/>
+    </property>
+    <property name="Input_Rate" class="VisualSim.data.expr.Parameter" value="1.0">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[210.0, 32.0]"/>
+    </property>
+    <property name="Execution_Time" class="VisualSim.data.expr.Parameter" value="2.5">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[210.0, 60.0]"/>
+    </property>
+    <property name="Pk" class="VisualSim.data.expr.Parameter" value="0.8">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[210.0, 67.0]"/>
+    </property>
+    <property name="Intercept_Deadline" class="VisualSim.data.expr.Parameter" value="4.0">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[210.0, 74.0]"/>
+    </property>
+    <property name="Track_Threshold" class="VisualSim.data.expr.Parameter" value="3">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[210.0, 81.0]"/>
+    </property>
+    <property name="C2_Latency_Min" class="VisualSim.data.expr.Parameter" value="0.05">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[210.0, 88.0]"/>
+    </property>
+    <property name="C2_Latency_Max" class="VisualSim.data.expr.Parameter" value="0.2">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[210.0, 95.0]"/>
+    </property>
+    <property name="Interceptor_Speed" class="VisualSim.data.expr.Parameter" value="2750.0">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[210.0, 102.0]"/>
+    </property>
+    <property name="Engagement_Range" class="VisualSim.data.expr.Parameter" value="5500.0">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[210.0, 109.0]"/>
+    </property>
+    <property name="InterceptorInventory" class="VisualSim.data.expr.Parameter" value="10">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[210.0, 116.0]"/>
+    </property>
+    <property name="Reload_Time_Min" class="VisualSim.data.expr.Parameter" value="10.0">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[210.0, 123.0]"/>
+    </property>
+    <property name="Reload_Time_Max" class="VisualSim.data.expr.Parameter" value="30.0">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[210.0, 130.0]"/>
+    </property>
+    <property name="Modelseed" class="VisualSim.data.expr.Parameter" value="seed(12345)">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[210.0, 75.0]"/>
+    </property>
+    <property name="View_Stats" class="VisualSim.data.expr.Parameter" value="true">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[216.0, 97.0]"/>
+    </property>
+    <entity name="InterceptorQueue" class="VisualSim.actor.lib.Smart_Resource">
+        <property name="Block_Name" class="VisualSim.data.expr.Parameter" value="&quot;Queue&quot; /* No two resource can have the same name */"/>
+        <property name="Queue_Number_Field" class="VisualSim.data.expr.StringParameter" value="1 /* Can reference a field of a Data Structure.  Here it is fixed for all transactions */"/>
+        <property name="Priority_Field" class="VisualSim.data.expr.StringParameter" value="&quot;Priority&quot; /* References a field of a Data Structure as the value varies for each transaction"/>
+        <property name="Max_Queue_Length" class="VisualSim.data.expr.Parameter" value="10 /* Number of transaction that can be stored in the queue at any given time */"/>
+        <property name="Number_of_Queues" class="VisualSim.data.expr.Parameter" value="1 /* Number of queue defined by this block */"/>
+        <property name="Initial_Queue_State" class="VisualSim.kernel.util.StringAttribute" value="First_Token_Flow_Through">
+            <property name="style" class="VisualSim.actor.gui.style.ChoiceStyle">
+                <property name="First_Token_Flow_Through" class="VisualSim.kernel.util.StringAttribute" value="First_Token_Flow_Through"/>
+                <property name="First_Token_Enqueue" class="VisualSim.kernel.util.StringAttribute" value="First_Token_Enqueue"/>
+            </property>
+        </property>
+        <property name="Queue_Reject_Mechanism" class="VisualSim.kernel.util.StringAttribute" value="Incoming_Token_Rejected">
+            <property name="style" class="VisualSim.actor.gui.style.ChoiceStyle">
+                <property name="Incoming_Token_Rejected" class="VisualSim.kernel.util.StringAttribute" value="Incoming_Token_Rejected"/>
+                <property name="Lowest_Priority_Token_Rejected" class="VisualSim.kernel.util.StringAttribute" value="Lowest_Priority_Token_Rejected"/>
+            </property>
+        </property>
+        <property name="Queue_Type" class="VisualSim.kernel.util.StringAttribute" value="FIFO">
+            <property name="style" class="VisualSim.actor.gui.style.ChoiceStyle">
+                <property name="FIFO" class="VisualSim.kernel.util.StringAttribute" value="FIFO"/>
+                <property name="LIFO" class="VisualSim.kernel.util.StringAttribute" value="LIFO"/>
+            </property>
+        </property>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[193.0, 128.0]"/>
+        <port name="pop_input" class="VisualSim.actor.TypedIOPort">
+            <property name="input"/>
+            <property name="_cardinal" class="VisualSim.kernel.util.StringAttribute" value="SOUTH"/>
+        </port>
+    </entity>
+    <entity name="xTime_yData_Plotter" class="VisualSim.actor.lib.gui.TimedPlotter">
+        <property name="legend" class="VisualSim.kernel.util.StringAttribute" value="Seconds"/>
+        <property name="_windowProperties" class="VisualSim.actor.gui.WindowPropertiesAttribute" value="{bounds={797, 143, 582, 430}, maximized=false}"/>
+        <property name="_plotSize" class="VisualSim.actor.gui.SizeAttribute" value="[568, 371]"/>
+        <property name="viewPlot" class="VisualSim.data.expr.Parameter" value="View_Stats">
+            <property name="Line" class="VisualSim.actor.gui.style.LineStyle"/>
+        </property>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[558.0, 49.0]"/>
+        <configure>
+<?plotml
+<!DOCTYPE plot PUBLIC "-//Mirabilis Design//DTD PlotML 1//EN"
+"http://www.mirabilisdesign.com/xml/dtd/PlotML_1.dtd">
+            <plot>
+<title>xTime_yData_Plotter</title>
+<xLabel>Simulation Time</xLabel>
+<yLabel>Latency in Secs</yLabel>
+                <xRange min="1.9769883722000001" max="14.442861975400001"/>
+                <yRange min="1.9769883722000001" max="8.4401304388"/>
+                <default marks="dots"/>
+            </plot>
+?>
+        </configure>
+    </entity>
+    <entity name="Const" class="VisualSim.actor.lib.Const">
+        <doc>
+            Create a constant sequence
+        </doc>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.BoxedValueIcon">
+            <property name="attributeName" class="VisualSim.kernel.util.StringAttribute" value="value"/>
+            <property name="displayWidth" class="VisualSim.data.expr.Parameter" value="40"/>
+        </property>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[357.0, 217.0]"/>
+        <property name="_flipPortsHorizontal" class="VisualSim.data.expr.Parameter" value="true"/>
+    </entity>
+    <entity name="ThreatGenerator" class="VisualSim.actor.lib.DS_Source">
+        <property name="Data_Structure_Name" class="VisualSim.data.expr.Parameter" value="&quot;Header&quot;"/>
+        <property name="Value_1" class="VisualSim.data.expr.Parameter" value="Input_Rate"/>
+        <property name="Time_Distribution" class="VisualSim.kernel.util.StringAttribute" value="Fixed (Value_1)">
+            <property name="style" class="VisualSim.actor.gui.style.ChoiceStyle">
+                <property name="Single Event" class="VisualSim.kernel.util.StringAttribute" value="Single Event"/>
+                <property name="Fixed (Value_1)" class="VisualSim.kernel.util.StringAttribute" value="Fixed (Value_1)"/>
+                <property name="Uniform (Value_1, Value_2)" class="VisualSim.kernel.util.StringAttribute" value="Uniform (Value_1, Value_2)"/>
+                <property name="Exponential (Value_1)" class="VisualSim.kernel.util.StringAttribute" value="Exponential (Value_1)"/>
+                <property name="Normal (Value_1, Value_2)" class="VisualSim.kernel.util.StringAttribute" value="Normal (Value_1, Value_2)"/>
+            </property>
+        </property>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[11.0, 139.0]"/>
+    </entity>
+    <entity name="DetectionAssignment" class="VisualSim.actor.lib.Expression_Decision">
+        <property name="Expression_List" class="VisualSim.kernel.util.StringAttribute" value="/* MissileDefense */&#10;input.Priority = irand (1,5) &#10;input.Track_Hits = Track_Threshold &#10;input.Firm_Track = (input.Track_Hits &gt;= Track_Threshold) &#10;input.C2_Latency = rand(C2_Latency_Min, C2_Latency_Max) &#10;input.Flyout_Time = Engagement_Range / Interceptor_Speed &#10;input.Flight_Time = input.C2_Latency + input.Flyout_Time &#10;input.Killed = rand(0.0,1.0) &lt; Pk &#10;">
+            <property name="style" class="VisualSim.actor.gui.style.TextStyle">
+                <property name="height" class="VisualSim.data.expr.Parameter" value="15"/>
+                <property name="width" class="VisualSim.data.expr.Parameter" value="40"/>
+            </property>
+        </property>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[97.0, 138.0]"/>
+    </entity>
+    <entity name="C2_Latency" class="VisualSim.actor.lib.DLY">
+        <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="&quot;C2_Latency&quot; /* Command/control latency */"/>
+        <property name="DLYIcon" class="VisualSim.ModelBuilder.icon.EditorIcon">
+            <property name="image" class="VisualSim.ModelBuilder.kernel.attributes.ImageAttribute">
+                <property name="source" class="VisualSim.data.expr.FileParameter" value="$VS/VisualSim/ModelBuilder/basic/img/aqua/SimpleEvent54x36.png"/>
+                <property name="_location" class="VisualSim.kernel.util.Location" value="[-40.0, -29.0]"/>
+            </property>
+            <property name="_windowProperties" class="VisualSim.actor.gui.WindowPropertiesAttribute" value="{bounds={179, 214, 816, 669}, maximized=false}"/>
+            <property name="_ModelBuilderSize" class="VisualSim.actor.gui.SizeAttribute" value="[600, 400]"/>
+            <property name="_ModelBuilderZoomFactor" class="VisualSim.data.expr.ExpertParameter" value="4.0"/>
+            <property name="_ModelBuilderCenter" class="VisualSim.data.expr.ExpertParameter" value="{0.0, 0.0}"/>
+            <property name="ParameterValue" class="VisualSim.ModelBuilder.kernel.attributes.AttributeValueAttribute">
+                <property name="textSize" class="VisualSim.data.expr.Parameter" value="11"/>
+                <property name="attributeName" class="VisualSim.kernel.util.StringAttribute" value="Delay_Value"/>
+                <property name="displayWidth" class="VisualSim.data.expr.Parameter" value="9"/>
+                <property name="_location" class="VisualSim.kernel.util.Location" value="[-40.0, -30.0]"/>
+            </property>
+        </property>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[330.0, 150.0]"/>
+    </entity>
+    <entity name="InterceptorFlyout" class="VisualSim.actor.lib.DLY">
+        <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="&quot;Flyout_Time&quot; /* Range/speed intercept flyout */"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[383.0, 150.0]"/>
+    </entity>
+    <entity name="KillAssessment" class="VisualSim.actor.lib.Expression_Decision">
+        <property name="Expression_List" class="VisualSim.kernel.util.StringAttribute" value="/* KillAssessment */&#10;input.Leaker = (TNow - input.TIME) &gt; Intercept_Deadline &#10;input.Effective_Kill = input.Killed ? (input.Leaker ? false : true) : false &#10;input.Shots_Fired = input.Effective_Kill ? 1 : 2 &#10;input.Inventory_Left = InterceptorInventory - input.Shots_Fired &#10;input.Reload_Wait = rand(Reload_Time_Min, Reload_Time_Max) &#10;">
+            <property name="style" class="VisualSim.actor.gui.style.TextStyle">
+                <property name="height" class="VisualSim.data.expr.Parameter" value="15"/>
+                <property name="width" class="VisualSim.data.expr.Parameter" value="40"/>
+            </property>
+        </property>
+        <property name="Output_Values" class="VisualSim.data.expr.StringParameter" value="input,TNow - input.TIME,input,input"/>
+        <property name="Output_Ports" class="VisualSim.data.expr.StringParameter" value="output,Latency,KilledOnly,MissedOnly"/>
+        <property name="Output_Conditions" class="VisualSim.data.expr.StringParameter" value="true,true,input.Effective_Kill,!input.Effective_Kill"/>
+        <port name="Latency" class="VisualSim.actor.TypedIOPort">
+            <property name="output"/>
+            <property name="_type" class="VisualSim.actor.TypeAttribute" value="general"/>
+        </port>
+        <port name="KilledOnly" class="VisualSim.actor.TypedIOPort">
+            <property name="output"/>
+            <property name="_type" class="VisualSim.actor.TypeAttribute" value="general"/>
+        </port>
+        <port name="MissedOnly" class="VisualSim.actor.TypedIOPort">
+            <property name="output"/>
+            <property name="_type" class="VisualSim.actor.TypeAttribute" value="general"/>
+        </port>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[436.0, 50.0]"/>
+    </entity>
+    <entity name="KillCounter" class="VisualSim.actor.lib.Counter_Basic">
+        <property name="Initial_Count" class="VisualSim.data.expr.Parameter" value="0"/>
+        <property name="Final_Count" class="VisualSim.data.expr.Parameter" value="100000"/>
+        <property name="Equals_Count" class="VisualSim.data.expr.Parameter" value="100000"/>
+        <property name="Input_Port_Mode" class="VisualSim.kernel.util.StringAttribute" value="INCR"/>
+        <property name="Output_Port_Mode" class="VisualSim.kernel.util.StringAttribute" value="Normal_Counter_Update"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[520.0, 50.0]"/>
+    </entity>
+    <entity name="MissCounter" class="VisualSim.actor.lib.Counter_Basic">
+        <property name="Initial_Count" class="VisualSim.data.expr.Parameter" value="0"/>
+        <property name="Final_Count" class="VisualSim.data.expr.Parameter" value="100000"/>
+        <property name="Equals_Count" class="VisualSim.data.expr.Parameter" value="100000"/>
+        <property name="Input_Port_Mode" class="VisualSim.kernel.util.StringAttribute" value="INCR"/>
+        <property name="Output_Port_Mode" class="VisualSim.kernel.util.StringAttribute" value="Normal_Counter_Update"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[520.0, 120.0]"/>
+    </entity>
+    <entity name="KillCount" class="VisualSim.actor.lib.gui.Display">
+        <property name="ViewText" class="VisualSim.data.expr.Parameter" value="View_Stats">
+            <property name="Line" class="VisualSim.actor.gui.style.LineStyle"/>
+        </property>
+        <property name="saveText" class="VisualSim.data.expr.Parameter" value="true"/>
+        <property name="fileName" class="VisualSim.data.expr.FileParameter" value="MissileDefense_Kill_Count.txt"/>
+        <property name="title" class="VisualSim.kernel.util.StringAttribute" value="&quot;Missile Defense Kill Count&quot;"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[620.0, 60.0]"/>
+    </entity>
+    <entity name="MissCount" class="VisualSim.actor.lib.gui.Display">
+        <property name="ViewText" class="VisualSim.data.expr.Parameter" value="View_Stats">
+            <property name="Line" class="VisualSim.actor.gui.style.LineStyle"/>
+        </property>
+        <property name="saveText" class="VisualSim.data.expr.Parameter" value="true"/>
+        <property name="fileName" class="VisualSim.data.expr.FileParameter" value="MissileDefense_Miss_Count.txt"/>
+        <property name="title" class="VisualSim.kernel.util.StringAttribute" value="&quot;Missile Defense Miss Count&quot;"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[620.0, 120.0]"/>
+    </entity>
+    <entity name="DefenseOutcome" class="VisualSim.actor.lib.gui.Display">
+        <property name="ViewText" class="VisualSim.data.expr.Parameter" value="View_Stats">
+            <property name="Line" class="VisualSim.actor.gui.style.LineStyle"/>
+        </property>
+        <property name="saveText" class="VisualSim.data.expr.Parameter" value="true"/>
+        <property name="fileName" class="VisualSim.data.expr.FileParameter" value="MissileDefense_Outcome.txt"/>
+        <property name="_windowProperties" class="VisualSim.actor.gui.WindowPropertiesAttribute" value="{bounds={137, 81, 590, 501}, maximized=false}"/>
+        <property name="title" class="VisualSim.kernel.util.StringAttribute" value="&quot;Missile Defense&quot;"/>
+        <property name="Font_Type" class="VisualSim.kernel.util.Attribute">
+            <property name="style" class="VisualSim.actor.gui.style.ChoiceStyle">
+                <property name="Courier" class="VisualSim.kernel.util.StringAttribute" value="Courier"/>
+                <property name="Lucida Console" class="VisualSim.kernel.util.StringAttribute" value="Lucida Console"/>
+            </property>
+        </property>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.AttributeValueIcon">
+            <property name="attributeName" class="VisualSim.kernel.util.StringAttribute" value="Title"/>
+        </property>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="{468.0, 190.0}"/>
+    </entity>
+        <entity name="Ship2_Queue" class="VisualSim.actor.lib.Smart_Resource">
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[193.0, 220.0]"/>
+        <property name="Initial_Queue_State" class="VisualSim.kernel.util.StringAttribute" value="First_Token_Enqueue"/>
+        <property name="Queue_Reject_Mechanism" class="VisualSim.kernel.util.StringAttribute" value="Incoming_Token_Rejected"/>
+        <property name="Queue_Type" class="VisualSim.kernel.util.StringAttribute" value="FIFO"/>
+    </entity>
+<entity name="Ship2_C2" class="VisualSim.actor.lib.DLY">
+    <property name="_location" class="VisualSim.kernel.util.Location" value="[330.0, 220.0]"/>
+    <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="C2_Latency"/>
+</entity>
+<entity name="Ship2_Flyout" class="VisualSim.actor.lib.DLY">
+    <property name="_location" class="VisualSim.kernel.util.Location" value="[383.0, 220.0]"/>
+    <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="Flyout_Time"/>
+</entity>
+<entity name="Ship2_Kill" class="VisualSim.actor.lib.Expression_Decision">
+    <property name="_location" class="VisualSim.kernel.util.Location" value="[436.0, 220.0]"/>
+    <property name="Expression_List" value="input.Leaker = (TNow - input.TIME) &gt; Intercept_Deadline&#10;input.Effective_Kill = input.Killed ? (input.Leaker ? false : true) : false&#10;input.Shots_Fired = input.Effective_Kill ? 1 : 2&#10;input.Inventory_Left = Ship2_Inv - input.Shots_Fired&#10;input.Reload_Wait = rand(Reload_Time_Min, Reload_Time_Max)"/>
+</entity>
+<entity name="FES_DB" class="VisualSim.actor.lib.Database">
+    <property name="_location" class="VisualSim.kernel.util.Location" value="[250.0, 300.0]"/>
+    <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="*.xml, *.csv files abs or rel (./) path&#10;  -- *.csv real columns set to number&#10;Input_Fields == Lookup_Fields (num, type)&#10;Output_Expr: match, match_last, match_all&#10;  -- match_all.field not allowed"/>
+    <property name="Data_Structure_Text" class="VisualSim.kernel.util.StringAttribute" value="Extern"/>
+    <property name="Mode" class="VisualSim.kernel.util.StringAttribute" value="Read"/>
+</entity>
+<entity name="CommonRule" class="VisualSim.actor.lib.Expression_Decision">
+    <property name="_location" class="VisualSim.kernel.util.Location" value="[320.0, 300.0]"/>
+    <property name="Expression_List" value="input.canReach1 = 1&#10;input.canReach2 = 1&#10;input.hasInv1 = (Ship1_Inv &gt; 0)&#10;input.hasInv2 = (Ship2_Inv &gt; 0)&#10;input.preferredShip = input.hasInv1 ? 1 : 2"/>
+</entity>
+<entity name="ShipCoordinator" class="VisualSim.actor.lib.Smart_Controller">
+    <property name="_location" class="VisualSim.kernel.util.Location" value="[120.0, 300.0]"/>
+</entity>
+<entity name="PolicyRouter" class="VisualSim.actor.lib.Expression_Decision">
+    <property name="_location" class="VisualSim.kernel.util.Location" value="[120.0, 220.0]"/>
+    <property name="Expression_List" value="input.ship = Policy_Mode == 0 ? (input.Priority &lt;= 3 ? 1 : 2) : 1"/>
+</entity>
+<entity name="Merge" class="VisualSim.actor.lib.Expression_Decision">
+    <property name="_location" class="VisualSim.kernel.util.Location" value="[500.0, 220.0]"/>
+    <port name="KilledOnly" class="VisualSim.actor.TypedIOPort">
+        <property name="output"/>
+    </port>
+    <port name="MissedOnly" class="VisualSim.actor.TypedIOPort">
+        <property name="output"/>
+    </port>
+    <port name="Latency" class="VisualSim.actor.TypedIOPort">
+        <property name="output"/>
+    </port>
+</entity>
+<relation name="relation5" class="VisualSim.actor.TypedIORelation">
+        <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Enter User Documentation Here"/>
+        <vertex name="vertex1" class="VisualSim.moml.Vertex" value="[430.0, 150.0]"/>
+    </relation>
+    <relation name="relation6" class="VisualSim.actor.TypedIORelation">
+        <property name="width" class="VisualSim.data.expr.Parameter" value="1"/>
+    </relation>
+    <relation name="relation7" class="VisualSim.actor.TypedIORelation">
+        <property name="width" class="VisualSim.data.expr.Parameter" value="1"/>
+    </relation>
+    <relation name="relation" class="VisualSim.actor.TypedIORelation">
+        <property name="width" class="VisualSim.data.expr.Parameter" value="1"/>
+    </relation>
+    <relation name="relation2" class="VisualSim.actor.TypedIORelation">
+        <property name="width" class="VisualSim.data.expr.Parameter" value="1"/>
+    </relation>
+    <relation name="relation3" class="VisualSim.actor.TypedIORelation">
+        <property name="width" class="VisualSim.data.expr.Parameter" value="1"/>
+    </relation>
+    <relation name="relationPost" class="VisualSim.actor.TypedIORelation">
+        <property name="width" class="VisualSim.data.expr.Parameter" value="1"/>
+    </relation>
+    <relation name="relationKilled" class="VisualSim.actor.TypedIORelation">
+        <property name="width" class="VisualSim.data.expr.Parameter" value="1"/>
+    </relation>
+    <relation name="relationMissed" class="VisualSim.actor.TypedIORelation">
+        <property name="width" class="VisualSim.data.expr.Parameter" value="1"/>
+    </relation>
+    <relation name="relationKillStats" class="VisualSim.actor.TypedIORelation">
+        <property name="width" class="VisualSim.data.expr.Parameter" value="1"/>
+    </relation>
+    <relation name="relationMissStats" class="VisualSim.actor.TypedIORelation">
+        <property name="width" class="VisualSim.data.expr.Parameter" value="1"/>
+    </relation>
+    <relation name="relationFlyout" class="VisualSim.actor.TypedIORelation">
+        <property name="width" class="VisualSim.data.expr.Parameter" value="1"/>
+    </relation>
+    <link port="InterceptorQueue.pop_input" relation="relation6"/>
+    <link port="InterceptorQueue.output" relation="relation2"/>
+    <link port="xTime_yData_Plotter.input" relation="relation3"/>
+    <link port="Const.output" relation="relation6"/>
+    <link port="Const.trigger" relation="relation5"/>
+    <link port="ThreatGenerator.output" relation="relation7"/>
+    <link port="DetectionAssignment.input" relation="relation7"/>
+    <link port="C2_Latency.input" relation="relation2"/>
+    <link port="C2_Latency.output" relation="relationFlyout"/>
+    <link port="InterceptorFlyout.input" relation="relationFlyout"/>
+    <link port="InterceptorFlyout.output" relation="relation5"/>
+    <link port="KillAssessment.input" relation="relation5"/>
+    <link port="KillCounter.incr_add_input" relation="relationKilled"/>
+    <link port="MissCounter.incr_add_input" relation="relationMissed"/>
+    <link port="KillCounter.counter_output" relation="relationKillStats"/>
+    <link port="KillCount.input" relation="relationKillStats"/>
+    <link port="MissCounter.counter_output" relation="relationMissStats"/>
+    <link port="MissCount.input" relation="relationMissStats"/>
+    <property name="Policy_Mode" class="VisualSim.data.expr.Parameter" value="2"/>
+    <property name="Ship2_Range" class="VisualSim.data.expr.Parameter" value="6000.0"/>
+    <property name="Ship1_Inv" class="VisualSim.data.expr.Parameter" value="10"/>
+    <property name="Ship2_Inv" class="VisualSim.data.expr.Parameter" value="10"/>
+    <relation name="relationShip2" class="VisualSim.actor.TypedIORelation"/>
+    <link port="PolicyRouter.output" relation="relationShip2"/>
+    <link port="Ship2_Queue.input" relation="relationShip2"/>
+    <relation name="relationShip2Q" class="VisualSim.actor.TypedIORelation"/>
+    <link port="Ship2_Queue.output" relation="relationShip2Q"/>
+    <link port="Ship2_C2.input" relation="relationShip2Q"/>
+    <relation name="relationShip2C" class="VisualSim.actor.TypedIORelation"/>
+    <link port="Ship2_C2.output" relation="relationShip2C"/>
+    <link port="Ship2_Flyout.input" relation="relationShip2C"/>
+    <relation name="relationShip2F" class="VisualSim.actor.TypedIORelation"/>
+    <link port="Ship2_Flyout.output" relation="relationShip2F"/>
+    <link port="Ship2_Kill.input" relation="relationShip2F"/>
+    <link port="KillAssessment.output" relation="relationPost"/>
+    <link port="Merge.input" relation="relationPost"/>
+    <link port="Ship2_Kill.output" relation="relationPost"/>
+    <relation name="relationMergeOut" class="VisualSim.actor.TypedIORelation"/>
+    <link port="Merge.output" relation="relationMergeOut"/>
+    <link port="DefenseOutcome.input" relation="relationMergeOut"/>
+    <link port="Merge.KilledOnly" relation="relationKilled"/>
+    <link port="Merge.MissedOnly" relation="relationMissed"/>
+    <link port="Merge.Latency" relation="relation3"/>
+    <relation name="relationDR" class="VisualSim.actor.TypedIORelation"/>
+    <link port="DetectionAssignment.output" relation="relationDR"/>
+    <link port="PolicyRouter.input" relation="relationDR"/>
+    <relation name="relationShip1" class="VisualSim.actor.TypedIORelation"/>
+    <link port="PolicyRouter.output" relation="relationShip1"/>
+    <link port="InterceptorQueue.input" relation="relationShip1"/>
+</entity>

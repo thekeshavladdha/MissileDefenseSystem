@@ -1,0 +1,26 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\29930a56eeff461cab38d2ee0bd478c6\candidate.xml
+@@ -453,6 +453,9 @@
+ <entity name="PolicyRouter" class="VisualSim.actor.lib.Expression_Decision">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[120.0, 220.0]"/>
+     <property name="Expression_List" value="input.ship = Policy_Mode == 0 ? (input.Priority &lt;= 3 ? 1 : 2) : 1"/>
++</entity>
++<entity name="Merge" class="VisualSim.actor.lib.Expression_Decision">
++    <property name="_location" class="VisualSim.kernel.util.Location" value="[500.0, 220.0]"/>
+ </entity>
+ <relation name="relation5" class="VisualSim.actor.TypedIORelation">
+         <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Enter User Documentation Here"/>
+@@ -523,4 +526,13 @@
+     <relation name="relationShip2" class="VisualSim.actor.TypedIORelation"/>
+     <link port="PolicyRouter.output" relation="relationShip2"/>
+     <link port="Ship2_Queue.input" relation="relationShip2"/>
++    <relation name="relationShip2Q" class="VisualSim.actor.TypedIORelation"/>
++    <link port="Ship2_Queue.output" relation="relationShip2Q"/>
++    <link port="Ship2_C2.input" relation="relationShip2Q"/>
++    <relation name="relationShip2C" class="VisualSim.actor.TypedIORelation"/>
++    <link port="Ship2_C2.output" relation="relationShip2C"/>
++    <link port="Ship2_Flyout.input" relation="relationShip2C"/>
++    <relation name="relationShip2F" class="VisualSim.actor.TypedIORelation"/>
++    <link port="Ship2_Flyout.output" relation="relationShip2F"/>
++    <link port="Ship2_Kill.input" relation="relationShip2F"/>
+ </entity>

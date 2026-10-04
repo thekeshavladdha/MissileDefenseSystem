@@ -1,0 +1,20 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\a5658d474cd6455cb64938d09f34a56b\candidate.xml
+@@ -508,9 +508,7 @@
+     <link port="InterceptorFlyout.input" relation="relationFlyout"/>
+     <link port="InterceptorFlyout.output" relation="relation5"/>
+     <link port="KillAssessment.input" relation="relation5"/>
+-    <link port="KillAssessment.output" relation="relationPost"/>
+     <link port="KillAssessment.Latency" relation="relation3"/>
+-    <link port="DefenseOutcome.input" relation="relationPost"/>
+     <link port="KillAssessment.KilledOnly" relation="relationKilled"/>
+     <link port="KillCounter.incr_add_input" relation="relationKilled"/>
+     <link port="KillAssessment.MissedOnly" relation="relationMissed"/>
+@@ -535,4 +533,7 @@
+     <relation name="relationShip2F" class="VisualSim.actor.TypedIORelation"/>
+     <link port="Ship2_Flyout.output" relation="relationShip2F"/>
+     <link port="Ship2_Kill.input" relation="relationShip2F"/>
++    <link port="KillAssessment.output" relation="relationPost"/>
++    <link port="Merge.input" relation="relationPost"/>
++    <link port="Ship2_Kill.output" relation="relationPost"/>
+ </entity>

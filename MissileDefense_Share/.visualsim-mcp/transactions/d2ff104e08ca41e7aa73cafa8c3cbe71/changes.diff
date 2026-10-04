@@ -1,0 +1,26 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\d2ff104e08ca41e7aa73cafa8c3cbe71\candidate.xml
+@@ -507,10 +507,8 @@
+     <relation name="relationFlyout" class="VisualSim.actor.TypedIORelation">
+         <property name="width" class="VisualSim.data.expr.Parameter" value="1"/>
+     </relation>
+-    <link port="InterceptorQueue.pop_input" relation="relation6"/>
+     <link port="InterceptorQueue.output" relation="relation2"/>
+     <link port="xTime_yData_Plotter.input" relation="relation3"/>
+-    <link port="Const.output" relation="relation6"/>
+     <link port="Const.trigger" relation="relation5"/>
+     <link port="ThreatGenerator.output" relation="relation7"/>
+     <link port="DetectionAssignment.input" relation="relation7"/>
+@@ -556,9 +554,8 @@
+     <link port="InterceptorQueue.input" relation="relationShipBoth"/>
+     <link port="Ship2_Queue.input" relation="relationShipBoth"/>
+     <relation name="relationFES" class="VisualSim.actor.TypedIORelation"/>
+-    <link port="FES_DB.output" relation="relationFES"/>
+-    <link port="CommonRule.input" relation="relationFES"/>
+     <relation name="relationPop2" class="VisualSim.actor.TypedIORelation"/>
+-    <link port="ShipCoordinator.pop" relation="relationPop2"/>
+-    <link port="Ship2_Queue.pop_input" relation="relationPop2"/>
++    <link port="Const.output" relation="relation6"/>
++    <link port="InterceptorQueue.pop_input" relation="relation6"/>
++    <link port="Ship2_Queue.pop_input" relation="relation6"/>
+ </entity>

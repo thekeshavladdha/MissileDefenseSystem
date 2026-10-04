@@ -1,0 +1,30 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\24ce665ca9a04d94b82011489c79434d\candidate.xml
+@@ -454,6 +454,17 @@
+ <entity name="PolicyRouter" class="VisualSim.actor.lib.Expression_Decision">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[120.0, 220.0]"/>
+     <property name="Expression_List" value="input.sectoredShip = input.Priority &lt;= 3 ? 1 : 2&#10;input.ship = Policy_Mode == 0 ? input.sectoredShip : (Policy_Mode == 1 ? 1 : input.preferredShip)"/>
++        <port name="ship1Out" class="VisualSim.actor.TypedIOPort">
++        <property name="output"/>
++        <property name="_type" class="VisualSim.actor.TypeAttribute" value="general"/>
++    </port>
++        <port name="ship2Out" class="VisualSim.actor.TypedIOPort">
++        <property name="output"/>
++        <property name="_type" class="VisualSim.actor.TypeAttribute" value="general"/>
++    </port>
++    <property name="Output_Ports" value="ship1Out,ship2Out"/>
++    <property name="Output_Values" value="input,input"/>
++    <property name="Output_Conditions" value="input.ship == 1,input.ship == 2"/>
+ </entity>
+ <entity name="Merge" class="VisualSim.actor.lib.Expression_Decision">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[500.0, 220.0]"/>
+@@ -473,6 +484,9 @@
+     <property name="Output_Ports" value="output,Latency,KilledOnly,MissedOnly"/>
+     <property name="Output_Values" value="input,TNow-input.TIME,input,input"/>
+     <property name="Output_Conditions" value="true,true,input.Effective_Kill,!input.Effective_Kill"/>
++</entity>
++<entity name="Const2" class="VisualSim.actor.lib.Const">
++    <property name="_location" class="VisualSim.kernel.util.Location" value="[497.0, 300.0]"/>
+ </entity>
+ <relation name="relation5" class="VisualSim.actor.TypedIORelation">
+         <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Enter User Documentation Here"/>

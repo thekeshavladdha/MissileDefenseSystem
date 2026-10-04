@@ -1,0 +1,13 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\a6fed1ce6ccf4ee09d1f4b0ec4b0e0f2\candidate.xml
+@@ -424,8 +424,8 @@
+         <property name="Initial_Queue_State" class="VisualSim.kernel.util.StringAttribute" value="First_Token_Enqueue"/>
+         <property name="Queue_Reject_Mechanism" class="VisualSim.kernel.util.StringAttribute" value="Incoming_Token_Rejected"/>
+         <property name="Queue_Type" class="VisualSim.kernel.util.StringAttribute" value="FIFO"/>
+-                <property name="Block_Name" value="Ship2_Queue"/>
+-            <property name="Priority_Field" value="Priority"/>
++                <property name="Block_Name" value="&quot;Ship2_Queue&quot;"/>
++            <property name="Priority_Field" value="&quot;Priority&quot;"/>
+             <property name="Max_Queue_Length" value="10"/>
+             <property name="Number_of_Queues" value="1"/>
+ </entity>

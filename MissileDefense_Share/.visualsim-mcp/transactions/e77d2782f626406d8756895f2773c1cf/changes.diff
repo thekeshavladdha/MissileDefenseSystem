@@ -1,0 +1,13 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\e77d2782f626406d8756895f2773c1cf\candidate.xml
+@@ -551,4 +551,10 @@
+     <link port="PolicyRouter.output" relation="relationShipBoth"/>
+     <link port="InterceptorQueue.input" relation="relationShipBoth"/>
+     <link port="Ship2_Queue.input" relation="relationShipBoth"/>
++    <relation name="relationFES" class="VisualSim.actor.TypedIORelation"/>
++    <link port="FES_DB.output" relation="relationFES"/>
++    <link port="CommonRule.input" relation="relationFES"/>
++    <relation name="relationPop2" class="VisualSim.actor.TypedIORelation"/>
++    <link port="ShipCoordinator.pop" relation="relationPop2"/>
++    <link port="Ship2_Queue.pop_input" relation="relationPop2"/>
+ </entity>

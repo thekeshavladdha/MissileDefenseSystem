@@ -1,0 +1,28 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\be78c9e665604059b7ca3baab7bf0cd4\candidate.xml
+@@ -419,7 +419,24 @@
+         </property>
+         <property name="_location" class="VisualSim.kernel.util.Location" value="{468.0, 190.0}"/>
+     </entity>
+-    <relation name="relation5" class="VisualSim.actor.TypedIORelation">
++        <entity name="Ship2_Queue" class="VisualSim.actor.lib.Smart_Resource">
++        <property name="_location" class="VisualSim.kernel.util.Location" value="[193.0, 220.0]"/>
++        <property name="Initial_Queue_State" class="VisualSim.kernel.util.StringAttribute" value="First_Token_Enqueue"/>
++        <property name="Queue_Reject_Mechanism" class="VisualSim.kernel.util.StringAttribute" value="Incoming_Token_Rejected"/>
++        <property name="Queue_Type" class="VisualSim.kernel.util.StringAttribute" value="FIFO"/>
++    </entity>
++<entity name="Ship2_C2" class="VisualSim.actor.lib.DLY">
++    <property name="_location" class="VisualSim.kernel.util.Location" value="[330.0, 220.0]"/>
++    <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="0.0"/>
++</entity>
++<entity name="Ship2_Flyout" class="VisualSim.actor.lib.DLY">
++    <property name="_location" class="VisualSim.kernel.util.Location" value="[383.0, 220.0]"/>
++    <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="0.0"/>
++</entity>
++<entity name="Ship2_Kill" class="VisualSim.actor.lib.Expression_Decision">
++    <property name="_location" class="VisualSim.kernel.util.Location" value="[436.0, 220.0]"/>
++</entity>
++<relation name="relation5" class="VisualSim.actor.TypedIORelation">
+         <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Enter User Documentation Here"/>
+         <vertex name="vertex1" class="VisualSim.moml.Vertex" value="[430.0, 150.0]"/>
+     </relation>

@@ -1,0 +1,20 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\e59f2814a6d04e8a85ccc1e61e716248\candidate.xml
+@@ -431,7 +431,7 @@
+ </entity>
+ <entity name="Ship2_Flyout" class="VisualSim.actor.lib.DLY">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[383.0, 220.0]"/>
+-    <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="0.0"/>
++    <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="Flyout_Time"/>
+ </entity>
+ <entity name="Ship2_Kill" class="VisualSim.actor.lib.Expression_Decision">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[436.0, 220.0]"/>
+@@ -513,4 +513,8 @@
+     <link port="KillCount.input" relation="relationKillStats"/>
+     <link port="MissCounter.counter_output" relation="relationMissStats"/>
+     <link port="MissCount.input" relation="relationMissStats"/>
++    <property name="Policy_Mode" class="VisualSim.data.expr.Parameter" value="2"/>
++    <property name="Ship2_Range" class="VisualSim.data.expr.Parameter" value="6000.0"/>
++    <property name="Ship1_Inv" class="VisualSim.data.expr.Parameter" value="10"/>
++    <property name="Ship2_Inv" class="VisualSim.data.expr.Parameter" value="10"/>
+ </entity>

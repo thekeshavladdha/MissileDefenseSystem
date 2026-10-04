@@ -1,0 +1,21 @@
+Parameter,ValueOrRange,Unit,Source,Confidence
+Threat missile speed,2000-7000,m/s,MDA/DOTE public estimate,Assumption
+Radar detection range,300-1000,km,JHU APL X-band estimate,Assumption
+Radar scan/update rate,1-10,Hz,Multifunction radar estimate,Assumption
+Track_Threshold,3,consecutive detections,Standard M-of-N estimate,Assumption
+Fire control command latency,0.05-0.2,s,MDA C2BMC estimate,Assumption
+C2_Latency_Min,0.05,s,Model default,Assumption
+C2_Latency_Max,0.2,s,Model default,Assumption
+Interceptor_Speed,2750.0,m/s,MDA interceptor estimate,Assumption
+Engagement_Range,5500.0,m,Model default,Assumption
+Interceptor single-shot Pk,0.5-0.95,dimensionless,DOTE test estimate,Assumption
+Pk,0.8,dimensionless,Model default sweep center,Assumption
+Intercept_Deadline,4.0,s,Model default,Assumption
+Sensor false alarm rate,1e-6,per scan,Standard radar design estimate,Assumption
+Launcher reload time,10-30,s,Mechanical handling estimate,Assumption
+Reload_Time_Min,10.0,s,Model default,Assumption
+Reload_Time_Max,30.0,s,Model default,Assumption
+InterceptorInventory,10,interceptors,Model default,Assumption
+C2BMC comms bandwidth,10-100,Mbps,Tactical data-link estimate,Estimate
+Input_Rate,1.0,s between arrivals,Model default sweep value,Assumption
+Execution_Time,2.5,s,Model default sweep value,Assumption

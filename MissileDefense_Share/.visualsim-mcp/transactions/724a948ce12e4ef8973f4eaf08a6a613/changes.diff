@@ -1,0 +1,29 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\724a948ce12e4ef8973f4eaf08a6a613\candidate.xml
+@@ -454,7 +454,7 @@
+ </entity>
+ <entity name="CommonRule" class="VisualSim.actor.lib.Expression_Decision">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[320.0, 300.0]"/>
+-    <property name="Expression_List" value="input.hasInv1 = (Ship1_Inv &gt; 0)&#10;input.hasInv2 = (Ship2_Inv &gt; 0)&#10;input.eligible1 = input.hasInv1 ? 1 : 0&#10;input.eligible2 = input.hasInv2 ? 1 : 0&#10;input.preferredShip = input.eligible1 == 0 ? 2 : (input.eligible2 == 0 ? 1 : (Engagement_Range &lt;= Ship2_Range ? 1 : 2))"/>
++    <property name="Expression_List" value="input.shipHint = input.Priority &lt;= 3 ? 1 : 2&#10;input.hasInv1 = (Ship1_Inv &gt; 0)&#10;input.hasInv2 = (Ship2_Inv &gt; 0)&#10;input.preferredShip = input.hasInv1 == 0 ? 2 : (input.hasInv2 == 0 ? 1 : input.shipHint)"/>
+ </entity>
+ <entity name="ShipCoordinator" class="VisualSim.actor.lib.Smart_Controller">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[120.0, 300.0]"/>
+@@ -564,10 +564,6 @@
+     <link port="Const.output" relation="relation6"/>
+     <link port="InterceptorQueue.pop_input" relation="relation6"/>
+     <link port="Ship2_Queue.pop_input" relation="relation6"/>
+-    <link port="DetectionAssignment.output" relation="relationDR"/>
+-    <link port="FES_DB.input" relation="relationDR"/>
+-    <link port="FES_DB.output" relation="relationFES"/>
+-    <link port="CommonRule.input" relation="relationFES"/>
+     <relation name="relationRule" class="VisualSim.actor.TypedIORelation"/>
+     <link port="CommonRule.output" relation="relationRule"/>
+     <link port="PolicyRouter.input" relation="relationRule"/>
+@@ -575,4 +571,6 @@
+     <link port="InterceptorQueue.input" relation="relationShipBoth"/>
+     <link port="Ship2_Queue.input" relation="relationShipBoth"/>
+     <link port="ShipCoordinator.input" relation="relationShipBoth"/>
++    <link port="DetectionAssignment.output" relation="relationDR"/>
++    <link port="CommonRule.input" relation="relationDR"/>
+ </entity>

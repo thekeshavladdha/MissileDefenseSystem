@@ -1,0 +1,28 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\cc3ca4c15b33457a88d1902ba8d4233c\candidate.xml
+@@ -568,16 +568,18 @@
+     <relation name="relationShipBoth" class="VisualSim.actor.TypedIORelation"/>
+     <relation name="relationFES" class="VisualSim.actor.TypedIORelation"/>
+     <relation name="relationPop2" class="VisualSim.actor.TypedIORelation"/>
+-    <link port="Const.output" relation="relation6"/>
+-    <link port="InterceptorQueue.pop_input" relation="relation6"/>
+-    <link port="Ship2_Queue.pop_input" relation="relation6"/>
+     <relation name="relationRule" class="VisualSim.actor.TypedIORelation"/>
+     <link port="CommonRule.output" relation="relationRule"/>
+     <link port="PolicyRouter.input" relation="relationRule"/>
+-    <link port="PolicyRouter.output" relation="relationShipBoth"/>
+-    <link port="InterceptorQueue.input" relation="relationShipBoth"/>
+-    <link port="Ship2_Queue.input" relation="relationShipBoth"/>
+-    <link port="ShipCoordinator.input" relation="relationShipBoth"/>
+     <link port="DetectionAssignment.output" relation="relationDR"/>
+     <link port="CommonRule.input" relation="relationDR"/>
++    <relation name="relationShip1" class="VisualSim.actor.TypedIORelation"/>
++    <link port="PolicyRouter.ship1Out" relation="relationShip1"/>
++    <link port="InterceptorQueue.input" relation="relationShip1"/>
++    <link port="PolicyRouter.ship2Out" relation="relationShip2"/>
++    <link port="Ship2_Queue.input" relation="relationShip2"/>
++    <link port="Const.output" relation="relation6"/>
++    <link port="InterceptorQueue.pop_input" relation="relation6"/>
++    <link port="Const2.output" relation="relationPop2"/>
++    <link port="Ship2_Queue.pop_input" relation="relationPop2"/>
+ </entity>

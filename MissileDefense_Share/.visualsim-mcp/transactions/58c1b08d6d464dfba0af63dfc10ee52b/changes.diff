@@ -1,0 +1,23 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\58c1b08d6d464dfba0af63dfc10ee52b\candidate.xml
+@@ -557,8 +557,6 @@
+     <link port="Merge.MissedOnly" relation="relationMissed"/>
+     <link port="Merge.Latency" relation="relation3"/>
+     <relation name="relationDR" class="VisualSim.actor.TypedIORelation"/>
+-    <link port="DetectionAssignment.output" relation="relationDR"/>
+-    <link port="PolicyRouter.input" relation="relationDR"/>
+     <relation name="relationShipBoth" class="VisualSim.actor.TypedIORelation"/>
+     <link port="PolicyRouter.output" relation="relationShipBoth"/>
+     <link port="InterceptorQueue.input" relation="relationShipBoth"/>
+@@ -568,4 +566,11 @@
+     <link port="Const.output" relation="relation6"/>
+     <link port="InterceptorQueue.pop_input" relation="relation6"/>
+     <link port="Ship2_Queue.pop_input" relation="relation6"/>
++    <link port="DetectionAssignment.output" relation="relationDR"/>
++    <link port="FES_DB.input" relation="relationDR"/>
++    <link port="FES_DB.output" relation="relationFES"/>
++    <link port="CommonRule.input" relation="relationFES"/>
++    <relation name="relationRule" class="VisualSim.actor.TypedIORelation"/>
++    <link port="CommonRule.output" relation="relationRule"/>
++    <link port="PolicyRouter.input" relation="relationRule"/>
+ </entity>

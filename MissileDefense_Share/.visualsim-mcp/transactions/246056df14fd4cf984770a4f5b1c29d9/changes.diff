@@ -1,0 +1,15 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\246056df14fd4cf984770a4f5b1c29d9\candidate.xml
+@@ -445,10 +445,10 @@
+ <entity name="FES_DB" class="VisualSim.actor.lib.Database">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[250.0, 300.0]"/>
+     <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="*.xml, *.csv files abs or rel (./) path&#10;  -- *.csv real columns set to number&#10;Input_Fields == Lookup_Fields (num, type)&#10;Output_Expr: match, match_last, match_all&#10;  -- match_all.field not allowed"/>
+-    <property name="Data_Structure_Text" class="VisualSim.kernel.util.StringAttribute" value="priority shipHint 1 1 2 1 3 1 4 2 5 2"/>
++    <property name="Data_Structure_Text" class="VisualSim.kernel.util.StringAttribute" value="Priority shipHint&#10;1 1&#10;2 1&#10;3 1&#10;4 2&#10;5 2"/>
+     <property name="Mode" class="VisualSim.kernel.util.StringAttribute" value="Read"/>
+     <property name="Input_Fields" value="&quot;Priority&quot;"/>
+-    <property name="Lookup_Fields" value="&quot;priority&quot;"/>
++    <property name="Lookup_Fields" value="&quot;Priority&quot;"/>
+     <property name="Output_Expression" value=""/>
+     <property name="Linking_Name" value="&quot;FES&quot;"/>
+ </entity>

@@ -1,0 +1,18 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\df1a7f2c29fc414a9772fb91178e7333\candidate.xml
+@@ -456,6 +456,15 @@
+ </entity>
+ <entity name="Merge" class="VisualSim.actor.lib.Expression_Decision">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[500.0, 220.0]"/>
++    <port name="KilledOnly" class="VisualSim.actor.TypedIOPort">
++        <property name="output"/>
++    </port>
++    <port name="MissedOnly" class="VisualSim.actor.TypedIOPort">
++        <property name="output"/>
++    </port>
++    <port name="Latency" class="VisualSim.actor.TypedIOPort">
++        <property name="output"/>
++    </port>
+ </entity>
+ <relation name="relation5" class="VisualSim.actor.TypedIORelation">
+         <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Enter User Documentation Here"/>

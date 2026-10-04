@@ -1,0 +1,34 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\263f61a9b3b34408b5b43bd34d34ad2b\candidate.xml
+@@ -427,7 +427,7 @@
+     </entity>
+ <entity name="Ship2_C2" class="VisualSim.actor.lib.DLY">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[330.0, 220.0]"/>
+-    <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="0.0"/>
++    <property name="Delay_Value" class="VisualSim.data.expr.StringParameter" value="C2_Latency"/>
+ </entity>
+ <entity name="Ship2_Flyout" class="VisualSim.actor.lib.DLY">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[383.0, 220.0]"/>
+@@ -435,6 +435,7 @@
+ </entity>
+ <entity name="Ship2_Kill" class="VisualSim.actor.lib.Expression_Decision">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[436.0, 220.0]"/>
++    <property name="Expression_List" value="input.Leaker = (TNow - input.TIME) &gt; Intercept_Deadline&#10;input.Effective_Kill = input.Killed ? (input.Leaker ? false : true) : false&#10;input.Shots_Fired = input.Effective_Kill ? 1 : 2&#10;input.Inventory_Left = Ship2_Inv - input.Shots_Fired&#10;input.Reload_Wait = rand(Reload_Time_Min, Reload_Time_Max)"/>
+ </entity>
+ <entity name="FES_DB" class="VisualSim.actor.lib.Database">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[250.0, 300.0]"/>
+@@ -444,12 +445,14 @@
+ </entity>
+ <entity name="CommonRule" class="VisualSim.actor.lib.Expression_Decision">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[320.0, 300.0]"/>
++    <property name="Expression_List" value="input.canReach1 = 1&#10;input.canReach2 = 1&#10;input.hasInv1 = (Ship1_Inv &gt; 0)&#10;input.hasInv2 = (Ship2_Inv &gt; 0)&#10;input.preferredShip = input.hasInv1 ? 1 : 2"/>
+ </entity>
+ <entity name="ShipCoordinator" class="VisualSim.actor.lib.Smart_Controller">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[120.0, 300.0]"/>
+ </entity>
+ <entity name="PolicyRouter" class="VisualSim.actor.lib.Expression_Decision">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[120.0, 220.0]"/>
++    <property name="Expression_List" value="input.ship = Policy_Mode == 0 ? (input.Priority &lt;= 3 ? 1 : 2) : 1"/>
+ </entity>
+ <relation name="relation5" class="VisualSim.actor.TypedIORelation">
+         <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Enter User Documentation Here"/>

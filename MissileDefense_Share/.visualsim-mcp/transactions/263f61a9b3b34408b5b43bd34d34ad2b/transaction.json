@@ -1,0 +1,234 @@
+{
+  "applied_invariant_baseline": {
+    "baseline_finding_digests": [
+      "af10f02b22548f75413827fafe88c2e48df244f4ba90fb27e86e7bd57fdbba2e"
+    ],
+    "candidate_finding_digests": [
+      "af10f02b22548f75413827fafe88c2e48df244f4ba90fb27e86e7bd57fdbba2e"
+    ],
+    "inherited_finding_digests": [
+      "af10f02b22548f75413827fafe88c2e48df244f4ba90fb27e86e7bd57fdbba2e"
+    ],
+    "introduced_finding_digests": [],
+    "kind": "workspace_pre_apply",
+    "reference_sha256": null
+  },
+  "applied_operations": [
+    {
+      "op": "set_parameter",
+      "target_path": "/MissileDefense_Model/Ship2_C2"
+    },
+    {
+      "op": "set_parameter",
+      "target_path": "/MissileDefense_Model/Ship2_Kill"
+    },
+    {
+      "op": "set_parameter",
+      "target_path": "/MissileDefense_Model/CommonRule"
+    },
+    {
+      "op": "set_parameter",
+      "target_path": "/MissileDefense_Model/PolicyRouter"
+    }
+  ],
+  "applied_sha256": "018b0b701cf8f3d774d8f6b1623a85241d5924c2ca8281e623de916dfb605085",
+  "applied_validation": {
+    "errors": [],
+    "ok": true,
+    "semantic": {
+      "errors": [
+        {
+          "actor_class": "VisualSim.actor.lib.gui.Display",
+          "code": "UNKNOWN_PARAMETER",
+          "message": "Parameter 'Font_Type' is not declared by actor class 'VisualSim.actor.lib.gui.Display'.",
+          "parameter": "Font_Type",
+          "path": "/MissileDefense_Model/DefenseOutcome/Font_Type",
+          "severity": "error",
+          "suggestions": []
+        }
+      ],
+      "ok": false,
+      "policy": {
+        "inert_result": "warning",
+        "missing_director": "warning",
+        "unbound_file_parameter": "warning",
+        "unconnected_mandatory_port": "warning",
+        "vacuous_activity": "warning"
+      },
+      "registry": {
+        "classes": 1785,
+        "construction_registry": true,
+        "source_roots": [
+          "C:\\Games\\Mirabilis_hackathon\\MissileDefense_Share",
+          "C:\\Games\\Mirabilis_hackathon\\MissileDefense_Share\\models",
+          "C:\\VisualSim_2641\\VS_AR\\Training_Material\\General\\Queues_FIFO",
+          "C:\\VisualSim_2641\\VS_AR\\User_Library",
+          "C:\\VisualSim_2641\\VS_AR\\demo"
+        ]
+      },
+      "warnings": [
+        {
+          "code": "UNBOUND_FILE_PARAMETER",
+          "message": "File parameter '$VS/VisualSim/ModelBuilder/basic/img/aqua/SimpleEvent54x36.png' does not resolve to a staged file.",
+          "path": "/MissileDefense_Model/C2_Latency",
+          "severity": "warning",
+          "suggestions": [],
+          "value": "$VS/VisualSim/ModelBuilder/basic/img/aqua/SimpleEvent54x36.png"
+        },
+        {
+          "code": "UNBOUND_FILE_PARAMETER",
+          "message": "File parameter 'MissileDefense_Outcome.txt' does not resolve to a staged file.",
+          "path": "/MissileDefense_Model/DefenseOutcome",
+          "severity": "warning",
+          "suggestions": [],
+          "value": "MissileDefense_Outcome.txt"
+        },
+        {
+          "code": "UNBOUND_FILE_PARAMETER",
+          "message": "File parameter 'MissileDefense_Kill_Count.txt' does not resolve to a staged file.",
+          "path": "/MissileDefense_Model/KillCount",
+          "severity": "warning",
+          "suggestions": [],
+          "value": "MissileDefense_Kill_Count.txt"
+        },
+        {
+          "code": "UNBOUND_FILE_PARAMETER",
+          "message": "File parameter 'MissileDefense_Miss_Count.txt' does not resolve to a staged file.",
+          "path": "/MissileDefense_Model/MissCount",
+          "severity": "warning",
+          "suggestions": [],
+          "value": "MissileDefense_Miss_Count.txt"
+        }
+      ]
+    },
+    "warnings": [
+      "UNBOUND_FILE_PARAMETER: File parameter '$VS/VisualSim/ModelBuilder/basic/img/aqua/SimpleEvent54x36.png' does not resolve to a staged file.",
+      "UNBOUND_FILE_PARAMETER: File parameter 'MissileDefense_Outcome.txt' does not resolve to a staged file.",
+      "UNBOUND_FILE_PARAMETER: File parameter 'MissileDefense_Kill_Count.txt' does not resolve to a staged file.",
+      "UNBOUND_FILE_PARAMETER: File parameter 'MissileDefense_Miss_Count.txt' does not resolve to a staged file.",
+      "PRE_EXISTING: UNKNOWN_PARAMETER: Parameter 'Font_Type' is not declared by actor class 'VisualSim.actor.lib.gui.Display'."
+    ]
+  },
+  "approval_token": "8acc5cf9622b106b7d1e386015905befb68eef0a0793b845aa5aa19858ae43c2",
+  "authored_by": "anonymous",
+  "backup_path": "C:\\Games\\Mirabilis_hackathon\\MissileDefense_Share\\.visualsim-mcp\\transactions\\263f61a9b3b34408b5b43bd34d34ad2b\\backup.xml",
+  "candidate_path": "C:\\Games\\Mirabilis_hackathon\\MissileDefense_Share\\.visualsim-mcp\\transactions\\263f61a9b3b34408b5b43bd34d34ad2b\\candidate.xml",
+  "candidate_sha256": "018b0b701cf8f3d774d8f6b1623a85241d5924c2ca8281e623de916dfb605085",
+  "capability_kind": "approval_token",
+  "copied_sidecars": [],
+  "created_at": 1791097077.4192665,
+  "diff_path": "C:\\Games\\Mirabilis_hackathon\\MissileDefense_Share\\.visualsim-mcp\\transactions\\263f61a9b3b34408b5b43bd34d34ad2b\\changes.diff",
+  "expires_at": 1791100677.4192746,
+  "operations": [
+    {
+      "name": "Delay_Value",
+      "op": "set_parameter",
+      "target_path": "/MissileDefense_Model/Ship2_C2",
+      "value": "C2_Latency"
+    },
+    {
+      "name": "Expression_List",
+      "op": "set_parameter",
+      "target_path": "/MissileDefense_Model/Ship2_Kill",
+      "value": "input.Leaker = (TNow - input.TIME) > Intercept_Deadline\ninput.Effective_Kill = input.Killed ? (input.Leaker ? false : true) : false\ninput.Shots_Fired = input.Effective_Kill ? 1 : 2\ninput.Inventory_Left = Ship2_Inv - input.Shots_Fired\ninput.Reload_Wait = rand(Reload_Time_Min, Reload_Time_Max)"
+    },
+    {
+      "name": "Expression_List",
+      "op": "set_parameter",
+      "target_path": "/MissileDefense_Model/CommonRule",
+      "value": "input.canReach1 = 1\ninput.canReach2 = 1\ninput.hasInv1 = (Ship1_Inv > 0)\ninput.hasInv2 = (Ship2_Inv > 0)\ninput.preferredShip = input.hasInv1 ? 1 : 2"
+    },
+    {
+      "name": "Expression_List",
+      "op": "set_parameter",
+      "target_path": "/MissileDefense_Model/PolicyRouter",
+      "value": "input.ship = Policy_Mode == 0 ? (input.Priority <= 3 ? 1 : 2) : 1"
+    }
+  ],
+  "project_root": "C:\\Games\\Mirabilis_hackathon\\MissileDefense_Share",
+  "rollback_expires_at": 1793689088.5912015,
+  "schema_version": 1,
+  "source_sha256": "dbe2142eab331821ad54d26966a2b353b4ff222ffaed57a06380ac3ccb63e8d3",
+  "status": "applied",
+  "target_path": "C:\\Games\\Mirabilis_hackathon\\MissileDefense_Share\\models\\MissileDefense_Model.xml",
+  "transaction_id": "263f61a9b3b34408b5b43bd34d34ad2b",
+  "validation": {
+    "errors": [],
+    "ok": true,
+    "semantic": {
+      "errors": [
+        {
+          "actor_class": "VisualSim.actor.lib.gui.Display",
+          "code": "UNKNOWN_PARAMETER",
+          "message": "Parameter 'Font_Type' is not declared by actor class 'VisualSim.actor.lib.gui.Display'.",
+          "parameter": "Font_Type",
+          "path": "/MissileDefense_Model/DefenseOutcome/Font_Type",
+          "severity": "error",
+          "suggestions": []
+        }
+      ],
+      "ok": false,
+      "policy": {
+        "inert_result": "warning",
+        "missing_director": "warning",
+        "unbound_file_parameter": "warning",
+        "unconnected_mandatory_port": "warning",
+        "vacuous_activity": "warning"
+      },
+      "registry": {
+        "classes": 1785,
+        "construction_registry": true,
+        "source_roots": [
+          "C:\\Games\\Mirabilis_hackathon\\MissileDefense_Share",
+          "C:\\Games\\Mirabilis_hackathon\\MissileDefense_Share\\models",
+          "C:\\VisualSim_2641\\VS_AR\\Training_Material\\General\\Queues_FIFO",
+          "C:\\VisualSim_2641\\VS_AR\\User_Library",
+          "C:\\VisualSim_2641\\VS_AR\\demo"
+        ]
+      },
+      "warnings": [
+        {
+          "code": "UNBOUND_FILE_PARAMETER",
+          "message": "File parameter '$VS/VisualSim/ModelBuilder/basic/img/aqua/SimpleEvent54x36.png' does not resolve to a staged file.",
+          "path": "/MissileDefense_Model/C2_Latency",
+          "severity": "warning",
+          "suggestions": [],
+          "value": "$VS/VisualSim/ModelBuilder/basic/img/aqua/SimpleEvent54x36.png"
+        },
+        {
+          "code": "UNBOUND_FILE_PARAMETER",
+          "message": "File parameter 'MissileDefense_Outcome.txt' does not resolve to a staged file.",
+          "path": "/MissileDefense_Model/DefenseOutcome",
+          "severity": "warning",
+          "suggestions": [],
+          "value": "MissileDefense_Outcome.txt"
+        },
+        {
+          "code": "UNBOUND_FILE_PARAMETER",
+          "message": "File parameter 'MissileDefense_Kill_Count.txt' does not resolve to a staged file.",
+          "path": "/MissileDefense_Model/KillCount",
+          "severity": "warning",
+          "suggestions": [],
+          "value": "MissileDefense_Kill_Count.txt"
+        },
+        {
+          "code": "UNBOUND_FILE_PARAMETER",
+          "message": "File parameter 'MissileDefense_Miss_Count.txt' does not resolve to a staged file.",
+          "path": "/MissileDefense_Model/MissCount",
+          "severity": "warning",
+          "suggestions": [],
+          "value": "MissileDefense_Miss_Count.txt"
+        }
+      ]
+    },
+    "warnings": [
+      "UNBOUND_FILE_PARAMETER: File parameter '$VS/VisualSim/ModelBuilder/basic/img/aqua/SimpleEvent54x36.png' does not resolve to a staged file.",
+      "UNBOUND_FILE_PARAMETER: File parameter 'MissileDefense_Outcome.txt' does not resolve to a staged file.",
+      "UNBOUND_FILE_PARAMETER: File parameter 'MissileDefense_Kill_Count.txt' does not resolve to a staged file.",
+      "UNBOUND_FILE_PARAMETER: File parameter 'MissileDefense_Miss_Count.txt' does not resolve to a staged file.",
+      "PRE_EXISTING: UNKNOWN_PARAMETER: Parameter 'Font_Type' is not declared by actor class 'VisualSim.actor.lib.gui.Display'.",
+      "COLLAPSED_INSTANCE_IDENTITY: /MissileDefense_Model/InterceptorQueue (VisualSim.actor.lib.Smart_Resource) stands for multiple instances: count parameter Number_of_Queues=1 /* Number of queue defined by this block */ (a non-literal count expression)"
+    ]
+  },
+  "workspace_metadata": "C:\\Games\\Mirabilis_hackathon\\MissileDefense_Share\\.visualsim-mcp\\workspaces\\a50ecb73df284abb96f33245e7a2465d\\workspace.json"
+}

@@ -1,0 +1,23 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\cc06f11ce9264322aa12b7be5348e36a\candidate.xml
+@@ -457,14 +457,17 @@
+ </entity>
+ <entity name="Merge" class="VisualSim.actor.lib.Expression_Decision">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[500.0, 220.0]"/>
+-    <port name="KilledOnly" class="VisualSim.actor.TypedIOPort">
++        <port name="KilledOnly" class="VisualSim.actor.TypedIOPort">
+         <property name="output"/>
++        <property name="_type" class="VisualSim.actor.TypeAttribute" value="general"/>
+     </port>
+-    <port name="MissedOnly" class="VisualSim.actor.TypedIOPort">
++        <port name="MissedOnly" class="VisualSim.actor.TypedIOPort">
+         <property name="output"/>
++        <property name="_type" class="VisualSim.actor.TypeAttribute" value="general"/>
+     </port>
+-    <port name="Latency" class="VisualSim.actor.TypedIOPort">
++        <port name="Latency" class="VisualSim.actor.TypedIOPort">
+         <property name="output"/>
++        <property name="_type" class="VisualSim.actor.TypeAttribute" value="general"/>
+     </port>
+     <property name="Expression_List" value="// Merge - forward winning ship result unchanged"/>
+     <property name="Output_Ports" value="output,Latency,KilledOnly,MissedOnly"/>

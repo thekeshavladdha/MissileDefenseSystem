@@ -1,0 +1,13 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\70ad7a2a6ea849b38dbfde81d8d24166\candidate.xml
+@@ -465,6 +465,10 @@
+     <port name="Latency" class="VisualSim.actor.TypedIOPort">
+         <property name="output"/>
+     </port>
++    <property name="Expression_List" value="// Merge - forward winning ship result unchanged"/>
++    <property name="Output_Ports" value="output,Latency,KilledOnly,MissedOnly"/>
++    <property name="Output_Values" value="input,TNow-input.TIME,input,input"/>
++    <property name="Output_Conditions" value="true,true,input.Effective_Kill,!input.Effective_Kill"/>
+ </entity>
+ <relation name="relation5" class="VisualSim.actor.TypedIORelation">
+         <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="Enter User Documentation Here"/>

@@ -1,0 +1,19 @@
+--- C:\Games\Mirabilis_hackathon\MissileDefense_Share\models\MissileDefense_Model.xml
++++ C:\Games\Mirabilis_hackathon\MissileDefense_Share\.visualsim-mcp\transactions\1485b1313cac4785aaf2c22c94e12d29\candidate.xml
+@@ -441,16 +441,6 @@
+ <entity name="Ship2_Kill" class="VisualSim.actor.lib.Expression_Decision">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[436.0, 220.0]"/>
+     <property name="Expression_List" value="input.Leaker = (TNow - input.TIME) &gt; Intercept_Deadline&#10;input.Effective_Kill = input.Killed ? (input.Leaker ? false : true) : false&#10;input.Shots_Fired = input.Effective_Kill ? 1 : 2&#10;input.Inventory_Left = Ship2_Inv - input.Shots_Fired&#10;input.Reload_Wait = rand(Reload_Time_Min, Reload_Time_Max)"/>
+-</entity>
+-<entity name="FES_DB" class="VisualSim.actor.lib.Database">
+-    <property name="_location" class="VisualSim.kernel.util.Location" value="[250.0, 300.0]"/>
+-    <property name="Block_Documentation" class="VisualSim.kernel.util.DocumentAttribute" value="*.xml, *.csv files abs or rel (./) path&#10;  -- *.csv real columns set to number&#10;Input_Fields == Lookup_Fields (num, type)&#10;Output_Expr: match, match_last, match_all&#10;  -- match_all.field not allowed"/>
+-    <property name="Data_Structure_Text" class="VisualSim.kernel.util.StringAttribute" value="Priority shipHint&#10;1 1&#10;2 1&#10;3 1&#10;4 2&#10;5 2"/>
+-    <property name="Mode" class="VisualSim.kernel.util.StringAttribute" value="Read"/>
+-    <property name="Input_Fields" value="&quot;Priority&quot;"/>
+-    <property name="Lookup_Fields" value="&quot;Priority&quot;"/>
+-    <property name="Output_Expression" value=""/>
+-    <property name="Linking_Name" value="&quot;FES&quot;"/>
+ </entity>
+ <entity name="CommonRule" class="VisualSim.actor.lib.Expression_Decision">
+     <property name="_location" class="VisualSim.kernel.util.Location" value="[320.0, 300.0]"/>
