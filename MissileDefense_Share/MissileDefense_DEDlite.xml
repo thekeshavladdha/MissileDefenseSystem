@@ -586,10 +586,66 @@
     <link port="KillCount.input" relation="relationKillStats"/>
     <link port="MissCounter.counter_output" relation="relationMissStats"/>
     <link port="MissCount.input" relation="relationMissStats"/>
-    <property name="Policy_Mode" class="VisualSim.data.expr.Parameter" value="2"/>
-    <property name="Ship2_Range" class="VisualSim.data.expr.Parameter" value="6000.0"/>
-    <property name="Ship1_Inv" class="VisualSim.data.expr.Parameter" value="10"/>
-    <property name="Ship2_Inv" class="VisualSim.data.expr.Parameter" value="10"/>
+    <property name="Policy_Mode" class="VisualSim.data.expr.Parameter" value="2">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[-38.0, -15.0]"/>
+    </property>
+    <property name="Ship2_Range" class="VisualSim.data.expr.Parameter" value="6000.0">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[168.0, -16.0]"/>
+    </property>
+    <property name="Ship1_Inv" class="VisualSim.data.expr.Parameter" value="10">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[168.0, 7.0]"/>
+    </property>
+    <property name="Ship2_Inv" class="VisualSim.data.expr.Parameter" value="10">
+        <property name="_hideName" class="VisualSim.kernel.util.SingletonAttribute"/>
+        <property name="_icon" class="VisualSim.ModelBuilder.icon.ValueIcon">
+            <property name="_color" class="VisualSim.actor.gui.ColorAttribute" value="{0.0, 0.0, 1.0, 1.0}"/>
+        </property>
+        <property name="_smallIconDescription" class="VisualSim.kernel.util.SingletonConfigurableAttribute">
+            <configure>
+<svg>
+        <text x="20" y="20" style="font-size:14; font-family:SansSerif; fill:blue">-P-</text>
+      </svg>
+            </configure>
+        </property>
+        <property name="_editorFactory" class="VisualSim.ModelBuilder.toolbox.VisibleParameterEditorFactory"/>
+        <property name="_location" class="VisualSim.kernel.util.Location" value="[168.0, 30.0]"/>
+    </property>
     <relation name="relationShip2" class="VisualSim.actor.TypedIORelation"/>
     <relation name="relationShip2Q" class="VisualSim.actor.TypedIORelation"/>
     <link port="Ship2_Queue.output" relation="relationShip2Q"/>
