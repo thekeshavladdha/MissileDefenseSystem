@@ -1,5 +1,5 @@
 # CONTEXT — MissileDefense DED-lite build (handoff for next AI agent)
-Date: 2026-10-04 | Author: Muse Spark (opencode) + user | Status: structure complete, awaiting first clean GO
+Date: 2026-10-04 | Author: Muse Spark (opencode) + user | Status: FES_DB reconnected via file-backed CSV and batch-verified. Sweep runs pass; ship split confirmed (ship1/ship2 both fire).
 
 ## 1. Objective
 Modify `MissileDefense_Share/MissileDefense_Model.xml` (single-ship baseline) into a 2-ship DED-lite
@@ -9,30 +9,55 @@ TBMD engagement coordination (DED bidded scheme); implement 3 of its 8 sieving t
 (capability, inventory, load/TOF tie-break). Everything else (Link-16 slots, Swerling, multi-track,
 4-ship FES) is explicitly out of scope.
 
-## 2. Directory layout (C:\Games\Mirabilis_hackathon)
+## 2. Directory layout (current clone)
+- Working copy: `C:\Users\satvi\Desktop\MissileDefenseSystem`
+- Share bundle: `C:\Users\satvi\Desktop\MissileDefenseSystem\MissileDefense_Share`
 - `MissileDefense_Share/` — ALL WORK HAPPENS HERE
   - `MissileDefense_Model.xml` — working model (currently 23 containers, ~41KB). MCP workspace copy:
     `MissileDefense_Share/models/MissileDefense_Model.xml` (authoritative for MCP transactions).
   - `MissileDefense_Model_baseline.xml` — frozen 14-container original (34190B, sha dd50dbce…).
     NEVER EDIT. Ground truth for maths/docs.
   - `missile_defense_parameters.csv` — 21-row param price-list, all Assumption/Estimate.
-  - `MissileDefense_Model_Sweep.bat` — 3-run batch (Pk 0.5/0.8/0.95, seeds 1001/1002/1003). Needs
-    `-Policy_Mode` extension for DED-lite sweep (not done).
+  - `MissileDefense_Model_Sweep.bat` — 3-run base Pk batch.
+    DED-lite addon present: `MissileDefense_Policy_Pk_Sweep.bat` and `run_full_policy_experiment.py` full 90-run Policy x Pk x seeds sweep.
   - `summarize_missile_outcome.py` — portable scorer (root=dirname(__file__), fixed from satvi path).
     Baseline outputs: run1 7/4/2/5 0.571/0.286, run2 7/6/2/5 0.857/0.286, run3 7/7/5/2 1.000/0.714.
-  - `MissileDefense_Outcome*.txt`, `MissileDefense_Kill/Miss_Count.txt` — baseline logs. DO NOT overwrite
-    until DED-lite GO passes (they are the before/after evidence).
+  -   `MissileDefense_Outcome*.txt`, `MissileDefense_Kill/Miss_Count.txt` — baseline logs. DO NOT overwrite
+    until DED-lite GO passes (they are the before/after evidence). If you re-run the batch, use timestamped
+    output filenames or copy the old logs elsewhere first.
   - `MissileDefense_Model_Report.md` — 1-page share guide. `MissileDefense_Qwen_Research.md` — theory pack.
   - `documentation.md` — full model doc (50KB). STALE re DED-lite deltas (§§3/6/14 need Merge/Router update).
-  - `fes_table.csv` — NEW parked FES lookup table (CSV `Priority,shipHint` + `int,int` typerow, 1→1…5→2).
-    Created for Phase-2 file-backed FES_DB. NOT WIRED to anything.
+  - `fes_table.csv` — file-backed FES lookup table (`Priority,shipHint`, header + data rows only, NO type row).
+    WIRED via re-added `FES_DB` Database block (`fileOrURL=./fes_table.csv`, `Input_Fields="Priority"`,
+    `Lookup_Fields="Priority"`, `Mode="Read"`, `Output_Expression="output = match"`); `CommonRule` reads
+    `input.shipHint` through `getRow("FES", cast(string, input.Priority), "Priority")` instead of the ternary.
+    Batch-verified: Priority 1-3 → shipHint 1, 4-5 → shipHint 2; ship split 17/15 across the 3-run sweep.
+  - `magazine.csv` — per-ship magazine table (`Ship,Remaining`, 10/10). WIRED via `Magazine_DB` Database block;
+    `KillAssessment`/`Ship2_Kill` decrement their ship's row with `putRow` and record `Inventory_Left` +
+    `Magazine_Empty` per threat. Batch-verified depleting. Block-at-zero enforced by clamping fired shots to
+    remaining (`FiredShots = min(WantShots, Remaining)`, never negative). `CommonRule` now reads the live
+    magazine for `hasInv1/hasInv2` (ANDed with the static `Ship1_Inv`/`Ship2_Inv` params, so batch overrides
+    like `-Ship1_Inv 0` keep working); routing therefore reacts to depletion.
+  - SLS loop live: `DetectionAssignment` stamps `Attempts = 0`; kill blocks increment it, re-roll the kill dice
+    on pass 2+, and emit a `ReEngage` token only for missed threats with `Attempts < 2` and room for another
+    full `Flight_Time` before the deadline. Feedback re-enters `PolicyRouter` (re-routing allowed) and the loop
+    provably terminates (Attempts gate + stopTime). Verified: loose-deadline demo shows Attempts=2 second
+    passes with fresh dice and continued magazine depletion; tight-deadline raids correctly never re-engage
+    (no time left — itself a finding). Scorer dedupes by threat ID (last record wins) and reports re-engaged
+    counts plus per-ship shot totals.
+  - Reload gating live: `magazine.csv` carries `ReloadUntil` (double-typed via `0.0` — integer column rejects
+    time values with `Integer LHS`). Kill blocks schedule `ReloadUntil = TNow + Reload_Wait` when a magazine
+    hits zero; `CommonRule` replenishes to 10 once `TNow >= ReloadUntil`. Verified: inventory bottoms at
+    exactly 0, never negative; 3/3 sweep runs clean, zero exceptions.
+  - Frozen: `MissileDefense_DEDlite.xml` = validated copy of the working model (needs `fes_table.csv` +
+    `magazine.csv` alongside it).
   - `.visualsim-mcp/` — MCP cache (handoffs, traceability.db, workspaces/a50ecb73, transactions/*).
     Regenerable; deleted once for cleanup, recreated by later opens.
-- `planner.md` (repo root) — rewritten as 10-step DED-lite build plan (Steps 0–9 with gates). Follow it.
+- `planner.md` (this folder) — 10-step DED-lite build plan (Steps 0–9 with gates). Follow it.
 - `VisualSim_Hackathon_2026_project/` — READ-ONLY research: `research.txt` (4 paper URLs), `research/`
   (P1–P4 PDFs/TXTs, notes/P1-P4.md incl. full P3 DED breakdown, report.md, synthesis.md, open-questions.md),
   `SKILL.md` (paper-research workflow). Never modify.
-- Install: `C:\VisualSim_2641\VS_AR` (verified Test-Path True). JDK17
+- Install: your own VS_AR path (this working copy expects `C:\Users\satvi\Desktop\VisualSim\VS_AR`). JDK17
   `C:\Program Files\Java\jdk-17`. Model `_createdBy 2020.Q2`.
 
 ## 3. Baseline model (frozen, 14 containers)
@@ -51,9 +76,9 @@ cond `true,true,Effective,!Effective`. Scores: leakers=threats-effective,
 raw_Pk=killed/threats, effective_Pk=effective/threats.
 
 ## 4. Current DED-lite model (23 containers, all MCP-applied, validation ok:true)
-ADDED (9): Ship2_Queue/Smart_Resource, Ship2_C2/DLY, Ship2_Flyout/DLY, Ship2_Kill/Expression,
-CommonRule/Expression, ShipCoordinator/Smart_Controller (UNWIRED observer, documented),
-PolicyRouter/Expression, Merge/Expression, Const2/Const. REMOVED (1): FES_DB/Database (see §6).
+ADDED (8): Ship2_Queue/Smart_Resource, Ship2_C2/DLY, Ship2_Flyout/DLY, Ship2_Kill/Expression,
+CommonRule/Expression, PolicyRouter/Expression, Merge/Expression, Const2/Const. REMOVED (2): FES_DB/Database
+(see §6) and ShipCoordinator/Smart_Controller (deleted after it crashed DEDirector.initialize with a subscriber string parse error).
 Top params ADDED (4): Policy_Mode=2, Ship2_Range=6000.0, Ship1_Inv=10, Ship2_Inv=10.
 WIRING (every relation exactly 2 endpoints — deliberately, see §6 broadcast lesson):
 - relationDR: DetectionAssignment.output → CommonRule.input
@@ -145,9 +170,8 @@ Backups: .visualsim-mcp/transactions/*/backup.xml + rollback_tokens per apply. B
 1. **NO clean GO yet end-to-end** — every fix so far is validator-clean (`ok:true`) but GUI run is the real
    gate. Next: fresh reopen (discard any unsaved canvas!) → GO Policy_Mode 0/1/2 → confirm ~7 threats each,
    Kill+Miss==threats, ship split by Priority in Mode 0.
-2. **ShipCoordinator UNWIRED observer** (no links after broadcast removal). Configured+documented; needs Fork
-   actor (Connect_EIO per validator) for closed-loop pop driving — Phase 2. If it throws at init despite no
-   links, delete or blank its Smart_Resource_Name.
+2. **ShipCoordinator deleted** (Smart_Controller init crashed DEDirector). DED lite routing now uses
+   PolicyRouter default output for ship1 and custom `ship2Out` for ship2.
 3. **Empty relations** (relation, relationShipBoth, relationFES) — harmless if manager passes; no remove op.
    If manager substring crash recurs, suspects in order: (a) relationPost 3-link merge → split Merge into two
    input ports; (b) empty relations (recreate model without them — no tool path, would need GUI or raw edit,
@@ -160,10 +184,10 @@ Backups: .visualsim-mcp/transactions/*/backup.xml + rollback_tokens per apply. B
    source_sha256). Current disk length after last sync — re-check with Get-Item. If user touched GUI, realign
    FIRST (direction depends on which side is authoritative; default: MCP workspace wins → copy models→source;
    user's fresh GUI fixes win → copy source→models, then inspect).
-7. STALE docs: documentation.md §§3/6/14 predate DED-lite; planner.md Steps 0–4 done, 5–9 pending (smoke×3,
-   sweep Policy×Rate×Pk via extended .bat + scorer ship-field parse, 1 bottleneck fix + re-run, freeze
-   MissileDefense_DEDlite.xml + slides/write-up/video). params.csv lacks Policy_Mode/Ship2_Range/Ship1/2_Inv
-   rows. Sweep .bat lacks -Policy_Mode legs. Scorer lacks ship split.
+7. STALE docs fixed in-share: documentation.md header note added, §8 updated, context paths corrected.
+   Sweep .bat extended with -Policy_Mode legs (`MissileDefense_Policy_Pk_Sweep.bat`);
+   ship/policy scorer added (`summarize_missile_policy_pk.py`). Still need GUI GO validation.
+   params.csv remains baseline-ish; add Policy_Mode/Ship2_Range/Ship1/2_Inv rows if sharing for judges.
 8. Plotter shows Merge.Latency only — fine. KillCount/MissCount step logs unchanged semantics (effective only).
 9. Rollback available for every apply (rollback_token in outputs + backup.xml). Baseline file is ultimate reset:
    Copy-Item baseline→Model (+ delete models copy + reopen workspace) if DED-lite work ever needs restart.
