@@ -2,7 +2,38 @@
 
 A **VisualSim discrete-event missile defense simulation** (DED-lite) with batch-run scripts, a portable Python experiment runner, and result summarizers. The model simulates threat generation, tracking, command-and-control (C2) latency, interceptor assignment across two ships, engagement outcomes, and magazine/inventory effects.
 
-This repository is the standalone project (root-level model, scripts, parameter tables, and example outputs).
+This repository is the standalone project — all source files sit at the root for easy access and distribution.
+
+---
+
+## Screenshots
+
+| Screenshot | Description |
+|---|---|
+| [`screenshots/model-architecture.png`](screenshots/model-architecture.png) | Full VisualSim block diagram of the two-ship missile defense pipeline |
+| [`screenshots/defense-outcome-display.png`](screenshots/defense-outcome-display.png) | Per-threat outcome record shown in the VisualSim Architect console |
+| [`screenshots/kill-miss-counters.png`](screenshots/kill-miss-counters.png) | Cumulative kill and miss count displays from the simulation |
+| [`screenshots/latency-plotter.png`](screenshots/latency-plotter.png) | Real-time C2 latency plot over simulation time |
+| [`screenshots/threat-timeline.png`](screenshots/threat-timeline.png) | Threat arrival/engagement timeline visualization |
+
+---
+
+## Quick Start
+
+```bash
+# 1) Verify your environment (no VisualSim required)
+python run_full_policy_experiment.py --dry-run
+
+# 2) Run full sweep (90 runs: 3 policies × 3 Pk values × 10 seeds)
+python run_full_policy_experiment.py --vs-ar /path/to/VS_AR --java /path/to/java
+
+# 3) Summarize results
+python summarize_full_policy_experiment.py
+```
+
+Or use the Windows batch scripts (`*.bat`) — edit the hardcoded paths first.
+
+---
 
 ## Contents
 
@@ -23,58 +54,118 @@ This repository is the standalone project (root-level model, scripts, parameter 
 | `MissileDefense_Kill_Count.txt` | Example kill-count display/log. |
 | `MissileDefense_Miss_Count.txt` | Example miss/leaker-count display/log. |
 
+---
+
 ## Model Architecture & Pipeline
 
-The VisualSim block diagram (`MissileDefense_Model.xml`) models a two-ship distributed missile defense system:
+The VisualSim block diagram models a two-ship distributed missile defense system. Threats are generated, detected, prioritized, routed to one of two ship engagement lines, and evaluated for kill effectiveness.
+
+![Model Architecture](screenshots/model-architecture.png)
+*Figure 1: Full VisualSim block diagram of the missile defense simulation.*
+
+### Data Flow Pipeline
 
 ```
 [ThreatGenerator] ➔ [DetectionAssignment] ➔ [CommonRule] ➔ [PolicyRouter]
-                                                               ├──➔ [Ship1_Queue] ➔ [Ship1_C2] ➔ [Ship1_Flyout] ➔ [Ship1_Kill] ──┐
-                                                               └──➔ [Ship2_Queue] ➔ [Ship2_C2] ➔ [Ship2_Flyout] ➔ [Ship2_Kill] ──┴──➔ [Merge] ➔ [KillCounter] ➔ [KillCount]
-                                                                                                                                              ├──➔ [MissCounter] ➔ [MissCount]
-                                                                                                                                              ├──➔ [DefenseOutcome]
-                                                                                                                                              └──➔ [xTime_yData_Plotter]
+                                                                        ├──➔ [Ship1_Queue] ➔ [Ship1_C2] ➔ [Ship1_Flyout] ➔ [Ship1_Kill] ──┐
+                                                                        └──➔ [Ship2_Queue] ➔ [Ship2_C2] ➔ [Ship2_Flyout] ➔ [Ship2_Kill] ──┴──➔ [Merge] ➔ [KillCounter] ➔ [KillCount]
+                                                                                                                                                         ├──➔ [MissCounter] ➔ [MissCount]
+                                                                                                                                                         ├──➔ [DefenseOutcome]
+                                                                                                                                                         └──➔ [xTime_yData_Plotter]
 [FES_DB]   [Magazine_DB]
 ```
 
 ### Block Responsibilities
-- **`ThreatGenerator`**: Generates incoming threat missile data streams according to `Input_Rate` and `Modelseed`.
-- **`DetectionAssignment` & `CommonRule`**: Performs radar detection tracking (requires `Track_Threshold` hits for `Firm_Track`) and initial rule-based prioritization utilizing `FES_DB` (Fire/Engagement Support database).
-- **`PolicyRouter`**: Evaluates `Policy_Mode` (sectored / first-launch / bidded-lite) alongside `Magazine_DB` inventory levels (`Ship1_Inv`, `Ship2_Inv`) to route the engagement command to Ship 1 or Ship 2.
-- **Ship Processing Lines (`Ship1_*` / `Ship2_*`)**:
-  - **Queue (`Ship1_Queue`, `Ship2_Queue`)**: Buffers incoming engagement requests.
-  - **C2 Delay (`Ship1_C2`, `Ship2_C2`)**: Simulates Command & Control processing latency bounded between `C2_Latency_Min` and `C2_Latency_Max`.
-  - **Flyout (`Ship1_Flyout`, `Ship2_Flyout`)**: Simulates interceptor flight time based on `Interceptor_Speed` and engagement ranges (`Engagement_Range`, `Ship2_Range`).
-  - **Kill Block (`Ship1_Kill`, `Ship2_Kill`)**: Determines engagement outcome based on single-shot probability of kill (`Pk`), deadline constraints (`Intercept_Deadline`), and magazine reload status (`Reload_Time_Min/Max`).
-- **Data & Visualization Outputs**:
-  - **`Merge`**: Merges engagement records from both ship lines.
-  - **`KillCounter` / `MissCounter`**: Tracks cumulative intercepts (`KillCount`) and leakers (`MissCount`) over simulation time.
-  - **`DefenseOutcome`**: Displays detailed per-threat data structures.
-  - **`xTime_yData_Plotter`**: Plots real-time simulation metrics.
+
+| Block | Role |
+|---|---|
+| **`ThreatGenerator`** | Generates incoming threat missiles according to `Input_Rate` (seconds between arrivals) and random seed (`Modelseed`). |
+| **`DetectionAssignment`** | Simulates radar detection. A threat must accumulate `Track_Threshold` consecutive hits to be considered "firmly tracked" (`Firm_Track = true`). |
+| **`CommonRule`** | Applies default prioritization rules using the `FES_DB` lookup table. |
+| **`PolicyRouter`** | Routes each threat to Ship 1 or Ship 2 based on `Policy_Mode`: |
+| &nbsp; | &bull; **Mode 0** — Sectored: ships defend fixed geographic zones |
+| &nbsp; | &bull; **Mode 1** — First-launch: nearest available ship fires first |
+| &nbsp; | &bull; **Mode 2** — Bidded-lite: ships "bid" based on inventory and range |
+| **`ShipN_Queue`** | FIFO buffer for pending engagements on each ship. |
+| **`ShipN_C2`** | Simulates Command & Control processing delay uniformly sampled between `C2_Latency_Min` and `C2_Latency_Max`. |
+| **`ShipN_Flyout`** | Computes interceptor transit time from launch point to intercept location using `Interceptor_Speed` and engagement ranges (`Engagement_Range` for Ship 1, `Ship2_Range` for Ship 2). |
+| **`ShipN_Kill`** | Determines engagement success: stochastic check against single-shot probability `Pk`; also enforces `Intercept_Deadline` (threat must be killed within this window to be an *effective* kill). Handles magazine depletion and reload delays. |
+| **`Merge`** | Merges sorted completion events from both ships into a single stream. |
+| **`KillCounter`** | Increments cumulative intercept count → written to `KillCount` display. |
+| **`MissCounter`** | Increments cumulative leaker count → written to `MissCount` display. |
+| **`DefenseOutcome`** | Prints full structured record for every completed engagement (see Outcome Log Format below). |
+| **`xTime_yData_Plotter`** | Plots real-time metric series (e.g., C2 latency, queue depth) against simulation clock. |
+
+#### Outcome Displays During Simulation
+
+![Defense Outcome Display](screenshots/defense-outcome-display.png)
+*Figure 2: Example `DefenseOutcome` text window showing a completed engagement record with all tracked fields.*
+
+![Kill & Miss Counters](screenshots/kill-miss-counters.png)
+*Figure 3: Cumulative kill count and miss (leaker) count displays updated as engagements complete.*
+
+![Latency Plotter](screenshots/latency-plotter.png)
+*Figure 4: `xTime_yData_Plotter` showing C2 latency spikes as queue congestion increases under high threat rates.*
 
 ---
 
 ## Detailed Field Definitions in Outcome Logs
 
-Each record printed to the `DefenseOutcome` display log includes:
+Each engagement completion emits a structured record to the `DefenseOutcome` display and to the `.txt` output file:
 
-| Field | Description |
+```
+DISPLAY AT TIME     ------ 2.1899 sec ------
+{
+  Attempts                 = 1,
+  BLOCK                    = "ThreatGenerator",
+  C2_Latency               = 0.1899,
+  DELTA                    = 0.0,
+  DS_NAME                  = "Header_Only",
+  Effective_Kill           = false,       ← within Intercept_Deadline?
+  Firm_Track               = true,        ← Track_Hits >= Track_Threshold?
+  Flight_Time              = 2.1899,      ← total elapsed (C2 + Flyout)
+  Flyout_Time              = 2.0,         ← interceptor transit only
+  ID                       = 1,           ← unique threat identifier
+  INDEX                    = 0,
+  Inventory_Left           = 8,           ← remaining rounds on firing ship
+  Killed                   = false,       ← raw stochastic Pk check failed
+  Leaker                   = false,
+  Magazine_Empty           = false,
+  Priority                 = 2,           ← from fes_table.csv lookup
+  Reload_Wait              = 25.38,       ← seconds until launcher reloads
+  Shots_Fired              = 2,
+  TIME                     = 0.0,
+  Task_Latency             = 0.0,
+  Time_Array               = {0.0, 0.0},
+  Trace_Array              = {"Queue_in", "Queue_out"},
+  Track_Hits               = 3,
+  hasInv1                  = true,
+  hasInv2                  = true,
+  preferredShip            = 1,
+  sectoredShip             = 1,
+  ship                     = 1,           ← actual firing ship
+  shipHint                 = 1            ← from fes_table.csv
+}
+```
+
+| Field | Meaning |
 |---|---|
 | `ID` | Unique numeric identifier for the threat missile. |
-| `BLOCK` | Source block generating the record (`ThreatGenerator`). |
-| `Priority` | Threat priority level looked up from `fes_table.csv`. |
-| `Firm_Track` | `true` if radar detection hits meet `Track_Threshold` (default 3). |
-| `C2_Latency` | Random delay introduced by C2 network/processing (sec). |
-| `Flyout_Time` | Interceptor transit time to intercept point (sec). |
-| `Flight_Time` | Total time elapsed from detection to intercept (`C2_Latency + Flyout_Time`). |
-| `Attempts` / `Shots_Fired` | Number of interceptors launched against this threat. |
-| `Killed` | Raw intercept success based on stochastic `Pk` check. |
-| `Effective_Kill` | `true` if the threat was killed within `Intercept_Deadline`. |
-| `Leaker` | `true` if threat survived or missed the intercept deadline. |
-| `Inventory_Left` | Remaining interceptor inventory on the firing ship. |
-| `Magazine_Empty` | `true` when firing ship inventory reaches 0. |
-| `Reload_Wait` | Time required until launcher reload completes (sec). |
-| `TIME` / `Task_Latency` | Scenario time and queuing/task delays. |
+| `BLOCK` | Source block emitting the record (`ThreatGenerator`). |
+| `Priority` | Threat priority level looked up from `fes_table.csv` row `ID`. |
+| `Firm_Track` | `true` if radar detection hits reach `Track_Threshold` (default: 3). |
+| `C2_Latency` | Random C2 processing delay (seconds), drawn uniformly from `[C2_Latency_Min, C2_Latency_Max]`. |
+| `Flyout_Time` | Interceptor flight time from launch point to predicted intercept location (sec). |
+| `Flight_Time` | Total wall-clock time from threat creation to intercept event (`C2_Latency + Flyout_Time`). |
+| `Attempts` / `Shots_Fired` | Number of individual interceptor shots launched at this threat. |
+| `Killed` | Raw binary kill result from stochastic `Pk` roll (always computed, regardless of deadline). |
+| `Effective_Kill` | `true` only if `Killed=true` AND interception occurred before `Intercept_Deadline`. |
+| `Leaker` | `true` if the threat survived past the intercept deadline or magazines were empty. |
+| `Inventory_Left` | Remaining interceptor count on the firing ship after this engagement. |
+| `Magazine_Empty` | `true` when the firing ship's magazine reaches zero and no reload is imminent. |
+| `Reload_Wait` | Seconds until the next interceptor can be loaded (based on `Reload_Time_Min/Max`). |
+| `TIME` / `Task_Latency` | Scenario start time and any queuing delay experienced before engagement started. |
+| `ship` / `preferredShip` / `sectoredShip` | Which ship fired (`ship`), which was preferred by policy (`preferredShip`), and which zone owns the threat (`sectoredShip`). |
 
 ---
 
@@ -91,6 +182,8 @@ Each record printed to the `DefenseOutcome` display log includes:
   - **Leakers:** threats not effectively killed (e.g. `Leaker=true` / `threats - effective`).
   - **Other:** firm tracks, shots fired, re-engagements (same ID seen multiple times), per-ship load.
 
+---
+
 ## Requirements
 
 ### To run simulations (VisualSim batch mode)
@@ -103,9 +196,12 @@ Each record printed to the `DefenseOutcome` display log includes:
 ### To run summarizers / portable experiment driver
 - **Python 3.x** (standard library only; no third-party packages required).
 
+---
+
 ## Running experiments
 
 ### 1) Portable Python runner (recommended)
+
 `run_full_policy_experiment.py` is terminal-first and resolves paths portably:
 
 - **VisualSim path:** `--vs-ar PATH` > `VS_AR` env var > `<script-dir>/VS_AR`
@@ -128,11 +224,16 @@ Outputs per run: `MissileDefense_Outcome_p{mode}_pk{pk-tag}_s{seed}.txt` with a 
 `policy=... pk=... seed=...: threats=... raw=... effective=... leakers=... raw_Pk=... effective_Pk=... ship1=... ship2=... shots=... reengaged=...`
 
 ### 2) Windows batch scripts
+
 The `.bat` files are example batch invocations (they contain **hardcoded local paths** for `JAVA_HOME` and `INSTALL_PATH`/`VS_AR` on the original machine). Edit those variables to match your environment before use:
 
-- `MissileDefense_Model_Sweep.bat` — 3 runs (`run1..3`) varying `Pk`/seed → `MissileDefense_Outcome_run*.txt`
-- `MissileDefense_Policy_Pk_Sweep.bat` — 9 runs over policy/Pk → `MissileDefense_Outcome_p*_pk*.txt`
-- `MissileDefense_Force_Ship2.bat` — forces Ship 2 engagement scenario → `MissileDefense_Outcome_force_ship2.txt`
+| Script | Runs | Output pattern |
+|---|---|---|
+| `MissileDefense_Model_Sweep.bat` | 3 (Pk 0.5/0.8/0.95 × seeds) | `MissileDefense_Outcome_run*.txt` |
+| `MissileDefense_Policy_Pk_Sweep.bat` | 9 (Policy × Pk grid) | `MissileDefense_Outcome_p*_pk*.txt` |
+| `MissileDefense_Force_Ship2.bat` | 1 (all-to-Ship-2 scenario) | `MissileDefense_Outcome_force_ship2.txt` |
+
+---
 
 ## Summarizing results
 
@@ -153,24 +254,34 @@ Notes:
 - `summarize_full_policy_experiment.py` dedupes by threat `ID` (last record wins, matching the runner) and reports `reengaged` (IDs seen more than once) and total `shots`.
 - `summarize_missile_outcome.py` / `summarize_missile_policy_pk.py` aggregate records as present in each file (useful for single-run/quick comparisons).
 
+---
+
 ## Outcome log format
 
 Each engagement completion is emitted as a block similar to:
 ```
 DISPLAY AT TIME     ------ <t> sec ------
 {ID = ..., Priority = ..., Firm_Track = true/false, Killed = true/false,
- Effective_Kill = true/false, Leaker = true/false, ship = 1|2,
+ Effective_Kill = true/false, Leaker = true/false, ship = 1\|2,
  Shots_Fired = ..., Inventory_Left = ..., C2_Latency = ..., ...}
 ```
 `MissileDefense_Kill_Count.txt` / `MissileDefense_Miss_Count.txt` capture count events over time in the same display-log style.
 
+---
+
 ## Example artifacts included
 
-- `MissileDefense_Outcome.txt`, `MissileDefense_Kill_Count.txt`, `MissileDefense_Miss_Count.txt` — sample logs from a run (illustrative of format and metrics such as effective kills, leakers, ship assignment, and inventory depletion).
+- `MissileDefense_Outcome.txt` — sample outcome log (illustrative of format and metrics such as effective kills, leakers, ship assignment, and inventory depletion).
+- `MissileDefense_Kill_Count.txt` — kill counter events from a run.
+- `MissileDefense_Miss_Count.txt` — miss/leaker counter events from a run.
+
+---
 
 ## Parameters (reference)
 
 See `missile_defense_parameters.csv` for the working parameter set (values/ranges, units, sources, confidence). Key modeled knobs include `Input_Rate`, `Execution_Time`, `Pk`, `Intercept_Deadline`, `Track_Threshold`, `C2_Latency_Min/Max`, `Policy_Mode`, `Ship*_Inv`/`Ship2_Range`, reload timings, and inventory. `fes_table.csv` and `magazine.csv` provide tabular inputs consumed by the model.
+
+---
 
 ## Notes
 
