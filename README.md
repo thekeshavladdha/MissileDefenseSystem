@@ -41,11 +41,44 @@
 
 ## Overview
 
-This project implements **DED-lite** — a minimal discrete-event simulation of the Navy's Distributed Engagement Decision (DED) coordination scheme for theater ballistic missile defense. The model addresses a critical force-level question:
+### The Problem
 
-> *Given two warships with finite magazines defending against a time-compressed raid, how should threats be assigned to maximize effective kills while minimizing leakers?*
+Theater ballistic missile defense (TBMD) requires engaging a time-compressed raid of incoming threats with finite interceptor stocks spread across multiple shooters. The decisive question is not interceptor speed or individual kill probability — it is **engagement coordination**. How should a defense commander assign each threat to a shooter so that leakers (threats that penetrate) are minimized without wasting interceptors on over-engagement?
 
-### Key Findings at a Glance
+Consider two warships, each carrying 10 interceptors, facing a raid of ~7 threats arriving at a rate of one per second. Each engagement takes approximately 2 seconds from detection to impact assessment (C2 delay + flyout time), with an intercept deadline of 4 seconds. Under these conditions:
+
+- **Over-engagement** — firing both ships at the same threat wastes interceptors that could have been used against later threats
+- **Free riders** — static assignment lets one ship saturate while the other sits idle, allowing later threats to pass unengaged
+- **Single-ship failure** — committing everything to one ship loses decisively once its queue congests or magazine empties
+
+This project implements **DED-lite**, a minimal discrete-event simulation of the Navy's Distributed Engagement Decision (DED) coordination scheme that isolates and exposes these tradeoffs in a controlled experimental setting.
+
+### What DED-lite Models
+
+The model extends a validated single-ship kill chain into a two-ship system with three configurable engagement doctrines. It captures:
+
+| Aspect | Implementation |
+|---|---|
+| **Threat generation** | Fixed-rate arrival with random seed control; priority assignment from fire-support table |
+| **Detection & tracking** | Radar detection with configurable confirmation threshold (default: 3 hits) |
+| **Command & control** | Uniformly distributed C2 latency between 0.05s and 0.20s |
+| **Interceptor flight** | Constant velocity model: Ship 1 range 5500m / 2750 m/s = 2.0s; Ship 2 range 6000m / 2750 m/s = 2.18s |
+| **Kill assessment** | Bernoulli trial with configurable single-shot Pk (0.5–0.95); deadline enforcement for *effective* kills |
+| **Magazine management** | Live inventory tracking per ship; stochastic reload times (10–30s); block-at-zero forces routing to remaining ship |
+| **Shoot-look-shoot** | Second attempt with fresh dice roll if timeline permits (Attempts < 2 AND within deadline) |
+| **Policy switching** | Single parameter (`Policy_Mode`) toggles between sectored, first-launch, and bidded-lite doctrines |
+
+### Methodology
+
+The approach follows a **reductionist modeling** philosophy: extend, never rewrite. Starting from a frozen 14-container single-ship baseline, the model adds only the minimum topology needed to exhibit the over-engagement versus free-rider tradeoff — one duplicated ship lane plus one shared decision point. This keeps the model tractable (~23 containers) while preserving the essential dynamics of coordinated engagement.
+
+Three engagement doctrines run against the identical raid shape with identical seeds, differing only in the `Policy_Mode` parameter. This controlled comparison ensures that performance differences are attributable to doctrine, not raid luck. The experiment sweep covers:
+
+```
+Policy_Mode: {0, 1, 2} × Pk: {0.5, 0.8, 0.95} × Seeds: {2001–2010} = 90 runs
+```
+
+### Key Findings
 
 | Finding | Evidence |
 |---|---|
@@ -53,6 +86,12 @@ This project implements **DED-lite** — a minimal discrete-event simulation of 
 | **Timeline binds harder than dice** | Raw kills rise but effective stays flat when hits arrive late |
 | **Magazines are doctrine, not footnotes** | Block-at-zero + reload gating changes everything |
 | **Sectored ≈ Bidded at this scale** | Modes 0 and 2 nearly identical; Mode 2 edges ahead at high Pk |
+
+### Scope and Limitations
+
+The model deliberately excludes sensor physics, guidance dynamics, jamming, and multi-ship federation effects. These represent future work (see [Future Work](#future-work)) but are out of scope for this coordination study. Conclusions hold for small saturated raids of uniform threats against two finite-magazine shooters with second-scale timelines. They do not transfer to sensor-limited, correlation-limited, jammed, hypersonic, or multi-mission regimes without the stated extensions.
+
+All performance numbers are logical-time simulation outputs driven by assumption-tagged inputs. No classified or measured system data is contained or cited as calibration.
 
 ---
 
