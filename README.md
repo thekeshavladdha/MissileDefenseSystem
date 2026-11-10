@@ -1,4 +1,4 @@
-# 🚀 MissileDefenseSystem — DED-lite Discrete-Event Simulation
+# MissileDefenseSystem — DED-lite Discrete-Event Simulation
 
 <div align="center">
 
@@ -22,24 +22,24 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Overview](#-overview)
-- [Quick Start](#-quick-start)
-- [Model Architecture](#-model-architecture)
-- [Doctrines & Policies](#-doctrines--policies)
-- [Experiment Results](#-experiment-results)
-- [Project Structure](#-project-structure)
-- [Requirements](#-requirements)
-- [Running Simulations](#-running-simulations)
-- [Outcome Analysis](#-outcome-analysis)
-- [Parameters](#-parameters)
-- [Future Work](#-future-work)
-- [References](#-references)
+- [Overview](#overview)
+- [Quick Start](#quick-start)
+- [Model Architecture](#model-architecture)
+- [Doctrines & Policies](#doctrines--policies)
+- [Experiment Results](#experiment-results)
+- [Project Structure](#project-structure)
+- [Requirements](#requirements)
+- [Running Simulations](#running-simulations)
+- [Outcome Analysis](#outcome-analysis)
+- [Parameters](#parameters)
+- [Future Work](#future-work)
+- [References](#references)
 
 ---
 
-## 🔍 Overview
+## Overview
 
 This project implements **DED-lite** — a minimal discrete-event simulation of the Navy's Distributed Engagement Decision (DED) coordination scheme for theater ballistic missile defense. The model addresses a critical force-level question:
 
@@ -49,14 +49,14 @@ This project implements **DED-lite** — a minimal discrete-event simulation of 
 
 | Finding | Evidence |
 |---|---|
-| ⚔️ **Single-ship doctrine loses decisively** | Ship 2 idle at full magazine; Mode 1 has lowest effective Pk |
-| ⏱️ **Timeline binds harder than dice** | Raw kills rise but effective stays flat when hits arrive late |
-| 📦 **Magazines are doctrine, not footnotes** | Block-at-zero + reload gating changes everything |
-| 🔄 **Sectored ≈ Bidded at this scale** | Modes 0 and 2 nearly identical; Mode 2 edges ahead at high Pk |
+| **Single-ship doctrine loses decisively** | Ship 2 idle at full magazine; Mode 1 has lowest effective Pk |
+| **Timeline binds harder than dice** | Raw kills rise but effective stays flat when hits arrive late |
+| **Magazines are doctrine, not footnotes** | Block-at-zero + reload gating changes everything |
+| **Sectored ≈ Bidded at this scale** | Modes 0 and 2 nearly identical; Mode 2 edges ahead at high Pk |
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
 ```bash
 # 1) Verify environment (no VisualSim needed)
@@ -71,7 +71,7 @@ python summarize_full_policy_experiment.py
 
 ---
 
-## 🏗️ Model Architecture
+## Model Architecture
 
 ### System Diagram
 
@@ -91,7 +91,7 @@ The VisualSim block diagram models a two-ship distributed missile defense system
             ┌────────────▼────────────┐  ┌─────────────▼────────────┐
             │      SHIP 1 LANE        │  │      SHIP 2 LANE         │
             │ Queue → C2 → Flyout → Kill │ Queue → C2 → Flyout → Kill │
-            └────────────┬────────────┘  └─────────────┬────────────┘
+            └────────────┬────────────┘  └─────────────┬─────────────┘
                          │                              │
                          └──────────┬───────────────────┘
                                     ▼
@@ -131,7 +131,7 @@ The VisualSim block diagram models a two-ship distributed missile defense system
 
 ---
 
-## 🎯 Doctrines & Policies
+## Doctrines & Policies
 
 Three engagement doctrines run on the **identical raid** behind a single parameter switch:
 
@@ -141,11 +141,11 @@ Three engagement doctrines run on the **identical raid** behind a single paramet
 | **1** | First-Launch | Always route to Ship 1 | Single-ship heroics (loses) |
 | **2** | Bidded-lite | Use `fes_table.csv` hint + inventory awareness | Dynamic optimal assignment |
 
-> 💡 **Key Insight**: Doctrine is data, not code. Edit `fes_table.csv` to change partitioning without touching the model.
+> **Key Insight**: Doctrine is data, not code. Edit `fes_table.csv` to change partitioning without touching the model.
 
 ---
 
-## 📊 Experiment Results
+## Experiment Results
 
 ### 90-Run Sweep Design
 
@@ -180,7 +180,7 @@ Policy_Mode: {0, 1, 2}
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 MissileDefense_Share/
@@ -210,7 +210,7 @@ MissileDefense_Share/
 
 ---
 
-## 🔧 Requirements
+## Requirements
 
 ### To Run Simulations (VisualSim Batch Mode)
 - **VisualSim Architect** installation (`VS_AR`) with:
@@ -226,7 +226,7 @@ MissileDefense_Share/
 
 ---
 
-## ▶️ Running Simulations
+## Running Simulations
 
 ### Method 1: Portable Python Runner (Recommended)
 
@@ -263,7 +263,7 @@ The `.bat` files contain hardcoded paths — edit `JAVA_HOME` and `INSTALL_PATH`
 
 ---
 
-## 📈 Outcome Analysis
+## Outcome Analysis
 
 Run summarizers from the directory containing `.txt` outputs:
 
@@ -299,11 +299,11 @@ DISPLAY AT TIME     ------ 2.1899 sec ------
 }
 ```
 
-> ⚠️ **Note**: `Effective_Kill` requires BOTH `Killed=true` AND interception before `Intercept_Deadline`. A won dice roll that arrives late is still a leaker.
+> **Note**: `Effective_Kill` requires BOTH `Killed=true` AND interception before `Intercept_Deadline`. A won dice roll that arrives late is still a leaker.
 
 ---
 
-## 📐 Parameters
+## Parameters
 
 All modeled parameters with sources and confidence levels:
 
@@ -326,21 +326,21 @@ See `missile_defense_parameters.csv` for the complete table.
 
 ---
 
-## 🔮 Future Work
+## Future Work
 
 | Priority | Enhancement | Description |
 |---|---|---|
-| 🔵 | Poisson Raids | Replace fixed inter-arrival with exponential distribution |
-| 🔵 | True M-of-N Tracking | Add probabilistic detection + false alarm handling |
-| 🟡 | Threat Class Diversity | Ballistic / hypersonic / cruise with different Pk profiles |
-| 🟡 | Fusion & C2 Load Modeling | Network latency, processing bottlenecks, Link-16 constraints |
-| 🟢 | Discrimination & Jamming | Sensor-level effects before engagement decision |
-| 🟢 | Statistical Rigor | Confidence intervals, RNG ordering, larger N experiments |
-| 🟢 | Multi-Ship Scaling | Extend to 4+ ships, study federation effects |
+| High | Poisson Raids | Replace fixed inter-arrival with exponential distribution |
+| High | True M-of-N Tracking | Add probabilistic detection + false alarm handling |
+| Medium | Threat Class Diversity | Ballistic / hypersonic / cruise with different Pk profiles |
+| Medium | Fusion & C2 Load Modeling | Network latency, processing bottlenecks, Link-16 constraints |
+| Low | Discrimination & Jamming | Sensor-level effects before engagement decision |
+| Low | Statistical Rigor | Confidence intervals, RNG ordering, larger N experiments |
+| Low | Multi-Ship Scaling | Extend to 4+ ships, study federation effects |
 
 ---
 
-## 📚 References
+## References
 
 1. **Moskowitz, Gassler, Paulhamus (2002)** — *A Comparison of TBMD Engagement Coordination Schemes*. JHU APL Tech. Digest 23(2-3), 272-285. *(Primary DED source)*
 2. **O'Haver et al. (2018)** — *Radar Development for Air and Missile Defense*. JHU APL Tech. Digest 34(2).
@@ -351,3 +351,4 @@ See `missile_defense_parameters.csv` for the complete table.
 7. **Mirabilis Design (2026)** — *VisualSim Architect Release Notes & Defense Modules*.
 
 ---
+
