@@ -14,7 +14,10 @@ This repository is the standalone project — all source files sit at the root f
 | [`screenshots/defense-outcome-display.png`](screenshots/defense-outcome-display.png) | Per-threat outcome record shown in the VisualSim Architect console |
 | [`screenshots/kill-miss-counters.png`](screenshots/kill-miss-counters.png) | Cumulative kill and miss count displays from the simulation |
 | [`screenshots/latency-plotter.png`](screenshots/latency-plotter.png) | Real-time C2 latency plot over simulation time |
-| [`screenshots/threat-timeline.png`](screenshots/threat-timeline.png) | Threat arrival/engagement timeline visualization |
+| [`screenshots/threat-timeline.png`](screenshots/threat-timeline.png) | Threat arrival / engagement timeline visualization |
+| [`screenshots/defense-outcome-display-alt.png`](screenshots/defense-outcome-display.png) | Alternate view of the `DefenseOutcome` text window (same content) |
+| [`screenshots/ship-queue-detail.png`](screenshots/ship-queue-detail.png) | Ship queue depth and routing detail during a busy sweep run |
+| [`screenshots/inventory-monitor.png`](screenshots/inventory-monitor.png) | Magazine inventory depletion / reload monitor across ships |
 
 ---
 
