@@ -23,6 +23,61 @@ This repository is the standalone project (root-level model, scripts, parameter 
 | `MissileDefense_Kill_Count.txt` | Example kill-count display/log. |
 | `MissileDefense_Miss_Count.txt` | Example miss/leaker-count display/log. |
 
+## Model Architecture & Pipeline
+
+The VisualSim block diagram (`MissileDefense_Model.xml`) models a two-ship distributed missile defense system:
+
+```
+[ThreatGenerator] ➔ [DetectionAssignment] ➔ [CommonRule] ➔ [PolicyRouter]
+                                                               ├──➔ [Ship1_Queue] ➔ [Ship1_C2] ➔ [Ship1_Flyout] ➔ [Ship1_Kill] ──┐
+                                                               └──➔ [Ship2_Queue] ➔ [Ship2_C2] ➔ [Ship2_Flyout] ➔ [Ship2_Kill] ──┴──➔ [Merge] ➔ [KillCounter] ➔ [KillCount]
+                                                                                                                                              ├──➔ [MissCounter] ➔ [MissCount]
+                                                                                                                                              ├──➔ [DefenseOutcome]
+                                                                                                                                              └──➔ [xTime_yData_Plotter]
+[FES_DB]   [Magazine_DB]
+```
+
+### Block Responsibilities
+- **`ThreatGenerator`**: Generates incoming threat missile data streams according to `Input_Rate` and `Modelseed`.
+- **`DetectionAssignment` & `CommonRule`**: Performs radar detection tracking (requires `Track_Threshold` hits for `Firm_Track`) and initial rule-based prioritization utilizing `FES_DB` (Fire/Engagement Support database).
+- **`PolicyRouter`**: Evaluates `Policy_Mode` (sectored / first-launch / bidded-lite) alongside `Magazine_DB` inventory levels (`Ship1_Inv`, `Ship2_Inv`) to route the engagement command to Ship 1 or Ship 2.
+- **Ship Processing Lines (`Ship1_*` / `Ship2_*`)**:
+  - **Queue (`Ship1_Queue`, `Ship2_Queue`)**: Buffers incoming engagement requests.
+  - **C2 Delay (`Ship1_C2`, `Ship2_C2`)**: Simulates Command & Control processing latency bounded between `C2_Latency_Min` and `C2_Latency_Max`.
+  - **Flyout (`Ship1_Flyout`, `Ship2_Flyout`)**: Simulates interceptor flight time based on `Interceptor_Speed` and engagement ranges (`Engagement_Range`, `Ship2_Range`).
+  - **Kill Block (`Ship1_Kill`, `Ship2_Kill`)**: Determines engagement outcome based on single-shot probability of kill (`Pk`), deadline constraints (`Intercept_Deadline`), and magazine reload status (`Reload_Time_Min/Max`).
+- **Data & Visualization Outputs**:
+  - **`Merge`**: Merges engagement records from both ship lines.
+  - **`KillCounter` / `MissCounter`**: Tracks cumulative intercepts (`KillCount`) and leakers (`MissCount`) over simulation time.
+  - **`DefenseOutcome`**: Displays detailed per-threat data structures.
+  - **`xTime_yData_Plotter`**: Plots real-time simulation metrics.
+
+---
+
+## Detailed Field Definitions in Outcome Logs
+
+Each record printed to the `DefenseOutcome` display log includes:
+
+| Field | Description |
+|---|---|
+| `ID` | Unique numeric identifier for the threat missile. |
+| `BLOCK` | Source block generating the record (`ThreatGenerator`). |
+| `Priority` | Threat priority level looked up from `fes_table.csv`. |
+| `Firm_Track` | `true` if radar detection hits meet `Track_Threshold` (default 3). |
+| `C2_Latency` | Random delay introduced by C2 network/processing (sec). |
+| `Flyout_Time` | Interceptor transit time to intercept point (sec). |
+| `Flight_Time` | Total time elapsed from detection to intercept (`C2_Latency + Flyout_Time`). |
+| `Attempts` / `Shots_Fired` | Number of interceptors launched against this threat. |
+| `Killed` | Raw intercept success based on stochastic `Pk` check. |
+| `Effective_Kill` | `true` if the threat was killed within `Intercept_Deadline`. |
+| `Leaker` | `true` if threat survived or missed the intercept deadline. |
+| `Inventory_Left` | Remaining interceptor inventory on the firing ship. |
+| `Magazine_Empty` | `true` when firing ship inventory reaches 0. |
+| `Reload_Wait` | Time required until launcher reload completes (sec). |
+| `TIME` / `Task_Latency` | Scenario time and queuing/task delays. |
+
+---
+
 ## Model overview
 
 - **Simulator:** VisualSim Digital/DE (`VisualSim.simulators.de.kernel.DEDirector`, `digitalDomainOnly=true`), model `MissileDefense_Model` (MoML/XML).
