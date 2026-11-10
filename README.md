@@ -170,6 +170,16 @@ The VisualSim block diagram models a two-ship distributed missile defense system
 
 ---
 
+## Demo Video
+
+Watch a full simulation walkthrough showing threat generation, tracking, engagement decisions across both ships, magazine depletion, and outcome logging in real time.
+
+[![Watch the demo](screenshots/model-canvas-full.png)](screenshots/results-demo.mp4)
+
+*Figure 3: Simulation walkthrough — launch the video above to observe live policy switching, shoot-look-shoot re-engagement, and C2 latency visualization.*
+
+---
+
 ## Doctrines & Policies
 
 Three engagement doctrines run on the **identical raid** behind a single parameter switch:
