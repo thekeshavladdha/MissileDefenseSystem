@@ -6,20 +6,6 @@ This repository is the standalone project — all source files sit at the root f
 
 ---
 
-## Screenshots
-
-| Screenshot | Description |
-|---|---|
-| [`screenshots/model-architecture.png`](screenshots/model-architecture.png) | Full VisualSim block diagram of the two-ship missile defense pipeline |
-| [`screenshots/defense-outcome-display.png`](screenshots/defense-outcome-display.png) | Per-threat outcome record shown in the VisualSim Architect console |
-| [`screenshots/kill-miss-counters.png`](screenshots/kill-miss-counters.png) | Cumulative kill and miss count displays from the simulation |
-| [`screenshots/latency-plotter.png`](screenshots/latency-plotter.png) | Real-time C2 latency plot over simulation time |
-| [`screenshots/threat-timeline.png`](screenshots/threat-timeline.png) | Threat arrival / engagement timeline visualization |
-| [`screenshots/defense-outcome-display-alt.png`](screenshots/defense-outcome-display.png) | Alternate view of the `DefenseOutcome` text window (same content) |
-| [`screenshots/ship-queue-detail.png`](screenshots/ship-queue-detail.png) | Ship queue depth and routing detail during a busy sweep run |
-| [`screenshots/inventory-monitor.png`](screenshots/inventory-monitor.png) | Magazine inventory depletion / reload monitor across ships |
-
----
 
 ## Quick Start
 
@@ -63,9 +49,6 @@ Or use the Windows batch scripts (`*.bat`) — edit the hardcoded paths first.
 
 The VisualSim block diagram models a two-ship distributed missile defense system. Threats are generated, detected, prioritized, routed to one of two ship engagement lines, and evaluated for kill effectiveness.
 
-![Model Architecture](screenshots/model-architecture.png)
-*Figure 1: Full VisualSim block diagram of the missile defense simulation.*
-
 ### Data Flow Pipeline
 
 ```
@@ -98,17 +81,6 @@ The VisualSim block diagram models a two-ship distributed missile defense system
 | **`MissCounter`** | Increments cumulative leaker count → written to `MissCount` display. |
 | **`DefenseOutcome`** | Prints full structured record for every completed engagement (see Outcome Log Format below). |
 | **`xTime_yData_Plotter`** | Plots real-time metric series (e.g., C2 latency, queue depth) against simulation clock. |
-
-#### Outcome Displays During Simulation
-
-![Defense Outcome Display](screenshots/defense-outcome-display.png)
-*Figure 2: Example `DefenseOutcome` text window showing a completed engagement record with all tracked fields.*
-
-![Kill & Miss Counters](screenshots/kill-miss-counters.png)
-*Figure 3: Cumulative kill count and miss (leaker) count displays updated as engagements complete.*
-
-![Latency Plotter](screenshots/latency-plotter.png)
-*Figure 4: `xTime_yData_Plotter` showing C2 latency spikes as queue congestion increases under high threat rates.*
 
 ---
 
