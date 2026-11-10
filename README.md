@@ -328,8 +328,6 @@ See `missile_defense_parameters.csv` for the complete table.
 
 ## 🔮 Future Work
 
-Based on the technical writeup, the following extensions are planned:
-
 | Priority | Enhancement | Description |
 |---|---|---|
 | 🔵 | Poisson Raids | Replace fixed inter-arrival with exponential distribution |
@@ -353,11 +351,3 @@ Based on the technical writeup, the following extensions are planned:
 7. **Mirabilis Design (2026)** — *VisualSim Architect Release Notes & Defense Modules*.
 
 ---
-
-<div align="center">
-
-**Built with** ❤️ **for educational simulation research**
-
-*Every claim traces to a per-threat Display row. Every equation is verbatim model code.*
-
-</div>
